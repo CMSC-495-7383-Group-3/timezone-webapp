@@ -1,0 +1,14 @@
+# Frontend Dependencies
+node_modules/
+dist/
+build/
+
+# Backend Dependencies
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
