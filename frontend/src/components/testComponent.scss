@@ -1,0 +1,17 @@
+@use "../globals.scss";
+
+.container {
+  button {
+    margin: 0.5rem;
+  }
+  form > input,
+  form > div {
+    margin: 0.5rem;
+    display: block;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: globals.$space-md;
+}

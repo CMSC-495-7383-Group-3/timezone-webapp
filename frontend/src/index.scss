@@ -1,0 +1,177 @@
+// Defines globally used styles, especially those for basic HTML elements (text, buttons, etc.)
+
+@use "./globals.scss";
+@use "./theme.scss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  color: var(--text-950);
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.75rem;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--background-50);
+  height: 100%;
+  margin: 0;
+}
+
+input:focus,
+button:focus {
+  outline: 2px solid var(--accent-200);
+}
+
+//TODO adjust main to fit with the header/footer once they are added
+main {
+  margin: globals.$space-xs globals.$space-md;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: globals.$space-md 0;
+}
+
+a {
+  color: var(--accent-400);
+}
+
+a:visited {
+  color: var(--accent-300);
+}
+
+.container {
+  background-color: var(--secondary-50);
+  border: solid 2px var(--secondary-100);
+  box-shadow: globals.$shadow;
+
+  border-radius: globals.$corner-rounding-large;
+  padding: globals.$space-xs globals.$space-md;
+  margin: 1rem 0;
+
+  &.secondary {
+    background-color: var(--primary-100);
+    border-color: var(--primary-200);
+  }
+
+  &.accent {
+    background-color: var(--accent-500);
+    border-color: var(--accent-600);
+    color: var(--text-50);
+  }
+
+  &.secondary,
+  &.accent {
+    padding: globals.$space-xxs globals.$space-xs;
+  }
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--secondary-100);
+  border: none;
+  border-radius: globals.$corner-rounding-small;
+  padding: globals.$space-xs globals.$space-md;
+
+  transition: background-color 0.3s globals.$easing;
+
+  &:hover {
+    background-color: var(--secondary-200);
+  }
+
+  &:active {
+    background-color: var(--secondary-300);
+  }
+
+  &.primary {
+    background-color: var(--primary-500);
+    color: var(--text-100);
+
+    &:hover {
+      background-color: var(--primary-600);
+    }
+
+    &:active {
+      background-color: var(--primary-700);
+    }
+  }
+
+  &.accent,
+  &[type="submit"] {
+    background-color: var(--accent-500);
+    color: var(--text-100);
+
+    &:hover {
+      background-color: var(--accent-600);
+    }
+
+    &:active {
+      background-color: var(--accent-700);
+    }
+  }
+}
+
+input[type="text"] {
+  background-color: var(--secondary-100);
+  border: none;
+  border-radius: globals.$corner-rounding-small;
+  border-bottom: 2px solid var(--primary-500);
+  padding: globals.$space-xs globals.$space-md globals.$space-xxs
+    globals.$space-md;
+
+  transition: background-color 0.3s globals.$easing;
+
+  &:hover {
+    background-color: var(--secondary-200);
+  }
+
+  &:active {
+    background-color: var(--secondary-300);
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  margin: 0;
+
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--primary-500);
+  border-radius: globals.$corner-rounding-small;
+
+  transition: background-color 0.3s globals.$easing;
+
+  &:hover,
+  &:checked {
+    background-color: var(--secondary-200);
+  }
+
+  &:active {
+    background-color: var(--secondary-300);
+  }
+
+  display: grid;
+
+  &::after {
+    content: " ";
+    place-self: center;
+    width: 0rem;
+    height: 0rem;
+
+    background-color: var(--accent-400);
+    border-radius: globals.$corner-rounding-small;
+  }
+
+  &:checked::after {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+}
