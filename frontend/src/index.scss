@@ -35,7 +35,8 @@ main {
 h1,
 h2,
 h3,
-p {
+p,
+a {
   margin: globals.$space-md 0;
 }
 
@@ -75,13 +76,27 @@ a:visited {
 
 button,
 input[type="button"],
-input[type="submit"] {
+input[type="submit"],
+.link-button {
   background-color: var(--secondary-100);
   border: none;
   border-radius: globals.$corner-rounding-small;
   padding: globals.$space-xs globals.$space-md;
 
   transition: background-color 0.3s globals.$easing;
+
+  font-size: 0.8rem;
+
+  &.icon > img,
+  &.icon > svg {
+    display: inline-block;
+    height: 0.8rem;
+    margin: 0 0.1rem;
+    vertical-align: middle;
+
+    // Fix for the icon in testing. This may need to be removed or adjusted depending on the icon to be used.
+    transform: translateY(-1px);
+  }
 
   &:hover {
     background-color: var(--secondary-200);
@@ -119,13 +134,17 @@ input[type="submit"] {
   }
 }
 
+.link-button {
+  text-decoration: none;
+  color: var(--text-950) !important;
+}
+
 input[type="text"] {
   background-color: var(--secondary-100);
   border: none;
   border-radius: globals.$corner-rounding-small;
   border-bottom: 2px solid var(--primary-500);
-  padding: globals.$space-xs globals.$space-md globals.$space-xxs
-    globals.$space-md;
+  padding: globals.$space-xs globals.$space-md globals.$space-xxs globals.$space-md;
 
   transition: background-color 0.3s globals.$easing;
 
@@ -174,4 +193,21 @@ input[type="checkbox"] {
     width: 0.5rem;
     height: 0.5rem;
   }
+}
+
+// Small classes
+.color-accent {
+  color: var(--accent-400);
+}
+.color-red {
+  color: var(--accent-red);
+}
+.color-green {
+  color: var(--accent-green);
+}
+.color-blue {
+  color: var(--accent-blue);
+}
+.color-yellow {
+  color: var(--accent-yellow);
 }

@@ -1,7 +1,8 @@
 @use "../globals.scss";
 
 .container {
-  button {
+  button,
+  a {
     margin: 0.5rem;
   }
   form > input,

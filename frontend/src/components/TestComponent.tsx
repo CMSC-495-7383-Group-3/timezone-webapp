@@ -1,4 +1,5 @@
 import "./testComponent.scss"
+import viteLogo from '/vite.svg'
 
 export default function TestComponent() {
   return (
@@ -15,9 +16,21 @@ export default function TestComponent() {
           voluptate debitis ipsam quas suscipit sapiente aliquam nostrum! Minima
           ex provident aut adipisci repellendus? <a href="#">Link</a>
         </p>
+        <p>
+          <span className="color-accent">Accent Text</span>&nbsp;
+          <span className="color-red">Red Text</span>&nbsp;
+          <span className="color-green">Green Text</span>&nbsp;
+          <span className="color-blue">Blue Text</span>&nbsp;
+          <span className="color-yellow">Yellow Text</span>
+        </p>
         <button>Button</button>
         <button className="primary">Primary Button</button>
         <button className="accent">Accent Button</button>
+        <a href="#" className="link-button">Link Button</a>
+        <button className="icon">
+          <img src={viteLogo}/>
+          Icon Button
+        </button>
         <form>
           <input type="text" name="" id="" />
           <div>
