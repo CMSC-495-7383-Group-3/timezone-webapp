@@ -6,12 +6,18 @@ import Dashboard from "./pages/Dashboard"
 import LoginRegister from "./pages/LoginRegister"
 import Timezone from "./pages/Timezone"
 import UserSettings from "./pages/UserSettings"
+import { AuthContext, AuthData } from "./context/authContext"
+import { useState } from "react"
 
 function App() {
-  // TODO fill in any global app information that we may need here. Potentially use contexts or an additional library.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [authDataSource, setauthDataSource] = useState<AuthData>({
+    isAuthenticated: false,
+    user: null,
+  })
 
   return (
-    <>
+    <AuthContext value={authDataSource}>
       {/* TODO: Fill in any header that we will need here */}
       <Nav />
       {/* All routes will be declared here */}
@@ -26,7 +32,7 @@ function App() {
         <Route path="test" element={<Test />} />
       </Routes>
       {/* TODO: Fill in any footer information here */}
-    </>
+    </AuthContext>
   )
 }
 
