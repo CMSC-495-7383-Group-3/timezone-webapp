@@ -1,10 +1,27 @@
+import { Contact } from "../types"
 import "./testComponent.scss"
-import viteLogo from '/vite.svg'
+import TimezoneDisplay from "./TimezoneDisplay"
+import viteLogo from "/vite.svg"
 
 export default function TestComponent() {
+  const testContacts: Contact[] = [
+    {
+      id: "0",
+      name: "Contact One",
+      timeZone: "none",
+      notes: "Note",
+    },
+    {
+      id: "1",
+      name: "Contact Two",
+      timeZone: "none",
+      notes: "Note",
+    },
+  ]
+
   return (
     <div className="test-component">
-      <div className="container">
+      <div className="container styles-test">
         <p>Primary Container</p>
 
         <h1>Heading 1</h1>
@@ -26,9 +43,11 @@ export default function TestComponent() {
         <button>Button</button>
         <button className="primary">Primary Button</button>
         <button className="accent">Accent Button</button>
-        <a href="#" className="link-button">Link Button</a>
+        <a href="#" className="link-button">
+          Link Button
+        </a>
         <button className="icon">
-          <img src={viteLogo}/>
+          <img src={viteLogo} />
           Icon Button
         </button>
         <form>
@@ -59,6 +78,16 @@ export default function TestComponent() {
             Minima ex provident aut adipisci repellendus?
           </p>
         </div>
+      </div>
+      <div className="container">
+        <h1>Components</h1>
+        <h2>Timezone Display</h2>
+        <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
+        <TimezoneDisplay
+          timezone="America/Los_Angeles"
+          contacts={testContacts}
+        />
+        <TimezoneDisplay timezone="test" contacts={testContacts} />
       </div>
     </div>
   )
