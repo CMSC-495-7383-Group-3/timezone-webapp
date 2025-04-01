@@ -1,4 +1,5 @@
 import { Contact } from "../types"
+import LocalTimeDisplay from "./LocalTimeDisplay"
 import "./testComponent.scss"
 import TimezoneDisplay from "./TimezoneDisplay"
 import viteLogo from "/vite.svg"
@@ -82,6 +83,7 @@ export default function TestComponent() {
       <div className="container">
         <h1>Components</h1>
         <h2>Timezone Display</h2>
+        <LocalTimeDisplay />
         <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
         <TimezoneDisplay
           timezone="America/Los_Angeles"

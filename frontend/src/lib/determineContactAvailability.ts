@@ -6,6 +6,7 @@ const MAYBE_AVAILABILITY_START_TIME = 14
 const AVAILABILITY_END_TIME = 17
 
 // Determines if a contact is available depending on the date (assuming the date is in the contact's local timezone)
+// TODO This is placeholder code for when the above is figured out
 export default function determineContactAvailability(
   date: Date
 ): ContactAvailability {
