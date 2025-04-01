@@ -22,7 +22,7 @@ export default function LocalTimeDisplay() {
   }
 
   return (
-    <div className="container secondary timezone-display">
+    <div className="container secondary current-time-display">
       <div className="title">
         <h3>Current Time:</h3>
       </div>
@@ -42,7 +42,7 @@ export default function LocalTimeDisplay() {
             00:00
           </p>
         </div>
-        <div className="search">
+        <div className="container primary search">
           <form onSubmit={onSearchSubmit}>
             <label htmlFor="query">Search Timezones</label>
             <input

@@ -4,21 +4,23 @@ import "./testComponent.scss"
 import TimezoneDisplay from "./TimezoneDisplay"
 import viteLogo from "/vite.svg"
 
+function generateDebugContacts(count: number): Contact[] {
+  const result: Contact[] = []
+
+  for (let i = 0; i < count; i++) {
+    result.push({
+      id: i.toString(),
+      name: "Contact " + "i".repeat(Math.random() * 25),
+      timeZone: "none",
+      notes: "note",
+    })
+  }
+
+  return result
+}
+
 export default function TestComponent() {
-  const testContacts: Contact[] = [
-    {
-      id: "0",
-      name: "Contact One",
-      timeZone: "none",
-      notes: "Note",
-    },
-    {
-      id: "1",
-      name: "Contact Two",
-      timeZone: "none",
-      notes: "Note",
-    },
-  ]
+  const testContacts: Contact[] = generateDebugContacts(300)
 
   return (
     <div className="test-component">

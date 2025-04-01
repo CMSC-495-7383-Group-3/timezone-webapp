@@ -15,7 +15,8 @@
   }
   .primary {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: stretch;
     flex-direction: row;
 
     .time {
@@ -46,6 +47,14 @@
 
     .contacts-list {
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      max-height: 8rem;
+      width: 100%;
+      overflow-y: scroll;
+      gap: globals.$space-xs;
     }
   }
 }

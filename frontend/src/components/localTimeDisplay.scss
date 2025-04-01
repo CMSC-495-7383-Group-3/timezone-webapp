@@ -1,6 +1,6 @@
 @use "../globals.scss";
 
-.timezone-display {
+.current-time-display {
   .title {
     display: flex;
     justify-content: space-between;
@@ -11,7 +11,8 @@
   }
   .primary {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: stretch;
     flex-direction: row;
 
     .time {
@@ -41,6 +42,8 @@
     }
 
     .search {
+      margin: globals.$space-xs 0 globals.$space-xs globals.$space-xxl;
+
       form {
         display: flex;
         flex-direction: column;
