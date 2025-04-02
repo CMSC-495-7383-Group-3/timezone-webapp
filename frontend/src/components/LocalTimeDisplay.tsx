@@ -3,7 +3,12 @@ import { useEffect, useState } from "react"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 
-export default function LocalTimeDisplay() {
+interface ILocalTimeDisplayProps {
+  hideSearch?: boolean
+}
+
+// Displays the local time and a search field to search for other timezones
+export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
   const [date, setDate] = useState(new Date())
   const [query, setQuery] = useState("")
 
@@ -42,19 +47,23 @@ export default function LocalTimeDisplay() {
             00:00
           </p>
         </div>
-        <div className="container primary search">
-          <form onSubmit={onSearchSubmit}>
-            <label htmlFor="query">Search Timezones</label>
-            <input
-              type="text"
-              name="query"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search Timezones"
-            />
-            <input type="submit" value="Search" />
-          </form>
-        </div>
+        {!props.hideSearch ? (
+          <div className="container primary search">
+            <form onSubmit={onSearchSubmit}>
+              <label htmlFor="query">Search Timezones</label>
+              <input
+                type="text"
+                name="query"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search Timezones"
+              />
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )

@@ -8,6 +8,7 @@ interface IContactListProps {
   contact: Contact
 }
 
+// Displays a single contact item.
 export default function ContactListItem(props: IContactListProps) {
   return (
     <li className={`contact-list-item ${props.availability}`}>

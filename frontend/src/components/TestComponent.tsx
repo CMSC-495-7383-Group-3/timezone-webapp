@@ -86,6 +86,7 @@ export default function TestComponent() {
         <h1>Components</h1>
         <h2>Timezone Display</h2>
         <LocalTimeDisplay />
+        <LocalTimeDisplay hideSearch />
         <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
         <TimezoneDisplay
           timezone="America/Los_Angeles"
