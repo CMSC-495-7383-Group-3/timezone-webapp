@@ -18,7 +18,7 @@ interface ITimezoneDisplayProps {
 function prettyTimezoneName(timezone: string): string {
   // TODO We will potentially need to turn the timezone's code into a pretty printed name.
   // TODO this is a placeholder function to do this.
-  return timezone
+  return timezone.replace("_", " ")
 }
 
 //Component for displaying a single timezone with a list of associated contacts
@@ -49,7 +49,14 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   return (
     <div className="container secondary timezone-display">
       <div className="title">
-        <h3>{prettyTimezoneName(props.timezone)}</h3>
+        <h3>
+          <a
+            href={`/timezone/${props.timezone.replace("/", "-")}`}
+            className="invisible-link"
+          >
+            {prettyTimezoneName(props.timezone)}
+          </a>
+        </h3>
         <button className="secondary icon" onClick={onFavoriteButtonClick}>
           <img src={starIcon} alt="star icon" />
         </button>

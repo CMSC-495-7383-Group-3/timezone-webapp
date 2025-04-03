@@ -29,7 +29,9 @@ button:focus {
 
 //TODO adjust main to fit with the header/footer once they are added
 main {
-  margin: globals.$space-xs globals.$space-md;
+  & > .container {
+    margin: globals.$space-xs globals.$space-md;
+  }
 }
 
 h1,
@@ -46,6 +48,16 @@ a {
 
 a:visited {
   color: var(--accent-300);
+}
+
+a.invisible-link {
+  color: var(--text-950);
+  text-decoration: none;
+
+  &:visited {
+    color: var(--text-950);
+    text-decoration: none;
+  }
 }
 
 .container {
@@ -194,6 +206,15 @@ input[type="checkbox"] {
     width: 0.5rem;
     height: 0.5rem;
   }
+}
+
+// Format the first h1 in a main as the page title
+main > h1:first-child {
+  background-color: var(--accent-400);
+  color: var(--background-50);
+  padding: globals.$space-md 0;
+  margin: 0;
+  text-align: center;
 }
 
 // Small classes
