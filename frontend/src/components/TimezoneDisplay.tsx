@@ -50,6 +50,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     <div className="container secondary timezone-display">
       <div className="title">
         <h3>
+          {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
           <a
             href={`/timezone/${props.timezone.replace("/", "-")}`}
             className="invisible-link"

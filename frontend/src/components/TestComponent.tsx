@@ -1,4 +1,5 @@
 import { Contact } from "../types"
+import ContactEditor from "./ContactEditor"
 import LocalTimeDisplay from "./LocalTimeDisplay"
 import "./testComponent.scss"
 import TimezoneDisplay from "./TimezoneDisplay"
@@ -93,6 +94,15 @@ export default function TestComponent() {
           contacts={testContacts}
         />
         <TimezoneDisplay timezone="test" contacts={testContacts} />
+        <ContactEditor
+          contact={{
+            id: "test-id",
+            name: "Test Contact",
+            timeZone: "Europe/Berlin",
+            notes: "Some Note",
+          }}
+          newContact={true}
+        />
       </div>
     </div>
   )

@@ -1,3 +1,4 @@
+// Database types
 export type User = {
   id: string
   name: string
@@ -22,7 +23,14 @@ export type Contact = {
   notes: string
 }
 
+// Frontend types
 export type ContactAvailability =
   | "available"
   | "maybe-available"
   | "not-available"
+
+export type formMessage = {
+  show: boolean
+  success: boolean
+  message: string
+}

@@ -1,5 +1,7 @@
 import "./contactListItem.scss"
 import { Contact, ContactAvailability } from "../types"
+import { ContactEditorContext } from "../context/contactEditorContext"
+import { useContext } from "react"
 
 interface IContactListProps {
   // Timezones to be displayed for this component
@@ -10,9 +12,13 @@ interface IContactListProps {
 
 // Displays a single contact item.
 export default function ContactListItem(props: IContactListProps) {
+  const editorContext = useContext(ContactEditorContext)
+
   return (
     <li className={`contact-list-item ${props.availability}`}>
-      {props.contact.name}
+      <button onClick={() => editorContext.openEditor(props.contact)}>
+        {props.contact.name}
+      </button>
     </li>
   )
 }
