@@ -60,6 +60,14 @@ export default function ContactEditor(props: IContactEditorProps) {
       message: `"${contact.name}" saved.`,
     })
 
+    // Update the existing contact if it is not a new contact. This will propagate the changes upwards.
+    if (!props.newContact) {
+      // Since the props is read-only, the fields are manually updated here
+      props.contact.name = contact.name
+      props.contact.timeZone = contact.timeZone
+      props.contact.notes = contact.notes
+    }
+
     if (props.closeEditorCallback) props.closeEditorCallback()
   }
 
