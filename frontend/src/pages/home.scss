@@ -1,0 +1,19 @@
+@use "../globals.scss";
+
+#home {
+  .header {
+    background-color: var(--accent-500);
+    background-image: url(https://picsum.photos/id/10/2500/1667.jpg);
+    background-size: cover;
+    background-position: center;
+    color: var(--text-50);
+
+    padding: globals.$space-xl 0;
+
+    text-align: center;
+  }
+
+  .flex {
+    margin: globals.$space-xs globals.$space-md;
+  }
+}
