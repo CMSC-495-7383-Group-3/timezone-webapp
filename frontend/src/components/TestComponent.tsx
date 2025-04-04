@@ -3,6 +3,7 @@ import ContactEditor from "./ContactEditor"
 import LocalTimeDisplay from "./LocalTimeDisplay"
 import "./testComponent.scss"
 import TimezoneDisplay from "./TimezoneDisplay"
+import TimeZoneSearch from "./TimeZoneSearch"
 import viteLogo from "/vite.svg"
 
 function generateDebugContacts(count: number): Contact[] {
@@ -86,8 +87,10 @@ export default function TestComponent() {
       <div className="container">
         <h1>Components</h1>
         <h2>Timezone Display</h2>
+        <LocalTimeDisplay seconds>
+          <TimeZoneSearch />
+        </LocalTimeDisplay>
         <LocalTimeDisplay />
-        <LocalTimeDisplay hideSearch />
         <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
         <TimezoneDisplay
           timezone="America/Los_Angeles"

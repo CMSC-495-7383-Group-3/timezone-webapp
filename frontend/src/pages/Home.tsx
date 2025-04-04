@@ -1,4 +1,5 @@
 import LocalTimeDisplay from "../components/LocalTimeDisplay"
+import TimeZoneSearch from "../components/TimeZoneSearch"
 import "./home.scss"
 
 export default function Home() {
@@ -9,7 +10,9 @@ export default function Home() {
         <h2>Timezone Webapp</h2>
         <p>Additional Information.</p>
       </div>
-      <LocalTimeDisplay seconds />
+      <LocalTimeDisplay seconds>
+        <TimeZoneSearch />
+      </LocalTimeDisplay>
       <div className="flex">
         <div className="container">
           <h2>About 1</h2>

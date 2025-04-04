@@ -1,18 +1,21 @@
 import "./timeZoneDisplay.scss"
-import { useEffect, useState } from "react"
-import { Contact } from "../types"
-import ContactListItem from "./ContactListItem"
+import { ReactNode, useEffect, useState } from "react"
 import validateTimezone from "../lib/validateTimezone"
-import determineContactAvailability from "../lib/determineContactAvailability"
 import starIcon from "/star_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
+import ContactList from "./ContactList"
+import { Contact } from "../types"
 
 interface ITimezoneDisplayProps {
   // Timezones to be displayed for this component
   timezone: string
   // List of contacts associated with this timezone
   contacts: Contact[]
+
+  hideContactsList?: boolean
+
+  children?: ReactNode
 }
 
 function prettyTimezoneName(timezone: string): string {
@@ -79,22 +82,21 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
             00:00
           </p>
         </div>
-        <ul className="contacts-list">
-          {props.contacts.map((contact) => (
-            <ContactListItem
-              contact={contact}
-              // TODO: Find a better way to call this, depending on how to final timezone resolution will work
-              availability={determineContactAvailability(
-                new Date(
-                  date.toLocaleString("en-US", {
-                    timeZone: props.timezone,
-                  })
-                )
-              )}
-              key={`timezone-list-item-${contact.id}`}
-            />
-          ))}
-        </ul>
+        {!props.hideContactsList ? (
+          <ContactList
+            contacts={props.contacts}
+            time={
+              new Date(
+                date.toLocaleString("en-US", {
+                  timeZone: props.timezone,
+                })
+              )
+            }
+          />
+        ) : (
+          <></>
+        )}
+        {props.children}
       </div>
     </div>
   )
