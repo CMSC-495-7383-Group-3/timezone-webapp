@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react"
 import allTimezoneLabels from "../lib/api/allTimezoneLabels"
-import TimezoneSearchResult from "./timezoneSearchResult"
+import TimezoneSearchResult from "./TimezoneSearchResult"
 
 const SEARCH_RESULT_LIMIT = 10
 

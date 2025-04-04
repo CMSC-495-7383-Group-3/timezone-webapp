@@ -20,8 +20,6 @@ export default function updateContact(
     )
   else if (createNew) allContacts.push(newData)
 
-  console.log(id, newData, allContacts)
-
   localStorage.setItem("contacts", JSON.stringify(allContacts))
 
   return contactById(id)

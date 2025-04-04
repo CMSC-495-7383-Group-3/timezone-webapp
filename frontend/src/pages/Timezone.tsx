@@ -21,7 +21,6 @@ export default function Timezone() {
   // This effect listens to a change in the page's route parameters, so that the page is "reloaded" when needed
   useEffect(() => {
     const newProfile = getTimezoneProfile(zone ? zone.replace("-", "/") : "")
-    console.log("New Profile ", newProfile)
     setTimezoneProfile(newProfile)
     setContacts(contactsByTimezone(newProfile.timeZone))
   }, [zone])
