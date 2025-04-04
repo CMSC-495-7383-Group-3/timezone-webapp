@@ -9,6 +9,7 @@ import UserSettings from "./pages/UserSettings"
 import { AuthContext, AuthData } from "./context/authContext"
 import { useState } from "react"
 import ContactEditorModal from "./components/ContactEditorModal"
+import Favorites from "./pages/Favorites"
 
 function App() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,6 +31,7 @@ function App() {
           <Route path="register" element={<LoginRegister />} />
           <Route path="timezone/:zone" element={<Timezone />} />
           <Route path="userSettings" element={<UserSettings />} />
+          <Route path="favorites" element={<Favorites />} />
           {/* TODO: Remove the test page once the project is further developed */}
           <Route path="test" element={<Test />} />
         </Routes>

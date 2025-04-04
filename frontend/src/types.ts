@@ -6,7 +6,7 @@ export type User = {
   password: never
 }
 
-export type TomeZoneProfile = {
+export type TimezoneProfile = {
   id: string
   label: string
   city: string
@@ -14,6 +14,7 @@ export type TomeZoneProfile = {
   sunriseTime: string // Potentially switch to a number for other dateTime
   sunsetTime: string // Potentially switch to a number for other dateTime
   isFavorite: boolean
+  valid: boolean
 }
 
 export type Contact = {

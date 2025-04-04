@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from "react"
 import { Contact } from "../types"
 import { ContactEditorContext } from "../context/contactEditorContext"
 import ContactEditor from "./ContactEditor"
+import { v4 as uuidv4 } from "uuid"
 
 interface IContactEditorModalProps {
   children?: ReactNode
@@ -15,6 +16,21 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
 
   const openContactEditor = (contact: Contact) => {
     setEditedContact(contact)
+  }
+
+  const openNewContactEditor = (base?: Contact) => {
+    const contact = base
+      ? base
+      : {
+          id: "",
+          name: "",
+          timeZone: "",
+          notes: "",
+        }
+
+    contact.id = uuidv4()
+
+    openContactEditor(contact)
   }
 
   const onCloseContactEditor = () => {
@@ -30,7 +46,12 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
   }, [editedContact])
 
   return (
-    <ContactEditorContext value={{ openEditor: openContactEditor }}>
+    <ContactEditorContext
+      value={{
+        openEditor: openContactEditor,
+        newContact: openNewContactEditor,
+      }}
+    >
       {editedContact != undefined ? (
         <dialog ref={dialog} className="container">
           <ContactEditor

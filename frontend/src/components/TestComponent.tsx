@@ -1,3 +1,4 @@
+import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import { Contact } from "../types"
 import ContactEditor from "./ContactEditor"
 import LocalTimeDisplay from "./LocalTimeDisplay"
@@ -91,12 +92,18 @@ export default function TestComponent() {
           <TimeZoneSearch />
         </LocalTimeDisplay>
         <LocalTimeDisplay />
-        <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
         <TimezoneDisplay
-          timezone="America/Los_Angeles"
+          timezone={getTimezoneProfile("Europe/Berlin")}
           contacts={testContacts}
         />
-        <TimezoneDisplay timezone="test" contacts={testContacts} />
+        <TimezoneDisplay
+          timezone={getTimezoneProfile("America/Los_Angeles")}
+          contacts={testContacts}
+        />
+        <TimezoneDisplay
+          timezone={getTimezoneProfile("test")}
+          contacts={testContacts}
+        />
         <ContactEditor
           contact={{
             id: "test-id",
