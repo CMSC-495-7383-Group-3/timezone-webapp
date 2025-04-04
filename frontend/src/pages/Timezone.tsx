@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import contactsByTimezone from "../lib/api/contactsByTimezone"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Contact, TimezoneProfile } from "../types"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
 import { ContactEditorContext } from "../context/contactEditorContext"
+import TimeZoneSearch from "../components/TimeZoneSearch"
 
 export default function Timezone() {
   const { zone } = useParams<{ zone: string }>()
@@ -16,6 +17,14 @@ export default function Timezone() {
     contactsByTimezone(timezoneProfile.timeZone)
   )
   const contactEditor = useContext(ContactEditorContext)
+
+  // This effect listens to a change in the page's route parameters, so that the page is "reloaded" when needed
+  useEffect(() => {
+    const newProfile = getTimezoneProfile(zone ? zone.replace("-", "/") : "")
+    console.log("New Profile ", newProfile)
+    setTimezoneProfile(newProfile)
+    setContacts(contactsByTimezone(newProfile.timeZone))
+  }, [zone])
 
   const onFavoriteButtonClick = () => {
     // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
@@ -64,6 +73,7 @@ export default function Timezone() {
           {timezoneProfile.isFavorite ? "Unfavorite" : "Favorite"}
         </button>
       </div>
+      <TimeZoneSearch />
     </main>
   )
 }

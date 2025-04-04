@@ -4,6 +4,7 @@ import { TimezoneProfile } from "../types"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import contactsByTimezone from "../lib/api/contactsByTimezone"
+import TimeZoneSearch from "../components/TimeZoneSearch"
 
 export default function Favorites() {
   const favoriteTimeZones = useMemo<TimezoneProfile[]>(() => {
@@ -13,6 +14,7 @@ export default function Favorites() {
   return (
     <main id="favorites">
       <h1>Favorite Timezones</h1>
+      <TimeZoneSearch />
       {favoriteTimeZones.map((timezone, i) => (
         <TimezoneDisplay
           timezone={timezone}

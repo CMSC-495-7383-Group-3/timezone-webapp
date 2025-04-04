@@ -8,6 +8,7 @@ import ContactList from "./ContactList"
 import { Contact, TimezoneProfile } from "../types"
 import setFavorite from "../lib/api/setFavorite"
 import { Link } from "react-router-dom"
+import escapeTimezone from "../lib/escapeTimezone"
 
 interface ITimezoneDisplayProps {
   // Timezones to be displayed for this component
@@ -59,7 +60,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
         <h3>
           {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
           <Link
-            to={`/timezone/${props.timezone.timeZone.replace("/", "-")}`}
+            to={`/timezone/${escapeTimezone(props.timezone.timeZone)}`}
             className="invisible-link"
           >
             {props.timezone.label}
