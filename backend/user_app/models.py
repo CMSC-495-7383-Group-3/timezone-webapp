@@ -6,17 +6,17 @@ from django.utils.timezone import now
 
 class User(AbstractUser):
     """User model for DB."""
-    email: models.EmailField = models.EmailField(
+    email = models.EmailField(
         unique=True, verbose_name='Email Address', max_length=100)
-    username: models.CharField = models.CharField(
+    username = models.CharField(
         max_length=50, verbose_name='Username', unique=True)
-    first_name: models.CharField = models.CharField(
+    first_name = models.CharField(
         max_length=50, verbose_name='First Name')
-    last_name: models.CharField = models.CharField(
+    last_name = models.CharField(
         max_length=75, verbose_name='Last Name')
-    registration_date: models.DateTimeField = models.DateTimeField(
+    registration_date = models.DateTimeField(
         default=now(), verbose_name='Registration Date and Time')
-    timezone: models.CharField = models.CharField(
+    timezone = models.CharField(
         max_length=100, verbose_name='User Timezone', default='UTC')
 
     USERNAME_FIELD = 'email'

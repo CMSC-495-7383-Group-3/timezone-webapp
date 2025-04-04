@@ -5,19 +5,19 @@ from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 import pytz
 
-User: type[AbstractUser] = get_user_model()
+User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
     """This class represents the User serializer."""
-    password: serializers.CharField = serializers.CharField(
+    password = serializers.CharField(
         write_only=True, min_length=8)
 
     class Meta:
         """Metadata class for User serializer."""
-        model: type[AbstractUser] = User
-        fields: tuple[str] = ('id', 'email', 'username', 'password',
-                              'first_name', 'last_name', 'registration_date', 'timezone')
+        model = User
+        fields = ('id', 'email', 'username', 'password',
+                  'first_name', 'last_name', 'registration_date', 'timezone')
         read_only_fields = ('id', 'registration_date')
 
     def validate_timezone(self, value: str) -> str:
@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data: dict) -> type[AbstractUser]:
-        user: type[AbstractUser] = User.objects.create_user(
+        user = User.objects.create_user(
             email=validated_data['email'],
             username=validated_data['username'],
             password=validated_data['password'],
@@ -45,5 +45,5 @@ class UserSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     """This class represents the User login serializer."""
-    email: serializers.EmailField = serializers.EmailField()
-    password: serializers.CharField = serializers.CharField(write_only=True)
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
