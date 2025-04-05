@@ -1,0 +1,38 @@
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/

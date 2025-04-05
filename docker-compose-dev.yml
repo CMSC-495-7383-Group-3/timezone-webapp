@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:14-alpine
+    image: postgres:16-alpine
     container_name: tz_db
     ports:
       - "5432:5432"
@@ -14,7 +14,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: ./docker/Dockerfile.dev
     container_name: tz_frontend
     ports:
       - "5173:5173"
@@ -27,7 +27,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: ./docker/Dockerfile.dev
     container_name: tz_backend
     ports:
       - "8000:8000"
