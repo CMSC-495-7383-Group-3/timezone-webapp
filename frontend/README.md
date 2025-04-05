@@ -190,6 +190,9 @@ TODO: May allow favoring directly from the list of results.
 A single result for the timezone search. Provides a link to that timezone's page.
 
 ### Usage
+```tsx
+
+```
 
 ### Timezone Dashboard
 - Description: Component for displaying multiple timezones with their clocks and associated contacts on the Dashboard page (`/dashboard`). Uses `TimezoneDisplay` for each timezone entry.
