@@ -4,8 +4,6 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
-import pytz
 
 User = get_user_model()
 
@@ -87,3 +85,75 @@ class UserAppTests(APITestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertIn('error', response.data)
+
+    def test_profile_retrieve(self):
+        """This method tests retrieving a User's profile information."""
+        login_response = self.client.post(
+            self.login_url,
+            {'email': 'existing@example.com',
+             'password': 'securepass123'},
+            format='json'
+        )
+        access_token = login_response.data['access']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        response = self.client.get(self.profile_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['email'], 'existing@example.com')
+
+    def test_profile_update(self):
+        """This method tests updating a User's profile information."""
+        login_response = self.client.post(
+            self.login_url,
+            {'email': 'existing@example.com',
+             'password': 'securepass123'},
+            format='json'
+        )
+        access_token = login_response.data['access']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        update_data = {'first_name': 'Updated'}
+        response = self.client.patch(
+            self.profile_url, update_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['first_name'], 'Updated')
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, 'Updated')
+
+    def test_profile_unauthenticated(self):
+        """This method tests calling a User view while not authenticated."""
+        response = self.client.get(self.profile_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_logout_success(self):
+        """This method tests logging a User out."""
+        login_response = self.client.post(
+            self.login_url,
+            {'email': 'existing@example.com',
+             'password': 'securepass123'},
+            format='json'
+        )
+        access_token = login_response.data['access']
+        refresh_token = login_response.data['refresh']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        response = self.client.post(
+            self.logout_url, {'refresh': refresh_token}, format='json')
+        self.assertEqual(response.status_code, status.HTTP_205_RESET_CONTENT)
+
+    def test_logout_invalid_token(self):
+        """This method tests logging a User out with an invalid token."""
+        login_response = self.client.post(
+            self.login_url,
+            {'email': 'existing@example.com', 'password': 'securepass123'},
+            format='json'
+        )
+        access_token = login_response.data['access']
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+        response = self.client.post(
+            self.logout_url, {'refresh': 'invalid-token'}, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('error', response.data)
+
+    def test_logout_unauthenticated(self):
+        """This method tests logging a user out while unauthenticated."""
+        response = self.client.post(
+            self.logout_url, {'refresh': 'some-token'}, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
