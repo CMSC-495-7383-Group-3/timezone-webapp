@@ -1,24 +1,24 @@
 import "./timeZoneDisplay.scss"
-import { useEffect, useState } from "react"
-import { Contact } from "../types"
-import ContactListItem from "./ContactListItem"
+import { ReactNode, useEffect, useState } from "react"
 import validateTimezone from "../lib/validateTimezone"
-import determineContactAvailability from "../lib/determineContactAvailability"
 import starIcon from "/star_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
+import ContactList from "./ContactList"
+import { Contact, TimezoneProfile } from "../types"
+import setFavorite from "../lib/api/setFavorite"
+import { Link } from "react-router-dom"
+import escapeTimezone from "../lib/escapeTimezone"
 
 interface ITimezoneDisplayProps {
   // Timezones to be displayed for this component
-  timezone: string
+  timezone: TimezoneProfile
   // List of contacts associated with this timezone
   contacts: Contact[]
-}
-
-function prettyTimezoneName(timezone: string): string {
-  // TODO We will potentially need to turn the timezone's code into a pretty printed name.
-  // TODO this is a placeholder function to do this.
-  return timezone
+  // Explicitly hides the contacts list
+  hideContactsList?: boolean
+  // Optionally shown along the time
+  children?: ReactNode
 }
 
 //Component for displaying a single timezone with a list of associated contacts
@@ -35,10 +35,18 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   }, [])
 
   const onFavoriteButtonClick = () => {
-    console.log("Favorite Button click placeholder.")
+    // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
+    const result = setFavorite(
+      props.timezone.timezone,
+      !props.timezone.isFavorite
+    )
+
+    if (result === undefined) alert("Could not change favorite state!") //TODO make some error response
+
+    props.timezone.isFavorite = result!
   }
 
-  if (!validateTimezone(props.timezone)) {
+  if (!props.timezone.valid || !validateTimezone(props.timezone.timezone)) {
     return (
       <div className="container secondary timezone-display">
         <h3 className="color-red">Invalid Timezone</h3>
@@ -49,8 +57,21 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   return (
     <div className="container secondary timezone-display">
       <div className="title">
-        <h3>{prettyTimezoneName(props.timezone)}</h3>
-        <button className="secondary icon" onClick={onFavoriteButtonClick}>
+        <h3>
+          {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
+          <Link
+            to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
+            className="invisible-link"
+          >
+            {props.timezone.label}
+          </Link>
+        </h3>
+        <button
+          className={`${
+            props.timezone.isFavorite ? "accent" : "secondary"
+          } icon`}
+          onClick={onFavoriteButtonClick}
+        >
           <img src={starIcon} alt="star icon" />
         </button>
       </div>
@@ -62,7 +83,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
               // TODO Determine if we will use 12/24 hour format. Potentially make it a user setting?
               hour12: false,
               minute: "numeric",
-              timeZone: props.timezone,
+              timeZone: props.timezone.timezone,
             })}
           </p>
           <p className="sun-set-rise">
@@ -71,22 +92,21 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
             00:00
           </p>
         </div>
-        <ul className="contacts-list">
-          {props.contacts.map((contact) => (
-            <ContactListItem
-              contact={contact}
-              // TODO: Find a better way to call this, depending on how to final timezone resolution will work
-              availability={determineContactAvailability(
-                new Date(
-                  date.toLocaleString("en-US", {
-                    timeZone: props.timezone,
-                  })
-                )
-              )}
-              key={`timezone-list-item-${contact.id}`}
-            />
-          ))}
-        </ul>
+        {!props.hideContactsList ? (
+          <ContactList
+            contacts={props.contacts}
+            time={
+              new Date(
+                date.toLocaleString("en-US", {
+                  timeZone: props.timezone.timezone,
+                })
+              )
+            }
+          />
+        ) : (
+          <></>
+        )}
+        {props.children}
       </div>
     </div>
   )

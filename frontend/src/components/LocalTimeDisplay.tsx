@@ -1,17 +1,18 @@
 import "./localTimeDisplay.scss"
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 
 interface ILocalTimeDisplayProps {
-  hideSearch?: boolean
+  // Shows a seconds counter with the time
+  seconds?: boolean
+  // Optionally shown alongside the time
+  children?: ReactNode
 }
 
-// Displays the local time and a search field to search for other timezones
+// Displays the local time
 export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
   const [date, setDate] = useState(new Date())
-  const [query, setQuery] = useState("")
-
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date())
@@ -20,11 +21,6 @@ export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
       clearInterval(timer)
     }
   }, [])
-
-  const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log("Submitted form ", e)
-  }
 
   return (
     <div className="container secondary current-time-display">
@@ -39,6 +35,7 @@ export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
               // TODO Determine if we will use 12/24 hour format. Potentially make it a user setting?
               hour12: false,
               minute: "numeric",
+              second: props.seconds ? "numeric" : undefined,
             })}
           </p>
           <p className="sun-set-rise">
@@ -47,23 +44,7 @@ export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
             00:00
           </p>
         </div>
-        {!props.hideSearch ? (
-          <div className="container primary search">
-            <form onSubmit={onSearchSubmit}>
-              <label htmlFor="query">Search Timezones</label>
-              <input
-                type="text"
-                name="query"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search Timezones"
-              />
-              <input type="submit" value="Search" />
-            </form>
-          </div>
-        ) : (
-          <></>
-        )}
+        {props.children}
       </div>
     </div>
   )
