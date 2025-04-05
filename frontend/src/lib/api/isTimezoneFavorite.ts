@@ -1,3 +1,4 @@
+// Returns if a timezone if in the favorites
 export default function isTimezoneFavorite(
   timezone: string
 ): boolean | undefined {

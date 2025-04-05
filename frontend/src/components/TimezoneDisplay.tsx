@@ -15,9 +15,9 @@ interface ITimezoneDisplayProps {
   timezone: TimezoneProfile
   // List of contacts associated with this timezone
   contacts: Contact[]
-
+  // Explicitly hides the contacts list
   hideContactsList?: boolean
-
+  // Optionally shown along the time
   children?: ReactNode
 }
 
@@ -37,7 +37,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   const onFavoriteButtonClick = () => {
     // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
     const result = setFavorite(
-      props.timezone.timeZone,
+      props.timezone.timezone,
       !props.timezone.isFavorite
     )
 
@@ -46,7 +46,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     props.timezone.isFavorite = result!
   }
 
-  if (!props.timezone.valid || !validateTimezone(props.timezone.timeZone)) {
+  if (!props.timezone.valid || !validateTimezone(props.timezone.timezone)) {
     return (
       <div className="container secondary timezone-display">
         <h3 className="color-red">Invalid Timezone</h3>
@@ -60,7 +60,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
         <h3>
           {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
           <Link
-            to={`/timezone/${escapeTimezone(props.timezone.timeZone)}`}
+            to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
             className="invisible-link"
           >
             {props.timezone.label}
@@ -83,7 +83,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
               // TODO Determine if we will use 12/24 hour format. Potentially make it a user setting?
               hour12: false,
               minute: "numeric",
-              timeZone: props.timezone.timeZone,
+              timeZone: props.timezone.timezone,
             })}
           </p>
           <p className="sun-set-rise">
@@ -98,7 +98,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
             time={
               new Date(
                 date.toLocaleString("en-US", {
-                  timeZone: props.timezone.timeZone,
+                  timeZone: props.timezone.timezone,
                 })
               )
             }

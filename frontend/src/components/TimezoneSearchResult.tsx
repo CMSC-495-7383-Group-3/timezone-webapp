@@ -5,6 +5,7 @@ interface ITimeZoneSearchProps {
   timezone: string
 }
 
+// A single result for the timezone search
 export default function TimezoneSearchResult(props: ITimeZoneSearchProps) {
   // TODO add a quick favorite button
   return (

@@ -2,6 +2,7 @@ import { TimezoneProfile } from "../../types"
 import timezones from "timezones.json"
 import isTimezoneFavorite from "./isTimezoneFavorite"
 
+// Retrieves a timezone profile.
 export default function getTimezoneProfile(timezone: string): TimezoneProfile {
   const found = timezones.find((tz) => tz.utc.find((utc) => utc === timezone))
 
@@ -10,7 +11,7 @@ export default function getTimezoneProfile(timezone: string): TimezoneProfile {
       id: "",
       label: "",
       city: "",
-      timeZone: timezone,
+      timezone: timezone,
       sunriseTime: "",
       sunsetTime: "",
       isFavorite: false,
@@ -22,7 +23,7 @@ export default function getTimezoneProfile(timezone: string): TimezoneProfile {
     id: found.abbr,
     label: found.value,
     city: "",
-    timeZone: timezone,
+    timezone: timezone,
     sunriseTime: "",
     sunsetTime: "",
     isFavorite: favorite ? favorite : false,

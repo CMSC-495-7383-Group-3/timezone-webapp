@@ -9,7 +9,9 @@ interface IContactEditorModalProps {
   children?: ReactNode
 }
 
+// Wrapper to provide the ContactEditorContext
 export default function ContactEditorModal(props: IContactEditorModalProps) {
+  // The current contact that is being edited. A value of undefined hides the modal
   const [editedContact, setEditedContact] = useState<Contact | undefined>(
     undefined
   )
@@ -28,7 +30,8 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
           notes: "",
         }
 
-    contact.id = uuidv4()
+    //! This generates a temporary uuidv4 that should be overwritten by the API
+    contact.id = "PLACEHOLDER-" + uuidv4()
 
     openContactEditor(contact)
   }
@@ -37,8 +40,10 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
     setEditedContact(undefined)
   }
 
+  // Reference to the dialog element that handles the overlay
   const dialog = useRef<HTMLDialogElement>(null)
 
+  // Hide the modal once the edited contact becomes undefined
   useEffect(() => {
     if (editedContact != undefined) {
       dialog.current?.showModal()

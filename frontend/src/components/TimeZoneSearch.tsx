@@ -1,13 +1,16 @@
 import { useMemo, useState } from "react"
-import allTimezoneLabels from "../lib/api/allTimezoneLabels"
+import allTimezones from "../lib/api/allTimezones"
 import TimezoneSearchResult from "./TimezoneSearchResult"
 
 const SEARCH_RESULT_LIMIT = 10
 
-export default function TimeZoneSearch() {
+//A search form for timezones
+export default function TimezoneSearch() {
+  // Load all available timezones
   const availableTimezones = useMemo<string[]>(() => {
-    return allTimezoneLabels()
+    return allTimezones()
   }, [])
+
   const [query, setQuery] = useState("")
 
   const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
