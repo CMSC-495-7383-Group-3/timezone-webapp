@@ -97,7 +97,8 @@ Importantly, on save, this component will make an API call as well as writing ba
 
 ## ContactEditorModal
 
-**Not intended for direct use.**
+> [!WARNING]  
+> Not intended for direct use.
 
 This component provides the `ContactEditorContext` as well as the display for the `ContactEditor` modal. This component should only be used once within `App.tsx`.
 
@@ -109,7 +110,8 @@ This component provides the `ContactEditorContext` as well as the display for th
 
 ## ContactList
 
-**Not intended for direct use.**
+> [!WARNING]  
+> Not intended for direct use.
 
 This component displays a list of timezones, usually as a child of [TimezoneDisplay](#timezonedisplay)
 
@@ -121,7 +123,8 @@ This component displays a list of timezones, usually as a child of [TimezoneDisp
 
 ## ContactListItem
 
-**Not intended for direct use.**
+> [!WARNING]  
+> Not intended for direct use.
 
 Displays a single contact item. This is meant to be used as a child component for [ContactList](#contactlist). The component takes an availability status and a contact object.
 
@@ -181,7 +184,9 @@ TODO: May allow favoring directly from the list of results.
 
 ## TimezoneSearchResult
 
-**Not intended for direct use.**
+> [!WARNING]  
+> Not intended for direct use.
+
 A single result for the timezone search. Provides a link to that timezone's page.
 
 ### Usage
