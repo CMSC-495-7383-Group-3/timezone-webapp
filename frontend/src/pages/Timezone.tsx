@@ -1,12 +1,12 @@
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import TimezoneDisplay from "../components/TimezoneDisplay"
+import TimezoneSearch from "../components/TimezoneSearch"
+import { ContactEditorContext } from "../context/contactEditorContext"
 import contactsByTimezone from "../lib/api/contactsByTimezone"
-import { useContext, useEffect, useState } from "react"
-import { Contact, TimezoneProfile } from "../types"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
-import { ContactEditorContext } from "../context/contactEditorContext"
-import TimezoneSearch from "../components/TimezoneSearch"
+import { Contact, TimezoneProfile } from "../types"
 
 export default function Timezone() {
   const contactEditor = useContext(ContactEditorContext)

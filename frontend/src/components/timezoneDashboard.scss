@@ -1,17 +1,18 @@
+@use "../globals.scss";
+
 .timezone-dashboard {
   padding: 40px;
-  background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%); /* Bold blue gradient */
+  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-400) 100%); 
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin: 20px; /* Space from edges */
+  margin: 20px;
 
   h2 {
-    color: #ffffff; /* White for contrast */
+    color: #fff;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 30px;
     text-align: center;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .timezone-container {
