@@ -1,7 +1,7 @@
 """This module tests the User app's views."""
 
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 

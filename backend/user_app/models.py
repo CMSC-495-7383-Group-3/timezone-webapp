@@ -15,7 +15,7 @@ class User(AbstractUser):
     last_name = models.CharField(
         max_length=75, verbose_name='Last Name')
     registration_date = models.DateTimeField(
-        default=now(), verbose_name='Registration Date and Time')
+        default=now, verbose_name='Registration Date and Time')
     timezone = models.CharField(
         max_length=100, verbose_name='User Timezone', default='UTC')
 
