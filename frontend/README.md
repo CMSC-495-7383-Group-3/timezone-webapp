@@ -191,6 +191,13 @@ A single result for the timezone search. Provides a link to that timezone's page
 
 ### Usage
 
-```tsx
+### Timezone Dashboard
+- Description: Component for displaying multiple timezones with their clocks and associated contacts on the Dashboard page (`/dashboard`). Uses `TimezoneDisplay` for each timezone entry.
+  - Usage: `<TimezoneDashboard />`
+  - Details: 
+    - Currently shows a static list of timezones (e.g., "America/New_York", "Europe/London") with mock contact data.
+    - Styled with `timezoneDashboard.scss` for layout and `timeZoneDisplay.scss` for individual timezone cards.
+    - Integrated into the navigation bar via a "Dashboard" link in `Nav.tsx`.
+  - Future Potential: Could support timezone categorization (e.g., grouping by region or tags like "Work") with filters, leveraging the `setFavorite` API for prioritization.
+How to Add It
 <TimezoneSearchResult timezone={tz} />
-```
