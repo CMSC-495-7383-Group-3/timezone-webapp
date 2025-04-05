@@ -15,8 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /timezone-webapp/backend/
 
-COPY entrypoint.sh /timezone-webapp/backend/entrypoint.sh
+COPY ./docker/entrypoint.sh /timezone-webapp/backend/docker/entrypoint.sh
 
-ENTRYPOINT [ "/timezone-webapp/backend/entrypoint.sh" ]
+ENTRYPOINT [ "/timezone-webapp/backend/docker/entrypoint.sh" ]
 
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

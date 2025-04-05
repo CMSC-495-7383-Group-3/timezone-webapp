@@ -16,3 +16,7 @@
   display: flex;
   gap: globals.$space-md;
 }
+
+.test-component .container {
+  margin: globals.$space-xs globals.$space-md;
+}
