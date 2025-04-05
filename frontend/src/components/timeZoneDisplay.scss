@@ -1,60 +1,90 @@
 @use "../globals.scss";
 
 .timezone-display {
+  background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  border: none;
+  border-radius: globals.$corner-rounding-large;
+  padding: globals.$space-md;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
   .title {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     align-items: center;
-
-    font-size: 2rem;
+    font-size: 1.75rem; /* Slightly smaller than before */
+    color: #2a2a72; /* Match dashboard gradient */
+    font-weight: 600;
 
     button {
       height: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      img {
+        filter: brightness(0) saturate(100%) invert(20%) sepia(50%) saturate(3000%) hue-rotate(220deg); /* Blue star */
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
+
   .primary {
     display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
     flex-direction: row;
+    align-items: stretch;
+    gap: globals.$space-sm;
 
     .time {
-      background-color: var(--secondary-200);
+      background-color: var(--secondary-100); /* Lighter shade */
       border-radius: globals.$corner-rounding-large;
-      padding: globals.$space-xxs globals.$space-md;
-      margin: globals.$space-xs 0;
+      padding: globals.$space-xs globals.$space-md;
       box-shadow: globals.$shadow;
+      flex: 1;
 
-      p {
+      .clock {
+        font-size: 2.5rem;
+        color: #333;
         text-align: center;
       }
 
-      .clock {
-        font-size: 3rem;
-      }
+      .sun-set-rise {
+        color: #666;
+        font-size: 0.9rem;
+        text-align: center;
 
-      .sun-set-rise > img {
-        display: inline-block;
-        height: 1rem;
-        margin: 0 0.1rem;
-        vertical-align: middle;
-
-        // Fix for the icon in testing. This may need to be removed or adjusted depending on the icon to be used.
-        transform: translateY(-2.5px);
+        img {
+          height: 1rem;
+          margin: 0 0.2rem;
+          vertical-align: middle;
+          transform: translateY(-2px); /* Adjusted */
+        }
       }
     }
 
     .contacts-list {
       list-style: none;
+      padding: 0;
+      flex: 1;
+      max-height: 8rem;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
-
-      max-height: 8rem;
-      width: 100%;
-      overflow-y: scroll;
       gap: globals.$space-xs;
+
+      li {
+        padding: 5px;
+        color: #444;
+        background: rgba(240, 240, 240, 0.8);
+        border-radius: 4px;
+      }
     }
   }
 }
