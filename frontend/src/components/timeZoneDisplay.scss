@@ -1,0 +1,60 @@
+@use "../globals.scss";
+
+.timezone-display {
+  .title {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 2rem;
+
+    button {
+      height: 2rem;
+    }
+  }
+  .primary {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: row;
+
+    .time {
+      background-color: var(--secondary-200);
+      border-radius: globals.$corner-rounding-large;
+      padding: globals.$space-xxs globals.$space-md;
+      margin: globals.$space-xs 0;
+      box-shadow: globals.$shadow;
+
+      p {
+        text-align: center;
+      }
+
+      .clock {
+        font-size: 3rem;
+      }
+
+      .sun-set-rise > img {
+        display: inline-block;
+        height: 1rem;
+        margin: 0 0.1rem;
+        vertical-align: middle;
+
+        // Fix for the icon in testing. This may need to be removed or adjusted depending on the icon to be used.
+        transform: translateY(-2.5px);
+      }
+    }
+
+    .contacts-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      max-height: 8rem;
+      width: 100%;
+      overflow-y: scroll;
+      gap: globals.$space-xs;
+    }
+  }
+}

@@ -1,10 +1,30 @@
+import { Contact } from "../types"
+import LocalTimeDisplay from "./LocalTimeDisplay"
 import "./testComponent.scss"
-import viteLogo from '/vite.svg'
+import TimezoneDisplay from "./TimezoneDisplay"
+import viteLogo from "/vite.svg"
+
+function generateDebugContacts(count: number): Contact[] {
+  const result: Contact[] = []
+
+  for (let i = 0; i < count; i++) {
+    result.push({
+      id: i.toString(),
+      name: "Contact " + "i".repeat(Math.random() * 25),
+      timeZone: "none",
+      notes: "note",
+    })
+  }
+
+  return result
+}
 
 export default function TestComponent() {
+  const testContacts: Contact[] = generateDebugContacts(300)
+
   return (
     <div className="test-component">
-      <div className="container">
+      <div className="container styles-test">
         <p>Primary Container</p>
 
         <h1>Heading 1</h1>
@@ -26,9 +46,11 @@ export default function TestComponent() {
         <button>Button</button>
         <button className="primary">Primary Button</button>
         <button className="accent">Accent Button</button>
-        <a href="#" className="link-button">Link Button</a>
+        <a href="#" className="link-button">
+          Link Button
+        </a>
         <button className="icon">
-          <img src={viteLogo}/>
+          <img src={viteLogo} />
           Icon Button
         </button>
         <form>
@@ -59,6 +81,18 @@ export default function TestComponent() {
             Minima ex provident aut adipisci repellendus?
           </p>
         </div>
+      </div>
+      <div className="container">
+        <h1>Components</h1>
+        <h2>Timezone Display</h2>
+        <LocalTimeDisplay />
+        <LocalTimeDisplay hideSearch />
+        <TimezoneDisplay timezone="Europe/Berlin" contacts={testContacts} />
+        <TimezoneDisplay
+          timezone="America/Los_Angeles"
+          contacts={testContacts}
+        />
+        <TimezoneDisplay timezone="test" contacts={testContacts} />
       </div>
     </div>
   )

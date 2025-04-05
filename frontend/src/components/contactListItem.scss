@@ -1,0 +1,23 @@
+@use "../globals.scss";
+
+.contact-list-item {
+  border: 2px solid var(--accent-400);
+  border-left-width: 1rem;
+  margin-bottom: globals.$space-xs;
+  border-radius: globals.$corner-rounding-small;
+
+  padding: globals.$space-xxs globals.$space-xs globals.$space-xxs
+    globals.$space-xxs;
+
+  background-color: var(--secondary-50);
+
+  &.not-available {
+    border-left-color: var(--accent-red);
+  }
+  &.maybe-available {
+    border-left-color: var(--accent-yellow);
+  }
+  &.available {
+    border-left-color: var(--accent-green);
+  }
+}

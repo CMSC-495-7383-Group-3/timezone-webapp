@@ -21,3 +21,8 @@ export type Contact = {
   timeZone: string
   notes: string
 }
+
+export type ContactAvailability =
+  | "available"
+  | "maybe-available"
+  | "not-available"
