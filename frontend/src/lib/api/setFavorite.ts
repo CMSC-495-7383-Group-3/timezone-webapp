@@ -3,15 +3,30 @@ export default function setFavorite(
   timezone: string,
   setTo: boolean
 ): boolean | undefined {
-  const timezones = localStorage.getItem("favoriteTimezones")
+  let timezones = localStorage.getItem("favoriteTimezones");
+  let timezonesList: string[];
 
-  if (!timezones) return undefined
+  // Initialize if missing
+  if (!timezones) {
+    timezonesList = [];
+    localStorage.setItem("favoriteTimezones", JSON.stringify(timezonesList));
+  } else {
+    try {
+      timezonesList = JSON.parse(timezones);
+      if (!Array.isArray(timezonesList)) throw new Error("Invalid data");
+    } catch (e) {
+      console.error("Failed to parse favoriteTimezones:", e);
+      return undefined; // Fail gracefully
+    }
+  }
 
-  let timezonesList: string[] = JSON.parse(timezones)
+  // Update list
+  if (setTo === true) {
+    if (!timezonesList.includes(timezone)) timezonesList.push(timezone);
+  } else {
+    timezonesList = timezonesList.filter((tz) => tz !== timezone);
+  }
 
-  if (setTo === true) timezonesList.push(timezone)
-  else timezonesList = timezonesList.filter((tz) => tz != timezone)
-
-  localStorage.setItem("favoriteTimezones", JSON.stringify(timezonesList))
-  return setTo
+  localStorage.setItem("favoriteTimezones", JSON.stringify(timezonesList));
+  return setTo;
 }

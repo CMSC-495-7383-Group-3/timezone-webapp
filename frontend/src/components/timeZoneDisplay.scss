@@ -1,60 +1,97 @@
 @use "../globals.scss";
 
 .timezone-display {
+  background: rgba(255, 255, 255, 0.95); /* Slightly less transparent for clarity */
+  border: none;
+  border-radius: globals.$corner-rounding-large;
+  padding: globals.$space-md;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); /* Slightly deeper shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Enhanced hover shadow */
+  }
+
   .title {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     align-items: center;
-
-    font-size: 2rem;
+    font-size: 1.75rem;
+    color: var(--accent-400); /* Tie to nav’s link color */
+    font-weight: 600;
 
     button {
       height: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      img {
+        filter: brightness(0) saturate(100%) invert(20%) sepia(50%) saturate(3000%) hue-rotate(220deg); /* Keep blue star */
+      }
+      &:hover {
+        transform: scale(1.1);
+        opacity: 0.9; /* Subtle fade on hover */
+      }
     }
   }
+
   .primary {
     display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
     flex-direction: row;
+    align-items: stretch;
+    gap: globals.$space-md; /* Slightly wider gap for breathing room */
 
     .time {
-      background-color: var(--secondary-200);
+      background-color: var(--secondary-100);
       border-radius: globals.$corner-rounding-large;
-      padding: globals.$space-xxs globals.$space-md;
-      margin: globals.$space-xs 0;
+      padding: globals.$space-xs globals.$space-md;
       box-shadow: globals.$shadow;
-
-      p {
-        text-align: center;
-      }
+      flex: 1;
 
       .clock {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        color: var(--accent-400); /* Match nav’s accent */
+        text-align: center;
+        font-weight: 500; /* Slightly lighter weight for elegance */
       }
 
-      .sun-set-rise > img {
-        display: inline-block;
-        height: 1rem;
-        margin: 0 0.1rem;
-        vertical-align: middle;
+      .sun-set-rise {
+        color: var(--accent-500); /* Darker accent for contrast */
+        font-size: 0.9rem;
+        text-align: center;
 
-        // Fix for the icon in testing. This may need to be removed or adjusted depending on the icon to be used.
-        transform: translateY(-2.5px);
+        img {
+          height: 1rem;
+          margin: 0 0.2rem;
+          vertical-align: middle;
+          transform: translateY(-2px);
+        }
       }
     }
 
     .contacts-list {
       list-style: none;
+      padding: 0;
+      flex: 1;
+      max-height: 8rem;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
-
-      max-height: 8rem;
-      width: 100%;
-      overflow-y: scroll;
       gap: globals.$space-xs;
+
+      li {
+        padding: 6px; /* Slightly more padding */
+        color: #333; /* Darker for readability */
+        background: rgba(245, 245, 245, 0.9); /* Brighter, less transparent */
+        border-radius: 4px;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: rgba(235, 235, 235, 0.9); /* Subtle hover effect */
+        }
+      }
     }
   }
 }
