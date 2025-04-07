@@ -1,5 +1,8 @@
 # Timezone Webapp Frontend
 
+> [!IMPORTANT]  
+> Any commands here are assumed to be relative to the `/frontend` folder. Open it directly in a code editor or cd into it on a terminal.
+
 ## To Setup
 
 1. Open project in your code editor
@@ -73,6 +76,10 @@ A `timezone` is the string representation of a timezone, for example `"Europe/Be
 A `TimezoneProfile` is an object that stores some information about a given timezone such as the name and sunset/rise times.
 
 The naming of what is used where is currently a bit ambiguous, but the type checking system should catch all errors. As the details on this are better decided, please change any naming of variables and parameters as needed.
+
+## Testing
+
+To test the application, the development server must be running (`npm run dev`). Then use `npm run test` to run automated tests or `npm run cp:open` to open the visual testing environment.
 
 # Components
 
@@ -190,17 +197,18 @@ TODO: May allow favoring directly from the list of results.
 A single result for the timezone search. Provides a link to that timezone's page.
 
 ### Usage
-```tsx
 
+```tsx
+<TimezoneSearchResult timezone={tz} />
 ```
 
 ### Timezone Dashboard
+
 - Description: Component for displaying multiple timezones with their clocks and associated contacts on the Dashboard page (`/dashboard`). Uses `TimezoneDisplay` for each timezone entry.
   - Usage: `<TimezoneDashboard />`
-  - Details: 
+  - Details:
     - Currently shows a static list of timezones (e.g., "America/New_York", "Europe/London") with mock contact data.
     - Styled with `timezoneDashboard.scss` for layout and `timeZoneDisplay.scss` for individual timezone cards.
     - Integrated into the navigation bar via a "Dashboard" link in `Nav.tsx`.
   - Future Potential: Could support timezone categorization (e.g., grouping by region or tags like "Work") with filters, leveraging the `setFavorite` API for prioritization.
-How to Add It
-<TimezoneSearchResult timezone={tz} />
+    How to Add It
