@@ -1,5 +1,8 @@
 # Timezone Webapp Frontend
 
+> [!IMPORTANT]  
+> Any commands here are assumed to be relative to the `/frontend` folder. Open it directly in a code editor or cd into it on a terminal.
+
 ## To Setup
 
 1. Open project in your code editor
@@ -73,6 +76,10 @@ A `timezone` is the string representation of a timezone, for example `"Europe/Be
 A `TimezoneProfile` is an object that stores some information about a given timezone such as the name and sunset/rise times.
 
 The naming of what is used where is currently a bit ambiguous, but the type checking system should catch all errors. As the details on this are better decided, please change any naming of variables and parameters as needed.
+
+## Testing
+
+To test the application, the development server must be running (`npm run dev`). Then use `npm run test` to run automated tests or `npm run cp:open` to open the visual testing environment.
 
 # Components
 
