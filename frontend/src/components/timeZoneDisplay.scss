@@ -6,11 +6,10 @@
   border-radius: globals.$corner-rounding-large; /* Rounded corners */
   padding: globals.$space-md;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); /* Base shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover */
+  transition: box-shadow 0.3s ease; /* Shadow animation only */
 
   &:hover {
-    transform: translateY(-8px); /* Move up on hover */
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Deeper shadow */
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Deeper shadow, no lift */
   }
 
   .title {
