@@ -1,23 +1,34 @@
 @use "../globals.scss";
 
 .timezone-dashboard {
-  padding: 40px;
-  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-400) 100%); 
+  padding: 30px;
+  background: linear-gradient(135deg, var(--accent-600) 0%, var(--accent-400) 100%);
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin: 20px;
+  margin: 15px;
 
   h2 {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-align: center;
   }
 
-  .timezone-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+  .timezone-category {
+    margin-bottom: 20px;
+
+    h3 {
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .timezone-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
   }
 }
