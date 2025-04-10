@@ -16,7 +16,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'user_app.apps.UserAppConfig'
+    'user_app.apps.UserAppConfig',
+    'contact_app.apps.ContactAppConfig'
 ]
 
 MIDDLEWARE = [
