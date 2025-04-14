@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 import React from "react"
 import LocalTimeDisplay from "./LocalTimeDisplay"
 import "../index.scss"
@@ -5,8 +6,7 @@ import "./localTimeDisplay.scss"
 
 describe("<LocalTimeDisplay />", () => {
   it("Renders", () => {
-    // see: https://on.cypress.io/mounting-react
-    cy.mount(<LocalTimeDisplay seconds />)
+    cy.mount(<LocalTimeDisplay />)
 
     const date = new Date()
     date.setSeconds(date.getSeconds() + 1)
@@ -21,7 +21,6 @@ describe("<LocalTimeDisplay />", () => {
   })
 
   it("Renders With Seconds", () => {
-    // see: https://on.cypress.io/mounting-react
     cy.mount(<LocalTimeDisplay seconds />)
 
     const date = new Date()
@@ -38,7 +37,6 @@ describe("<LocalTimeDisplay />", () => {
   })
 
   it("Renders With Children", () => {
-    // see: https://on.cypress.io/mounting-react
     cy.mount(
       <LocalTimeDisplay>
         <p>Child Component</p>

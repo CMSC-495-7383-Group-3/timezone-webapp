@@ -98,6 +98,7 @@ export default function ContactEditor(props: IContactEditorProps) {
         <input
           type="text"
           name="contact.name"
+          aria-label="Name"
           value={contact.name}
           onChange={onFormChange}
         />
@@ -106,6 +107,7 @@ export default function ContactEditor(props: IContactEditorProps) {
         <input
           type="text"
           name="contact.timeZone"
+          aria-label="Zone"
           value={contact.timeZone}
           onChange={onFormChange}
         />
@@ -114,6 +116,7 @@ export default function ContactEditor(props: IContactEditorProps) {
         <input
           type="text"
           name="contact.notes"
+          aria-label="Notes"
           value={contact.notes}
           onChange={onFormChange}
         />
