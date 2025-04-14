@@ -1,8 +1,10 @@
 import requests
 import time
+import os
 
-OPENWEATHER_API_KEY = "9a7c8fb9bb40f675d7bcac5dc96d58f9"
-GOOGLE_API_KEY = "AIzaSyAlID_ZsPsuUgK7KaTGy7xacruoYgK7R3s"
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+
 
 def get_sunrise_sunset(lat, lon):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHER_API_KEY}"
