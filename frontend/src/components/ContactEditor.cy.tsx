@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 import React from "react"
 import ContactEditor from "./ContactEditor"
 import "../index.scss"
