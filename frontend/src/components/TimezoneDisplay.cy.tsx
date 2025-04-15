@@ -3,45 +3,20 @@ import TimezoneDisplay from "./TimezoneDisplay"
 import "../index.scss"
 import "./timeZoneDisplay.scss"
 import { MemoryRouter } from "react-router-dom"
-
-const INVALID_TIMEZONE = {
-  id: "",
-  label: "",
-  city: "",
-  timezone: "",
-  sunriseTime: "",
-  sunsetTime: "",
-  isFavorite: false,
-  valid: false,
-}
-const VALID_TIMEZONE = {
-  id: "WEDT",
-  label: "W. Europe Standard Time",
-  city: "",
-  timezone: "Europe/Berlin",
-  sunriseTime: "",
-  sunsetTime: "",
-  isFavorite: true,
-  valid: true,
-}
-
-const EXAMPLE_CONTACT = {
-  id: "Example-ID",
-  name: "Example Contact",
-  timeZone: "Europe/Berlin",
-  notes: "Example Note",
-}
+import exampleContact from "../../cypress/fixtures/exampleContact.json"
+import invalidTimezone from "../../cypress/fixtures/invalidTimezone.json"
+import validTimezone from "../../cypress/fixtures/validTimezone.json"
 
 describe("<TimezoneDisplay />", () => {
   it("Renders With an Invalid Timezone", () => {
-    cy.mount(<TimezoneDisplay timezone={INVALID_TIMEZONE} contacts={[]} />)
+    cy.mount(<TimezoneDisplay timezone={invalidTimezone} contacts={[]} />)
     cy.contains("Invalid Timezone")
   })
 
   it("Renders With a Valid Timezone", () => {
     cy.mount(
       <MemoryRouter>
-        <TimezoneDisplay timezone={VALID_TIMEZONE} contacts={[]} />
+        <TimezoneDisplay timezone={validTimezone} contacts={[]} />
       </MemoryRouter>
     )
     cy.contains("W. Europe Standard Time")
@@ -53,7 +28,7 @@ describe("<TimezoneDisplay />", () => {
         hour: "numeric",
         hour12: false,
         minute: "numeric",
-        timeZone: VALID_TIMEZONE.timezone,
+        timeZone: validTimezone.timezone,
       })
     )
 
@@ -63,10 +38,7 @@ describe("<TimezoneDisplay />", () => {
   it("Renders With Contacts", () => {
     cy.mount(
       <MemoryRouter>
-        <TimezoneDisplay
-          timezone={VALID_TIMEZONE}
-          contacts={[EXAMPLE_CONTACT]}
-        />
+        <TimezoneDisplay timezone={validTimezone} contacts={[exampleContact]} />
       </MemoryRouter>
     )
 
@@ -77,7 +49,7 @@ describe("<TimezoneDisplay />", () => {
     cy.mount(
       <MemoryRouter>
         <TimezoneDisplay
-          timezone={VALID_TIMEZONE}
+          timezone={validTimezone}
           contacts={[]}
           hideContactsList
         >

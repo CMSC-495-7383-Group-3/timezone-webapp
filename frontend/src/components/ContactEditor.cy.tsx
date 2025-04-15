@@ -2,17 +2,11 @@
 import React from "react"
 import ContactEditor from "./ContactEditor"
 import "../index.scss"
-
-const EXAMPLE_CONTACT = {
-  id: "Example-ID",
-  name: "Example Contact",
-  timeZone: "Europe/Berlin",
-  notes: "Example Note",
-}
+import exampleContact from "../../cypress/fixtures/exampleContact.json"
 
 describe("<ContactEditor />", () => {
   it("Renders", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
 
     // see: https://on.cypress.io/mounting-react
     cy.mount(<ContactEditor contact={contact} />)
@@ -22,7 +16,7 @@ describe("<ContactEditor />", () => {
   })
 
   it("Renders For New Contacts", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
 
     cy.mount(<ContactEditor contact={contact} newContact />)
 
@@ -31,7 +25,7 @@ describe("<ContactEditor />", () => {
   })
 
   it("Calls coseEditorCallback", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
     const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
 
     cy.mount(
@@ -49,7 +43,7 @@ describe("<ContactEditor />", () => {
 
   //TODO Somehow test if the object gets updated
   it("Saves the contact", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
     // const save = cy.stub().as("saveStub")
 
     cy.mount(<ContactEditor contact={contact} />)
@@ -61,7 +55,7 @@ describe("<ContactEditor />", () => {
   })
 
   it("Calls coseEditorCallback On Save", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
     const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
 
     cy.mount(
@@ -78,7 +72,7 @@ describe("<ContactEditor />", () => {
   })
 
   it("Does NOT call coseEditorCallback On Keep Open", () => {
-    const contact = { ...EXAMPLE_CONTACT }
+    const contact = { ...exampleContact }
     const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
 
     cy.mount(

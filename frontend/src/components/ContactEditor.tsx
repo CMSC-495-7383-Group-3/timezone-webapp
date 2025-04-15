@@ -6,7 +6,7 @@ interface IContactEditorProps {
   // The contact to edit. Writes back to this on save
   contact: Contact
   // Determine if new contact text should be shown
-  newContact: boolean
+  newContact?: boolean
   // Optional callback called when the editor wants to close
   closeEditorCallback?: () => void
   // Determine if the form should be kept open on save
