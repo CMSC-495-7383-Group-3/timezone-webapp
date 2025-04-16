@@ -2,14 +2,13 @@
   "name": "timezone-webapp-frontend",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "homepage": "",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "cypress run",
+    "test": "cypress run && cypress run --component",
     "cy:open": "cypress open"
   },
   "dependencies": {
