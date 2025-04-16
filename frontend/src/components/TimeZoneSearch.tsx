@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import allTimezones from "../lib/api/allTimezones"
 import TimezoneSearchResult from "./TimezoneSearchResult"
+import "./TimezoneSearch.scss"
 
 const SEARCH_RESULT_LIMIT = 10
 
@@ -20,7 +21,10 @@ export default function TimezoneSearch() {
 
   return (
     <div className="container primary search">
-      <form onSubmit={onSearchSubmit}>
+      <form
+        onSubmit={onSearchSubmit}
+        className={query !== "" ? "display-result" : ""}
+      >
         <label htmlFor="query">Search Timezones</label>
         <input
           type="text"
