@@ -88,10 +88,9 @@ export default function TestComponent() {
       <div className="container">
         <h1>Components</h1>
         <h2>Timezone Display</h2>
-        <LocalTimeDisplay seconds>
-          <TimezoneSearch />
-        </LocalTimeDisplay>
+        <LocalTimeDisplay seconds />
         <LocalTimeDisplay />
+        <TimezoneSearch />
         <TimezoneDisplay
           timezone={getTimezoneProfile("Europe/Berlin")}
           contacts={testContacts}

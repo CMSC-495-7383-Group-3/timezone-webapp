@@ -9,45 +9,29 @@
 
     font-size: 2rem;
   }
-  .primary {
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-direction: row;
 
-    .time {
-      background-color: var(--secondary-200);
-      border-radius: globals.$corner-rounding-large;
-      padding: globals.$space-xxs globals.$space-md;
-      margin: globals.$space-xs 0;
-      box-shadow: globals.$shadow;
+  .time {
+    p {
+      text-align: center;
+    }
 
-      p {
-        text-align: center;
-      }
+    .clock {
+      font-size: 5rem;
+      line-height: 5rem;
+      margin-top: 0;
+    }
 
-      .clock {
-        font-size: 3rem;
-      }
-
-      .sun-set-rise > img {
+    .sun-set-rise {
+      margin-top: globals.$space-sm;
+      img {
         display: inline-block;
         height: 1rem;
         margin: 0 0.1rem;
         vertical-align: middle;
+        filter: brightness(100%) invert(100%);
 
         // Fix for the icon in testing. This may need to be removed or adjusted depending on the icon to be used.
         transform: translateY(-2.5px);
-      }
-    }
-
-    .search {
-      margin: globals.$space-xs 0 globals.$space-xs globals.$space-xxl;
-
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: globals.$space-xs;
       }
     }
   }

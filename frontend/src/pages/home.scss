@@ -16,4 +16,8 @@
   .flex {
     margin: globals.$space-xs globals.$space-md;
   }
+
+  .current-time-display {
+    flex-grow: 10;
+  }
 }

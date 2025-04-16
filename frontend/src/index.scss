@@ -236,4 +236,8 @@ main > h1:first-child {
 
 .flex {
   display: flex;
+
+  &.fill {
+    justify-content: space-around;
+  }
 }
