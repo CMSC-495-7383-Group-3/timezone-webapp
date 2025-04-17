@@ -36,3 +36,15 @@
     }
   }
 }
+
+// Mobile
+@media only screen and (max-width: 740px) {
+  .current-time-display {
+    .title {
+      font-size: 1.5rem;
+    }
+    .time .clock {
+      font-size: 2.5rem;
+    }
+  }
+}

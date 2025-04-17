@@ -27,7 +27,8 @@
       cursor: pointer;
 
       img {
-        filter: brightness(0) saturate(100%) invert(20%) sepia(50%) saturate(3000%) hue-rotate(220deg); /* Blue star */
+        filter: brightness(0) saturate(100%) invert(20%) sepia(50%)
+          saturate(3000%) hue-rotate(220deg); /* Blue star */
       }
       &:hover {
         transform: scale(1.1); /* Button grows */
@@ -92,5 +93,13 @@
         }
       }
     }
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 740px) {
+  .timezone-display .primary {
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 }
