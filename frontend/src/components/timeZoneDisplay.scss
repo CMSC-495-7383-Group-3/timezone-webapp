@@ -22,14 +22,19 @@
 
     button {
       height: 2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
 
-      img {
+      transition: transform 0.3s globals.$easing;
+
+      &.secondary img {
         filter: brightness(0) saturate(100%) invert(20%) sepia(50%)
           saturate(3000%) hue-rotate(220deg); /* Blue star */
       }
+
+      &.accent img {
+        filter: brightness(100%) invert(100%) saturate(100%) saturate(3000%)
+          hue-rotate(220deg);
+      }
+
       &:hover {
         transform: scale(1.1); /* Button grows */
         opacity: 0.9; /* Slight fade */
