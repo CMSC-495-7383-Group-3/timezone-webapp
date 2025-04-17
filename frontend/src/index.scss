@@ -168,6 +168,13 @@ input[type="text"] {
   &:active {
     background-color: var(--secondary-300);
   }
+
+  &.search-icon {
+    background-image: url("public/search_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg");
+    background-repeat: no-repeat;
+    background-position: 2px 8px;
+    background-size: 1rem;
+  }
 }
 
 input[type="checkbox"] {
@@ -239,5 +246,9 @@ main > h1:first-child {
 
   &.fill {
     justify-content: space-around;
+  }
+
+  .spacer {
+    flex-grow: 100;
   }
 }

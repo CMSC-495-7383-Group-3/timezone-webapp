@@ -26,29 +26,32 @@ export default function TimezoneSearch() {
         className={query !== "" ? "display-result" : ""}
       >
         <label htmlFor="query">Search Timezones</label>
-        <input
-          type="text"
-          name="query"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search Timezones"
-        />
-        <ul className="results">
-          {query.length > 0 ? (
-            availableTimezones
-              .filter((tz) => tz.toLowerCase().includes(query.toLowerCase()))
-              .filter((_, i) => i < SEARCH_RESULT_LIMIT)
-              .map((tz, i) => (
-                <TimezoneSearchResult
-                  timezone={tz}
-                  key={`timezone-search-result-${tz}-${i}`}
-                />
-              ))
-          ) : (
-            <></>
-          )}
-        </ul>
-        <input type="submit" value="Search" />
+        <div className="dropdown">
+          <input
+            className="search-icon"
+            type="text"
+            name="query"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search Timezones"
+          />
+          <ul className="results">
+            {query.length > 0 ? (
+              availableTimezones
+                .filter((tz) => tz.toLowerCase().includes(query.toLowerCase()))
+                .filter((_, i) => i < SEARCH_RESULT_LIMIT)
+                .map((tz, i) => (
+                  <TimezoneSearchResult
+                    timezone={tz}
+                    key={`timezone-search-result-${tz}-${i}`}
+                  />
+                ))
+            ) : (
+              <></>
+            )}
+          </ul>
+        </div>
+        {/* <input type="submit" value="Search" /> */}
       </form>
     </div>
   )
