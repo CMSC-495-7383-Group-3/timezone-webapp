@@ -83,7 +83,10 @@
       max-height: 8rem;
       overflow-y: auto;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
       gap: globals.$space-xs; /* Space between contacts */
 
       li {
