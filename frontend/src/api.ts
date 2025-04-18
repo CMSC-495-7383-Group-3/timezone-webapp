@@ -2,7 +2,7 @@ import axios from "axios"
 
 const API_BASE_PATH = "http://localhost:8000/api/v1"
 
-const IGNORE_REFRESH = ["/users/login/", "/users/register/"]
+const IGNORE_REFRESH = ["/users/login/", "/users/register/", "/users/logout/"]
 
 const api = axios.create({
   baseURL: API_BASE_PATH,

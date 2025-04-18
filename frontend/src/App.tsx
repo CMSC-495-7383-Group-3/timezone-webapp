@@ -12,10 +12,11 @@ import Favorites from "./pages/Favorites"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import { User } from "./types"
+import Logout from "./pages/Logout"
 
 function App() {
   const setAuthenticated = (user: User | null) => {
-    console.log("Updating authentification context")
+    console.log("Updating authentication context")
     if (user)
       setAuthDataSource({
         isAuthenticated: true,
@@ -65,6 +66,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="timezone/:zone" element={<Timezone />} />
           <Route path="userSettings" element={<UserSettings />} />
           <Route path="favorites" element={<Favorites />} />

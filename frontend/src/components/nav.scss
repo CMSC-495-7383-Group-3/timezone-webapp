@@ -25,6 +25,10 @@ nav {
       color: var(--background-50);
     }
   }
+
+  .spacer {
+    flex-grow: 10;
+  }
 }
 
 #toggle-nav {
