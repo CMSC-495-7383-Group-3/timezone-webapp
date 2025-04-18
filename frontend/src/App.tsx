@@ -13,6 +13,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import { User } from "./types"
 import Logout from "./pages/Logout"
+import getUserSelf from "./lib/api/getUserSelf"
 
 function App() {
   const setAuthenticated = (user: User | null) => {
@@ -37,23 +38,18 @@ function App() {
     setAuthenticated: setAuthenticated,
   })
 
-  // const initialMount = useRef(false)
-  // const onInitialMount = async () => {
-  //   const isAuthenticated = await refreshToken()
-  //   if (isAuthenticated)
-  //     // setAuthDataSource({
-  //     //   isAuthenticated: true,
-  //     //   user: await getUserSelf()
-  //     // })
-  //     console.log("Reauthenticate.")
-  // }
-  // useEffect(() => {
-  //   if (!initialMount.current) {
-  //     onInitialMount()
+  const initialMount = useRef(false)
+  const onInitialMount = async () => {
+    const user = await getUserSelf()
+    if (user) authDataSource.setAuthenticated(user)
+  }
+  useEffect(() => {
+    if (!initialMount.current) {
+      onInitialMount()
 
-  //     initialMount.current = true
-  //   }
-  // }, [])
+      initialMount.current = true
+    }
+  }, [])
 
   return (
     <AuthContext value={authDataSource}>

@@ -3,16 +3,14 @@ import api from "../../api"
 export default function logout(): Promise<boolean> {
   return api
     .post("/users/logout/")
-    .then((res) => {
+    .then((_res) => {
       localStorage.removeItem("access")
       localStorage.removeItem("refresh")
-      console.log(res)
       return true
     })
-    .catch((err) => {
+    .catch((_err) => {
       localStorage.removeItem("access")
       localStorage.removeItem("refresh")
-      console.error(err)
       return false
     })
 }
