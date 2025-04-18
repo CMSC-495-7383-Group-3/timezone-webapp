@@ -1,6 +1,10 @@
+import { useContext } from "react"
 import TestComponent from "../components/TestComponent"
+import { AuthContext } from "../context/authContext"
 
 export default function Test() {
+  const authContext = useContext(AuthContext)
+
   //! Debug function. Remove when external API is added
   const onSetLocalDebugData = () => {
     localStorage.clear()
@@ -54,6 +58,11 @@ export default function Test() {
   return (
     <main id="test">
       <h1>Test Page</h1>
+      <div className="container accent">
+        {authContext.isAuthenticated
+          ? `You are authenticated as ${authContext.user.firstName}`
+          : "You are not authenticated"}
+      </div>
       <TestComponent />
       <div className="container primary">
         <h2>Set Debug Local Data</h2>

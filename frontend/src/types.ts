@@ -1,9 +1,12 @@
 // Database types
 export type User = {
-  id: string
-  name: string
+  id: number
   email: string
-  password: never
+  username: string
+  firstName: string
+  lastName: string
+  registrationDate: Date
+  timezone: string
 }
 
 export type TimezoneProfile = {
@@ -34,4 +37,18 @@ export type FormMessage = {
   show: boolean
   success: boolean
   message: string
+}
+
+export type RegisterFormData = {
+  email: string
+  username: string
+  password: string
+  first_name: string
+  last_name: string
+  timezone: string
+}
+
+export type LoginFormData = {
+  email: string
+  password: string
 }
