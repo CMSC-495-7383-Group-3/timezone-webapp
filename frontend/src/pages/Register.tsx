@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FormMessage, RegisterFormData } from "../types"
 import register from "../lib/api/register"
 import login from "../lib/api/login"
+import { AuthContext } from "../context/authContext"
+import { useNavigate } from "react-router-dom"
 
 function validateRegisterForm(data: RegisterFormData): boolean {
   return (
@@ -15,7 +17,13 @@ function validateRegisterForm(data: RegisterFormData): boolean {
 }
 
 export default function Register() {
-  // TODO redirect user to home if they are already logged in
+  const authContext = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  // Navigate to home is already logged in
+  useEffect(() => {
+    if (authContext.isAuthenticated) navigate("/")
+  })
 
   const [data, setData] = useState<RegisterFormData>({
     email: "",
@@ -76,6 +84,12 @@ export default function Register() {
       })
       return
     }
+
+    authContext.setAuthenticated(response.data)
+
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    navigate("/")
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

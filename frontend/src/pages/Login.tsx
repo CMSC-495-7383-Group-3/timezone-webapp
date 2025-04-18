@@ -1,7 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FormMessage, LoginFormData } from "../types"
 import login from "../lib/api/login"
 import { AuthContext } from "../context/authContext"
+import { useNavigate } from "react-router-dom"
 
 function validateLoginForm(data: LoginFormData): boolean {
   return data.email.length > 0 && data.password.length > 0
@@ -9,6 +10,12 @@ function validateLoginForm(data: LoginFormData): boolean {
 
 export default function Login() {
   const authContext = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  // Navigate to home is already logged in
+  useEffect(() => {
+    if (authContext.isAuthenticated) navigate("/")
+  })
 
   // TODO redirect user to home if they are already logged in
 
@@ -54,6 +61,7 @@ export default function Login() {
     })
 
     authContext.setAuthenticated(response.data)
+    navigate("/")
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,7 +108,6 @@ export default function Login() {
             value={data.password}
             onChange={onChange}
           />
-          <label htmlFor="first_name">First Name</label>
 
           <input type="submit" value="Login" />
         </form>
