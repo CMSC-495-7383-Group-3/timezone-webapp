@@ -22,7 +22,8 @@ export default function Nav() {
         <div className="spacer" />
         {authContext.isAuthenticated ? (
           <>
-            <p>Logged in as: {authContext.user.username}</p>{" "}
+            <p>Logged in as: </p>
+            <NavLink to="/userSettings">{authContext.user.username}</NavLink>
             <NavLink to="/logout">Logout</NavLink>
           </>
         ) : (

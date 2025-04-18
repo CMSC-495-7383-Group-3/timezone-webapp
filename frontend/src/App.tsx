@@ -54,7 +54,6 @@ function App() {
   return (
     <AuthContext value={authDataSource}>
       <ContactEditorModal>
-        {/* TODO: Fill in any header that we will need here */}
         <Nav />
         {/* All routes will be declared here */}
         <Routes>
@@ -69,7 +68,6 @@ function App() {
           {/* TODO: Remove the test page once the project is further developed */}
           <Route path="test" element={<Test />} />
         </Routes>
-        {/* TODO: Fill in any footer information here */}
       </ContactEditorModal>
     </AuthContext>
   )

@@ -29,7 +29,10 @@ api.interceptors.response.use(
 
       try {
         const refresh = localStorage.getItem("refresh")
-        const response = await axios.post("/users/token/refresh/", { refresh })
+        const response = await axios.post(
+          API_BASE_PATH + "/users/token/refresh/",
+          { refresh }
+        )
 
         const newAccess = response.data.access
         localStorage.setItem("access", newAccess)

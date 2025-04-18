@@ -93,18 +93,20 @@ export default function Login() {
         >
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="register-email"
+            autoComplete="email"
             value={data.email}
             onChange={onChange}
           />
 
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="register-password"
+            autoComplete="password"
             value={data.password}
             onChange={onChange}
           />

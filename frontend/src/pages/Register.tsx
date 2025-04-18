@@ -121,9 +121,10 @@ export default function Register() {
         >
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="register-email"
+            autoComplete="email"
             value={data.email}
             onChange={onChange}
           />
@@ -132,14 +133,16 @@ export default function Register() {
             type="text"
             name="username"
             id="register-username"
+            autoComplete="username"
             value={data.username}
             onChange={onChange}
           />
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="register-password"
+            autoComplete="password"
             value={data.password}
             onChange={onChange}
           />
@@ -148,6 +151,7 @@ export default function Register() {
             type="text"
             name="first_name"
             id="register-first_name"
+            autoComplete="given-name"
             value={data.first_name}
             onChange={onChange}
           />
@@ -156,6 +160,7 @@ export default function Register() {
             type="text"
             name="last_name"
             id="register-last_name"
+            autoComplete="family-name"
             value={data.last_name}
             onChange={onChange}
           />
