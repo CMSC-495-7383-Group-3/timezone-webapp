@@ -1,13 +1,11 @@
-import React from "react";
-import TimezoneDashboard from "../components/TimezoneDashboard";
+import React from "react"
+import TimezoneDashboard from "../components/TimezoneDashboard"
 
-const Dashboard: React.FC = () => {
+export default function Dashboard() {
   return (
-    <div>
+    <main id="dashboard">
       <h1>Dashboard</h1>
       <TimezoneDashboard />
-    </div>
-  );
-};
-
-export default Dashboard;
+    </main>
+  )
+}

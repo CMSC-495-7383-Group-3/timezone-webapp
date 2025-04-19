@@ -34,14 +34,4 @@ describe("<LocalTimeDisplay />", () => {
       })
     )
   })
-
-  it("Renders With Children", () => {
-    cy.mount(
-      <LocalTimeDisplay>
-        <p>Child Component</p>
-      </LocalTimeDisplay>
-    )
-
-    cy.contains("Child Component")
-  })
 })

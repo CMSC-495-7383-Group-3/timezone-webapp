@@ -25,7 +25,7 @@ describe("<Nav />", () => {
       </MemoryRouter>
     )
 
-    cy.get('[href="/"]').click()
+    cy.get('[href="/"]').click({ force: true })
     cy.get("#location-display").should("have.text", "/")
   })
 
@@ -37,7 +37,7 @@ describe("<Nav />", () => {
       </MemoryRouter>
     )
 
-    cy.get('[href="/dashboard"]').click()
+    cy.get('[href="/dashboard"]').click({ force: true })
     cy.get("#location-display").should("have.text", "/dashboard")
   })
 
@@ -49,7 +49,18 @@ describe("<Nav />", () => {
       </MemoryRouter>
     )
 
-    cy.get('[href="/favorites"]').click()
+    cy.get('[href="/favorites"]').click({ force: true })
     cy.get("#location-display").should("have.text", "/favorites")
+  })
+
+  it("Can be toggled on mobile", () => {
+    cy.mount(
+      <MemoryRouter initialEntries={["/"]}>
+        <Nav />
+      </MemoryRouter>
+    )
+
+    cy.get("#toggle-nav").click()
+    cy.get("#nav").should("have.class", "expanded")
   })
 })

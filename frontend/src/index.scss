@@ -67,7 +67,7 @@ a.invisible-link {
 
   border-radius: globals.$corner-rounding-large;
   padding: globals.$space-xs globals.$space-md;
-  margin: 1rem 0;
+  margin: globals.$space-md 0;
 
   &.secondary {
     background-color: var(--primary-100);
@@ -168,6 +168,13 @@ input[type="text"] {
   &:active {
     background-color: var(--secondary-300);
   }
+
+  &.search-icon {
+    background-image: url("search_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg");
+    background-repeat: no-repeat;
+    background-position: 2px 8px;
+    background-size: 1rem;
+  }
 }
 
 input[type="checkbox"] {
@@ -236,4 +243,54 @@ main > h1:first-child {
 
 .flex {
   display: flex;
+
+  &.fill {
+    justify-content: space-around;
+  }
+
+  .spacer {
+    flex-grow: 100;
+  }
+}
+
+$debug-screen-sizes: false;
+
+@if $debug-screen-sizes {
+  // Half Desktop
+  @media only screen and (max-width: 1441px) {
+    body {
+      background-color: red;
+    }
+  }
+
+  //Quarter Desktop
+  @media only screen and (max-width: 1280px) {
+    body {
+      background-color: blue;
+    }
+  }
+
+  // IPad
+  @media only screen and (max-width: 960px) {
+    body {
+      background-color: green;
+    }
+  }
+
+  // Mobile
+  @media only screen and (max-width: 740px) {
+    body {
+      background-color: purple;
+    }
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .container {
+    margin: globals.$space-xs 0;
+  }
+
+  .flex {
+    flex-wrap: wrap;
+  }
 }

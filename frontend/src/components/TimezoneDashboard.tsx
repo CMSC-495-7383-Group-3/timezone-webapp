@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Contact, TimezoneProfile } from "../types";
-import "./timezoneDashboard.scss";
-import TimezoneDisplay from "./TimezoneDisplay";
+import React, { useState } from "react"
+import { Contact, TimezoneProfile } from "../types"
+import "./timezoneDashboard.scss"
+import TimezoneDisplay from "./TimezoneDisplay"
 
-const TimezoneDashboard: React.FC = () => {
-  const [timezoneData] = useState<{
-    category: string;
-    timezones: TimezoneProfile[];
-  }[]>([
+export default function TimezoneDashboard() {
+  const [timezoneData] = useState<
+    {
+      category: string
+      timezones: TimezoneProfile[]
+    }[]
+  >([
     {
       category: "North America",
       timezones: [
@@ -20,7 +22,14 @@ const TimezoneDashboard: React.FC = () => {
           sunsetTime: "18:00",
           isFavorite: false,
           valid: true, // Key to pass validation
-          contacts: [{ id: "1", name: "Alice", timeZone: "America/New_York", notes: "" } as Contact],
+          contacts: [
+            {
+              id: "1",
+              name: "Alice",
+              timeZone: "America/New_York",
+              notes: "",
+            } as Contact,
+          ],
         },
       ],
     },
@@ -36,11 +45,18 @@ const TimezoneDashboard: React.FC = () => {
           sunsetTime: "17:00",
           isFavorite: false,
           valid: true, // Key to pass validation
-          contacts: [{ id: "2", name: "Bob", timeZone: "Europe/London", notes: "" } as Contact],
+          contacts: [
+            {
+              id: "2",
+              name: "Bob",
+              timeZone: "Europe/London",
+              notes: "",
+            } as Contact,
+          ],
         },
       ],
     },
-  ]);
+  ])
 
   return (
     <div className="timezone-dashboard">
@@ -60,7 +76,5 @@ const TimezoneDashboard: React.FC = () => {
         </div>
       ))}
     </div>
-  );
-};
-
-export default TimezoneDashboard;
+  )
+}

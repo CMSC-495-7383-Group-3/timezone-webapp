@@ -8,11 +8,12 @@ export default function Home() {
       <div className="header">
         <h1>Home</h1>
         <h2>Timezone Webapp</h2>
-        <p>Additional Information.</p>
+        <p>CMSC 495 Group 3</p>
       </div>
-      <LocalTimeDisplay seconds>
+      <div className="flex fill">
+        <LocalTimeDisplay seconds />
         <TimezoneSearch />
-      </LocalTimeDisplay>
+      </div>
       <div className="flex">
         <div className="container">
           <h2>About 1</h2>
