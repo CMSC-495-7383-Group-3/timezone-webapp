@@ -15,4 +15,4 @@ ALLOWED_HOSTS = [
     'gunicorn'
 ]
 
-CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ALLOWED_ORIGINS', '*').split(',')
+# CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ALLOWED_ORIGINS', '*').split(',')
