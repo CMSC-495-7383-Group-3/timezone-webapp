@@ -10,8 +10,8 @@ class ContactSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Contact
-        fields = ['record_id', 'name', 'timezone', 'phone_number']
-        read_only_fields = ['record_id']
+        fields = ['id', 'name', 'timezone', 'phone_number']
+        read_only_fields = ['id']
 
     def validate_timezone(self, value):
         """Validates that the timezone is a recognized pytz timezone."""
