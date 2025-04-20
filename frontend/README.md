@@ -17,7 +17,8 @@
 
 ## To Test
 
-TODO
+1. Run `npm run dev` to start the development server (If the server is already running, it is advised to restart before testing.)
+2. Run `npm run test` to start all tests
 
 # Frontend Organization
 
@@ -39,6 +40,7 @@ Each page is made from some combination of basic HTML elements and reusable comp
 - `src/global.scss` - Contains global static variables. Import in other SCSS files with `@use "../globals.scss";`
 - `src/index.scss` - Contains common CSS styles
 - `src/main.tsx` - Contains the entry point for React
+- `src/api.tsx` - Contains the Axios object for handling API calls
 - `src/theme.scss` - Contains the color theme as CSS variables
 - `src/types.ts` - Contains shared type definitions
 

@@ -17,6 +17,7 @@ type registerErrorResponse = {
 
 type registerResponse = registerSuccessResponse | registerErrorResponse
 
+// Registers a user
 export default async function register(
   data: RegisterFormData
 ): Promise<registerResponse> {

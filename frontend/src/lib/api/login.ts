@@ -16,6 +16,7 @@ type loginErrorResponse = {
 
 type loginResponse = loginSuccessResponse | loginErrorResponse
 
+// Logs in a user and sets the tokens in local storage on success
 export default async function login(
   data: LoginFormData
 ): Promise<loginResponse> {
