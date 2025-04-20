@@ -13,6 +13,8 @@ interface IContactEditorProps {
   keepOpenOnSave?: boolean
 }
 
+//TODO when a new contact is added and it is canceled, it will do a visual bug. Fix this by adding a callback
+
 // An editor for contacts. Provides a form for editing and saving.
 export default function ContactEditor(props: IContactEditorProps) {
   const [contact, setContact] = useState({ ...props.contact })
@@ -33,10 +35,10 @@ export default function ContactEditor(props: IContactEditorProps) {
         setContact({ ...contact, name: e.target.value })
         break
       case "contact.timeZone":
-        setContact({ ...contact, timeZone: e.target.value })
+        setContact({ ...contact, timezone: e.target.value })
         break
-      case "contact.notes":
-        setContact({ ...contact, notes: e.target.value })
+      case "contact.phone-number":
+        setContact({ ...contact, phoneNumber: e.target.value })
         break
     }
   }
@@ -47,11 +49,22 @@ export default function ContactEditor(props: IContactEditorProps) {
     return contact.name.length > 0
   }
 
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (validateForm()) {
-      updateContact(contact.id, contact)
+      const result = await updateContact(contact.id, contact, props.newContact)
+
+      if (!result) {
+        setMessage({
+          show: true,
+          success: false,
+          message: `Failed to ${props.newContact ? "save" : "update"} "${
+            contact.name
+          }"`,
+        })
+        return
+      }
 
       setPreviouslySaved(true)
       setMessage({
@@ -60,13 +73,10 @@ export default function ContactEditor(props: IContactEditorProps) {
         message: `"${contact.name}" saved.`,
       })
 
-      // Update the existing contact if it is not a new contact. This will propagate the changes upwards.
-      if (!props.newContact) {
-        // Since the props is read-only, the fields are manually updated here
-        props.contact.name = contact.name
-        props.contact.timeZone = contact.timeZone
-        props.contact.notes = contact.notes
-      }
+      // Since the props is read-only, the fields are manually updated here
+      props.contact.name = contact.name
+      props.contact.timezone = contact.timezone
+      props.contact.phoneNumber = contact.phoneNumber
 
       // Attempt to close the form when is should not be kept open and a callback is specified
       if (!props.keepOpenOnSave && props.closeEditorCallback)
@@ -108,16 +118,16 @@ export default function ContactEditor(props: IContactEditorProps) {
           type="text"
           name="contact.timeZone"
           aria-label="Zone"
-          value={contact.timeZone}
+          value={contact.timezone}
           onChange={onFormChange}
         />
         <br />
-        <label htmlFor="contact.notes">Notes</label>
+        <label htmlFor="contact.phone-number">Phone Number</label>
         <input
           type="text"
-          name="contact.notes"
+          name="contact.phone-number"
           aria-label="Notes"
-          value={contact.notes}
+          value={contact.phoneNumber}
           onChange={onFormChange}
         />
         <br />

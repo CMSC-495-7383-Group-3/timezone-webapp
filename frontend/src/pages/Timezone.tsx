@@ -21,16 +21,23 @@ export default function Timezone() {
   )
 
   // Loads the list of contacts from the given timezone
-  const [contacts, setContacts] = useState<Contact[]>(
-    contactsByTimezone(timezoneProfile.timezone)
-  )
+  const [contacts, setContacts] = useState<Contact[]>([])
 
   // This effect listens to a change in the page's route parameters, so that the page is "reloaded" when needed
   useEffect(() => {
     const newProfile = getTimezoneProfile(zone ? zone.replace("-", "/") : "")
     setTimezoneProfile(newProfile)
-    setContacts(contactsByTimezone(newProfile.timezone))
+    loadContacts(newProfile)
   }, [zone])
+
+  // This gets called on load to load data from the backend
+  const loadContacts = async (profile: TimezoneProfile) => {
+    setContacts(await contactsByTimezone(profile.timezone))
+  }
+
+  useEffect(() => {
+    loadContacts(timezoneProfile)
+  }, [])
 
   const onFavoriteButtonClick = () => {
     // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
@@ -48,8 +55,8 @@ export default function Timezone() {
     const newContact = {
       id: "",
       name: "",
-      timeZone: timezoneProfile.timezone,
-      notes: "",
+      timezone: timezoneProfile.timezone,
+      phoneNumber: "",
     }
 
     contactEditor.newContact(newContact)

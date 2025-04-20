@@ -14,8 +14,8 @@ function generateDebugContacts(count: number): Contact[] {
     result.push({
       id: i.toString(),
       name: "Contact " + "i".repeat(Math.random() * 25),
-      timeZone: "none",
-      notes: "note",
+      timezone: "none",
+      phoneNumber: "note",
     })
   }
 
@@ -107,8 +107,8 @@ export default function TestComponent() {
           contact={{
             id: "test-id",
             name: "Test Contact",
-            timeZone: "Europe/Berlin",
-            notes: "Some Note",
+            timezone: "Europe/Berlin",
+            phoneNumber: "Some Note",
           }}
           newContact={true}
         />

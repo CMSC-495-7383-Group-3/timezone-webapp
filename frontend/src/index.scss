@@ -151,7 +151,9 @@ input[type="submit"],
   color: var(--text-950) !important;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   background-color: var(--secondary-100);
   border: none;
   border-radius: globals.$corner-rounding-small;

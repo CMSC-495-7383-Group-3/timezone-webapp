@@ -1,11 +1,12 @@
 import { Contact } from "../../types"
+import allContacts from "./allContacts"
 
 // Gets akk contacts by a given timezone
-export default function contactsByTimezone(timezone: string): Contact[] {
-  const contactsStorageData = localStorage.getItem("contacts")
-  const allContacts: Contact[] = JSON.parse(
-    contactsStorageData ? contactsStorageData : "[]"
-  )
+// TODO this can be improved by a search route in the backend
+export default async function contactsByTimezone(
+  timezone: string
+): Promise<Contact[]> {
+  const allContactsData = await allContacts()
 
-  return allContacts.filter((contact) => contact.timeZone === timezone)
+  return allContactsData.filter((contact) => contact.timezone === timezone)
 }

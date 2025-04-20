@@ -23,8 +23,8 @@ export type TimezoneProfile = {
 export type Contact = {
   id: string
   name: string
-  timeZone: string
-  notes: string
+  timezone: string
+  phoneNumber: string
 }
 
 // Frontend types
@@ -51,4 +51,8 @@ export type RegisterFormData = {
 export type LoginFormData = {
   email: string
   password: string
+}
+
+export type ContactsMapping = {
+  [key: string]: Contact[]
 }

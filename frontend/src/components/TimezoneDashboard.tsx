@@ -26,8 +26,8 @@ export default function TimezoneDashboard() {
             {
               id: "1",
               name: "Alice",
-              timeZone: "America/New_York",
-              notes: "",
+              timezone: "America/New_York",
+              phoneNumber: "",
             } as Contact,
           ],
         },
@@ -49,8 +49,8 @@ export default function TimezoneDashboard() {
             {
               id: "2",
               name: "Bob",
-              timeZone: "Europe/London",
-              notes: "",
+              timezone: "Europe/London",
+              phoneNumber: "",
             } as Contact,
           ],
         },
