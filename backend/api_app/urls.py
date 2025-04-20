@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import Time_Info
 
 urlpatterns = [
-    path('get_time_info/', views.get_time_info, name='get_time_info'),
+    path('time_info/', Time_Info.as_view(), name='get_time_info'),
 ]

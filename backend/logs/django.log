@@ -618,3 +618,29 @@ Watching for file changes with StatReloader
 /home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 33892
+"GET /api/schema/ HTTP/1.1" 200 33892
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 33892
+"GET /api/schema/ HTTP/1.1" 200 33892
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3022
+"GET /favicon.ico HTTP/1.1" 404 3022
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 34658
+"GET /api/schema/ HTTP/1.1" 200 34658
