@@ -588,3 +588,59 @@ Not Found: /api/v1/contacts/1a6256c7-22fe-4025-abea-479193e62216/
 Not Found: /api/v1/contacts/1a6256c7-22fe-4025-abea-479193e62216/
 Not Found: /api/v1/contacts/8bd9743d-2f4e-46e4-9ba4-2b7437fb1283/
 Not Found: /api/v1/contacts/8bd9743d-2f4e-46e4-9ba4-2b7437fb1283/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /
+"GET / HTTP/1.1" 404 2811
+"GET / HTTP/1.1" 404 2811
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2862
+"GET /favicon.ico HTTP/1.1" 404 2862
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 33892
+"GET /api/schema/ HTTP/1.1" 200 33892
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/api_app/models.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/api_app/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 33892
+"GET /api/schema/ HTTP/1.1" 200 33892
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 33892
+"GET /api/schema/ HTTP/1.1" 200 33892
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3022
+"GET /favicon.ico HTTP/1.1" 404 3022
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 34658
+"GET /api/schema/ HTTP/1.1" 200 34658
