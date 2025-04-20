@@ -606,3 +606,15 @@ Not Found: /favicon.ico
 "GET /api/schema/ HTTP/1.1" 200 33892
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/api_app/models.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/api_app/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+/home/tom/projects/timezone-webapp/backend/contact_app/admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
