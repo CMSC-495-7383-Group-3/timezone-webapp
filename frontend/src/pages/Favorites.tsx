@@ -4,7 +4,7 @@ import { TimezoneProfile } from "../types"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import contactsByTimezone from "../lib/api/contactsByTimezone"
-import TimezoneSearch from "../components/TimezoneSearch"
+import TimezoneSearch from "../components/TimeZoneSearch"
 
 export default function Favorites() {
   // Retrieves a list of all favorite timezones on load
