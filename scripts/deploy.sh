@@ -78,6 +78,8 @@ check_postgres() {
 # Set up PostgreSQL
 setup_postgres() {
     log_message "info" "Setting up PostgreSQL..."
+    sudo systemctl enable postgresql >> "$LOG_FILE" 2>&1 || log_message "error" "Failed to enable postgresql service"
+    sudo systemctl restart postgresql >> "$LOG_FILE" 2>&1 || log_message "error" "Failed to restart postgresql service"
     sudo -u postgres psql -c "CREATE DATABASE tz_db;" >> "$LOG_FILE" 2>&1 || log_message "warning" "Database tz_db already exists"
     # Change PASSWORD in EC2 instance
     sudo -u postgres psql -c "CREATE USER tz_user WITH PASSWORD 'tz_password';" >> "$LOG_FILE" 2>&1 || log_message "warning" "User tz_user already exists"

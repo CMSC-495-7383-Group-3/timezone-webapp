@@ -106,6 +106,10 @@ check_dependencies() {
 # Set up PostgreSQL user and database
 setup_postgres() {
   log_message "info" "Setting up PostgreSQL..."
+  if [ "$OS" != "windows" ]; then
+    sudo systemctl enable postgresql >> "$LOG_FILE" 2>&1 || log_message "error" "Failed to enable postgresql"
+    sudo systemctl restart postgresql >> "$LOG_FILE" 2>&1 || log_message "error" "Failed to restart postgresql"
+  fi
   if [ "$OS" == "linux" ]; then
     sudo -u postgres psql -c "CREATE DATABASE tz_db;" >> "$LOG_FILE" 2>&1 || log_message "warning" "Database tz_db already exists"
     sudo -u postgres psql -c "CREATE USER tz_user WITH PASSWORD 'tz_password';" >> "$LOG_FILE" 2>&1 || log_message "warning" "User tz_user already exists"
