@@ -1,6 +1,9 @@
 """This module contains settings used specificly for production."""
 import os
+from dotenv import load_dotenv
 from .base import *
+
+load_dotenv()
 
 # Secret key from environment variable
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')

@@ -1,6 +1,9 @@
 import requests
 import time
 import os
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path="../tz_webapp_proj/settings/.env")
 
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
