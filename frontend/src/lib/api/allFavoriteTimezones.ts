@@ -6,7 +6,7 @@ export default async function allFavoriteTimezones(): Promise<string[]> {
 
   if (!userData) return []
 
-  const timezones = userData.timezone
+  const timezones = userData.lastName
 
   try {
     return JSON.parse(timezones)

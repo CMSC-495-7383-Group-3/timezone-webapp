@@ -1,13 +1,12 @@
+import allFavoriteTimezones from "./allFavoriteTimezones"
+
 // Returns if a timezone if in the favorites
-export default function isTimezoneFavorite(
+export default async function isTimezoneFavorite(
   timezone: string
-): boolean | undefined {
-  const timezones = localStorage.getItem("favoriteTimezones")
+): Promise<boolean | undefined> {
+  const favoriteTimezones = await allFavoriteTimezones()
 
-  if (!timezones) return undefined
+  if (!favoriteTimezones) return undefined
 
-  return (
-    (JSON.parse(timezones) as string[]).find((tz) => tz == timezone) !==
-    undefined
-  )
+  return favoriteTimezones.includes(timezone)
 }

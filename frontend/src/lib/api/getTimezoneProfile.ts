@@ -3,7 +3,9 @@ import timezones from "timezones.json"
 import isTimezoneFavorite from "./isTimezoneFavorite"
 
 // Retrieves a timezone profile.
-export default function getTimezoneProfile(timezone: string): TimezoneProfile {
+export default async function getTimezoneProfile(
+  timezone: string
+): Promise<TimezoneProfile> {
   const found = timezones.find((tz) => tz.utc.find((utc) => utc === timezone))
 
   if (!found)
@@ -18,7 +20,7 @@ export default function getTimezoneProfile(timezone: string): TimezoneProfile {
       valid: false,
     }
 
-  const favorite = isTimezoneFavorite(timezone)
+  const favorite = await isTimezoneFavorite(timezone)
   return {
     id: found.abbr,
     label: found.value,
@@ -27,6 +29,34 @@ export default function getTimezoneProfile(timezone: string): TimezoneProfile {
     sunriseTime: "",
     sunsetTime: "",
     isFavorite: favorite ? favorite : false,
+    valid: true,
+  }
+}
+
+// Retrieves a timezone profile without a backend request. Favorite will ALWAYS be false
+export function getTimezoneProfileSync(timezone: string): TimezoneProfile {
+  const found = timezones.find((tz) => tz.utc.find((utc) => utc === timezone))
+
+  if (!found)
+    return {
+      id: "",
+      label: "",
+      city: "",
+      timezone: timezone,
+      sunriseTime: "",
+      sunsetTime: "",
+      isFavorite: false,
+      valid: false,
+    }
+
+  return {
+    id: found.abbr,
+    label: found.value,
+    city: "",
+    timezone: timezone,
+    sunriseTime: "",
+    sunsetTime: "",
+    isFavorite: false,
     valid: true,
   }
 }

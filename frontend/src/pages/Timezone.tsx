@@ -8,6 +8,17 @@ import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
 import { Contact, TimezoneProfile } from "../types"
 
+const FALLBACK_TIMEZONE_PROFILE = {
+  id: "",
+  label: "",
+  city: "",
+  timezone: "",
+  sunriseTime: "",
+  sunsetTime: "",
+  isFavorite: false,
+  valid: false,
+}
+
 export default function Timezone() {
   const contactEditor = useContext(ContactEditorContext)
 
@@ -16,8 +27,7 @@ export default function Timezone() {
 
   // Attempt to get the timezone profile from the given parameter
   const [timezoneProfile, setTimezoneProfile] = useState<TimezoneProfile>(
-    // TODO potentially move the replace function into lib/unescapeTimezone
-    getTimezoneProfile(zone ? zone.replace("-", "/") : "")
+    FALLBACK_TIMEZONE_PROFILE
   )
 
   // Loads the list of contacts from the given timezone
@@ -25,23 +35,23 @@ export default function Timezone() {
 
   // This effect listens to a change in the page's route parameters, so that the page is "reloaded" when needed
   useEffect(() => {
-    const newProfile = getTimezoneProfile(zone ? zone.replace("-", "/") : "")
-    setTimezoneProfile(newProfile)
-    loadContacts(newProfile)
+    loadData(zone ? zone : "")
   }, [zone])
 
   // This gets called on load to load data from the backend
-  const loadContacts = async (profile: TimezoneProfile) => {
+  const loadData = async (timezone: string) => {
+    const profile = await getTimezoneProfile(timezone.replace("-", "/"))
+    setTimezoneProfile(profile)
     setContacts(await contactsByTimezone(profile.timezone))
   }
 
   useEffect(() => {
-    loadContacts(timezoneProfile)
+    loadData(zone ? zone : "")
   }, [])
 
-  const onFavoriteButtonClick = () => {
+  const onFavoriteButtonClick = async () => {
     // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
-    const result = setFavorite(
+    const result = await setFavorite(
       timezoneProfile.timezone,
       !timezoneProfile.isFavorite
     )
