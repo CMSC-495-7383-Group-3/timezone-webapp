@@ -7,19 +7,23 @@ import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
 
 export default function Favorites() {
-  // Retrieves a list of all favorite timezones on load
-  const favoriteTimezones = useMemo<TimezoneProfile[]>(() => {
-    return allFavoriteTimezones().map((tz) => getTimezoneProfile(tz))
-  }, [])
-
   const [contacts, setContacts] = useState<ContactsMapping>({})
+  const [favoriteTimezones, setFavoriteTimezones] = useState<TimezoneProfile[]>(
+    []
+  )
 
+  // Retrieves a list of all favorite timezones and contacts on load
   useEffect(() => {
-    const loadContacts = async () => {
-      setContacts(await getContactMapping(favoriteTimezones))
+    const loadData = async () => {
+      const favoriteTimezoneProfiles = (await allFavoriteTimezones()).map(
+        (tz) => getTimezoneProfile(tz)
+      )
+      setFavoriteTimezones(favoriteTimezoneProfiles)
+
+      setContacts(await getContactMapping(favoriteTimezoneProfiles))
     }
 
-    loadContacts()
+    loadData()
   }, [])
 
   return (

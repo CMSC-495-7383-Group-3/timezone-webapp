@@ -4,6 +4,8 @@ const API_BASE_PATH = "/api/v1"
 
 const IGNORE_REFRESH = ["/users/login/", "/users/register/", "/users/logout/"]
 
+var lastRefresh = new Date()
+
 const api = axios.create({
   baseURL: API_BASE_PATH,
 })
@@ -13,6 +15,11 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+
+  const now = new Date()
+  const seconds = (now.getTime() - lastRefresh.getTime()) / 1000
+  console.log("Last Refresh: ", seconds)
+
   return config
 })
 
@@ -47,6 +54,8 @@ api.interceptors.response.use(
         console.error("Failed to refresh access token!")
         return Promise.reject(err)
       }
+
+      lastRefresh = new Date()
     }
 
     return Promise.reject(error)

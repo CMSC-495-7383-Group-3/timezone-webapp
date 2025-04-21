@@ -13,8 +13,6 @@ export default async function (
   const result: ContactsMapping = {}
 
   for (const contact of allContactsData) {
-    console.log(contact)
-
     if (targets.includes(contact.timezone)) {
       if (!result[contact.timezone]) result[contact.timezone] = [contact]
       else result[contact.timezone].push(contact)
