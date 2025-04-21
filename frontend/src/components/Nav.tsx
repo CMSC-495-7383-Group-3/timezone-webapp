@@ -17,7 +17,6 @@ export default function Nav() {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/favorites">Favorite Timezones</NavLink>
         <NavLink to="/test">Test Page</NavLink>
         <div className="spacer" />
         {authContext.isAuthenticated ? (
