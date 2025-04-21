@@ -1,6 +1,6 @@
 {
   "id": "Example-ID",
   "name": "Example Contact",
-  "timeZone": "Europe/Berlin",
-  "notes": "Example Note"
+  "timezone": "Europe/Berlin",
+  "phoneNumber": "Example Note"
 }
