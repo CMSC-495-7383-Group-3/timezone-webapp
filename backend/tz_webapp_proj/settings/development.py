@@ -10,6 +10,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    '0.0.0.0',
-    'gunicorn'
+    'gunicorn',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
 ]

@@ -1,4 +1,4 @@
-import { defineConfig } from "cypress"
+import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
@@ -7,4 +7,11 @@ export default defineConfig({
     },
     baseUrl: "http://localhost:5173",
   },
-})
+
+  component: {
+    devServer: {
+      framework: "react",
+      bundler: "vite",
+    },
+  },
+});

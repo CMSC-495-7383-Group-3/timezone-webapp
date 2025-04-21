@@ -143,18 +143,12 @@ Displays a single contact item. This is meant to be used as a child component fo
 
 ## LocalTimeDisplay
 
-Displays the local time. This can optionally have child components, such as a [TimeZoneSearch](#timezonesearch) that will be shown along the time. By passing the seconds prop, the time will also show the seconds.
+Displays the local time. By passing the seconds prop, the time will also show the seconds.
 
 ### Usage
 
 ```tsx
 <LocalTimeDisplay seconds />
-```
-
-```tsx
-<LocalTimeDisplay>
-  <TimeZoneSearch />
-</LocalTimeDisplay>
 ```
 
 ## Nav

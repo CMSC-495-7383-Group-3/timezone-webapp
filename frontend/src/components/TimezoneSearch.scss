@@ -1,0 +1,66 @@
+@use "../globals.scss";
+
+.search > form {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    text-align: center;
+  }
+
+  &.display-result {
+    input[type="text"] {
+      border-radius: globals.$corner-rounding-small
+        globals.$corner-rounding-small 0 0 !important;
+    }
+
+    .results {
+      opacity: 1 !important;
+    }
+  }
+
+  .dropdown {
+    width: 100%;
+    position: relative;
+
+    input,
+    .results {
+      width: calc(100% - globals.$space-xl);
+    }
+
+    .results {
+      background-color: var(--primary-500);
+
+      border-radius: 0 0 globals.$corner-rounding-small
+        globals.$corner-rounding-small;
+
+      margin-top: 0;
+      padding: globals.$space-xs globals.$space-md;
+
+      list-style: none;
+
+      flex-grow: 10;
+
+      opacity: 0;
+      transition: opacity 0.3s globals.$easing;
+
+      position: absolute;
+
+      li {
+        border-radius: globals.$corner-rounding-small;
+        background-color: var(--primary-500);
+
+        transition: background-color 0.3s globals.$easing;
+
+        &:hover {
+          background-color: var(--primary-400);
+        }
+      }
+
+      a,
+      a:visited {
+        color: var(--background-50);
+      }
+    }
+  }
+}
