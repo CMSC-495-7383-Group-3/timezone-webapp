@@ -5,10 +5,19 @@ import starIcon from "/star_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import ContactList from "./ContactList"
-import { Contact, TimezoneProfile } from "../types"
+import { Contact, TimezoneProfile, TimezoneTimingData } from "../types"
 import setFavorite from "../lib/api/setFavorite"
 import { Link } from "react-router-dom"
 import escapeTimezone from "../lib/escapeTimezone"
+import getTimezoneNamed from "../lib/api/getTimezoneNamed"
+
+const FALLBACK_TIME: TimezoneTimingData = {
+  timezone_id: "",
+  dst_offset: "",
+  raw_offset: "",
+  sunrise: "00:00",
+  sunset: "00:00",
+}
 
 interface ITimezoneDisplayProps {
   // Timezones to be displayed for this component
@@ -24,6 +33,16 @@ interface ITimezoneDisplayProps {
 //Component for displaying a single timezone with a list of associated contacts
 export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   const [date, setDate] = useState(new Date())
+  const [timezoneTiming, setTimezoneTiming] =
+    useState<TimezoneTimingData>(FALLBACK_TIME)
+
+  useEffect(() => {
+    const getTimezoneTiming = async () => {
+      setTimezoneTiming(await getTimezoneNamed(props.timezone.timezone))
+    }
+
+    getTimezoneTiming()
+  }, [props.timezone])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -87,8 +106,9 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
           </p>
           <p className="sun-set-rise">
             <img src={sunriseIcon} alt="sun rise icon" />
-            00:00 / <img src={sunsetIcon} alt="sun set icon" />
-            00:00
+            {timezoneTiming.sunrise} /{" "}
+            <img src={sunsetIcon} alt="sun set icon" />
+            {timezoneTiming.sunset}
           </p>
         </div>
         {!props.hideContactsList ? (
