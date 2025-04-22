@@ -27,6 +27,14 @@ export type Contact = {
   phoneNumber: string
 }
 
+export type TimezoneTimingData = {
+  timezone_id: string
+  dst_offset: string
+  raw_offset: string
+  sunrise: string
+  sunset: string
+}
+
 // Frontend types
 export type ContactAvailability =
   | "available"
