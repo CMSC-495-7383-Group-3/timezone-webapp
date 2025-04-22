@@ -1,6 +1,7 @@
 """This module contains settings used specificly for development."""
 
 from .base import *
+import os
 
 # SECURITY WARNING: Keep the secret key used in production secret!
 SECRET_KEY = 'super_insecure_django_key'
@@ -16,3 +17,5 @@ ALLOWED_HOSTS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+# CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ALLOWED_ORIGINS', '*').split(',')

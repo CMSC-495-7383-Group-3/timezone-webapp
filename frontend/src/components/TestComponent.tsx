@@ -1,4 +1,4 @@
-import getTimezoneProfile from "../lib/api/getTimezoneProfile"
+import { getTimezoneProfileSync } from "../lib/api/getTimezoneProfile"
 import { Contact } from "../types"
 import ContactEditor from "./ContactEditor"
 import LocalTimeDisplay from "./LocalTimeDisplay"
@@ -14,8 +14,8 @@ function generateDebugContacts(count: number): Contact[] {
     result.push({
       id: i.toString(),
       name: "Contact " + "i".repeat(Math.random() * 25),
-      timeZone: "none",
-      notes: "note",
+      timezone: "none",
+      phoneNumber: "note",
     })
   }
 
@@ -92,23 +92,23 @@ export default function TestComponent() {
         <LocalTimeDisplay />
         <TimezoneSearch />
         <TimezoneDisplay
-          timezone={getTimezoneProfile("Europe/Berlin")}
+          timezone={getTimezoneProfileSync("Europe/Berlin")}
           contacts={testContacts}
         />
         <TimezoneDisplay
-          timezone={getTimezoneProfile("America/Los_Angeles")}
+          timezone={getTimezoneProfileSync("America/Los_Angeles")}
           contacts={testContacts}
         />
         <TimezoneDisplay
-          timezone={getTimezoneProfile("test")}
+          timezone={getTimezoneProfileSync("test")}
           contacts={testContacts}
         />
         <ContactEditor
           contact={{
             id: "test-id",
             name: "Test Contact",
-            timeZone: "Europe/Berlin",
-            notes: "Some Note",
+            timezone: "Europe/Berlin",
+            phoneNumber: "Some Note",
           }}
           newContact={true}
         />

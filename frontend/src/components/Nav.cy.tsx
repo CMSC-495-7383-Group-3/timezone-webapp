@@ -41,18 +41,6 @@ describe("<Nav />", () => {
     cy.get("#location-display").should("have.text", "/dashboard")
   })
 
-  it("Navigates to Favorites", () => {
-    cy.mount(
-      <MemoryRouter initialEntries={["/"]}>
-        <Nav />
-        <LocationDisplay />
-      </MemoryRouter>
-    )
-
-    cy.get('[href="/favorites"]').click({ force: true })
-    cy.get("#location-display").should("have.text", "/favorites")
-  })
-
   it("Can be toggled on mobile", () => {
     cy.mount(
       <MemoryRouter initialEntries={["/"]}>

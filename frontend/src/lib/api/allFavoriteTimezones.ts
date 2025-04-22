@@ -1,8 +1,16 @@
+import getUserSelf from "./getUserSelf"
+
 // Gers all favorites for a given timezone
-export default function allFavoriteTimezones(): string[] {
-  const timezones = localStorage.getItem("favoriteTimezones")
+export default async function allFavoriteTimezones(): Promise<string[]> {
+  const userData = await getUserSelf()
 
-  if (!timezones) return []
+  if (!userData) return []
 
-  return JSON.parse(timezones)
+  const timezones = userData.lastName
+
+  try {
+    return JSON.parse(timezones)
+  } catch {
+    return []
+  }
 }

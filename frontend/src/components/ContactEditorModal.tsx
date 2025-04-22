@@ -15,8 +15,10 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
   const [editedContact, setEditedContact] = useState<Contact | undefined>(
     undefined
   )
+  const [newContact, setNewContact] = useState(false)
 
   const openContactEditor = (contact: Contact) => {
+    setNewContact(false)
     setEditedContact(contact)
   }
 
@@ -26,14 +28,15 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
       : {
           id: "",
           name: "",
-          timeZone: "",
-          notes: "",
+          timezone: "",
+          phoneNumber: "",
         }
 
     //! This generates a temporary uuidv4 that should be overwritten by the API
     contact.id = "PLACEHOLDER-" + uuidv4()
 
-    openContactEditor(contact)
+    setNewContact(true)
+    setEditedContact(contact)
   }
 
   const onCloseContactEditor = () => {
@@ -61,7 +64,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
         <dialog ref={dialog} className="container">
           <ContactEditor
             contact={editedContact}
-            newContact={false}
+            newContact={newContact}
             closeEditorCallback={onCloseContactEditor}
           />
         </dialog>

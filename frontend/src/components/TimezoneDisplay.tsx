@@ -34,9 +34,8 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     }
   }, [])
 
-  const onFavoriteButtonClick = () => {
-    // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
-    const result = setFavorite(
+  const onFavoriteButtonClick = async () => {
+    const result = await setFavorite(
       props.timezone.timezone,
       !props.timezone.isFavorite
     )

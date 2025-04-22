@@ -1,15 +1,30 @@
-import { useMemo } from "react"
+import { useEffect, useState } from "react"
 import allFavoriteTimezones from "../lib/api/allFavoriteTimezones"
-import { TimezoneProfile } from "../types"
+import { ContactsMapping, TimezoneProfile } from "../types"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
-import contactsByTimezone from "../lib/api/contactsByTimezone"
-import TimezoneSearch from "../components/TimeZoneSearch"
+import TimezoneSearch from "../components/TimezoneSearch"
+import getContactMapping from "../lib/api/getContactMapping"
 
 export default function Favorites() {
-  // Retrieves a list of all favorite timezones on load
-  const favoriteTimezones = useMemo<TimezoneProfile[]>(() => {
-    return allFavoriteTimezones().map((tz) => getTimezoneProfile(tz))
+  const [contacts, setContacts] = useState<ContactsMapping>({})
+  const [favoriteTimezones, setFavoriteTimezones] = useState<TimezoneProfile[]>(
+    []
+  )
+
+  // Retrieves a list of all favorite timezones and contacts on load
+  useEffect(() => {
+    const loadData = async () => {
+      const favoriteTimezoneNames = await allFavoriteTimezones()
+      const favoriteTimezoneProfiles = await Promise.all(
+        favoriteTimezoneNames.map((tz) => getTimezoneProfile(tz))
+      )
+      setFavoriteTimezones(favoriteTimezoneProfiles)
+
+      setContacts(await getContactMapping(favoriteTimezoneProfiles))
+    }
+
+    loadData()
   }, [])
 
   return (
@@ -19,7 +34,9 @@ export default function Favorites() {
       {favoriteTimezones.map((timezone, i) => (
         <TimezoneDisplay
           timezone={timezone}
-          contacts={contactsByTimezone(timezone.timezone)}
+          contacts={
+            contacts[timezone.timezone] ? contacts[timezone.timezone] : []
+          }
           key={`favorites-${timezone}-${i}`}
         />
       ))}
