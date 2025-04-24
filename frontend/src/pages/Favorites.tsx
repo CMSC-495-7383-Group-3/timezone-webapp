@@ -11,6 +11,7 @@ import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
 import patchContacts from "../lib/pathcContacts"
+import setFavorite from "../lib/api/setFavorite"
 
 export default function Favorites() {
   const [contacts, setContacts] = useState<ContactsMapping>({})
@@ -32,6 +33,22 @@ export default function Favorites() {
 
     loadData()
   }, [])
+
+  const onFavoriteUpdate = async (timezone: string, setTo: boolean) => {
+    const result = await setFavorite(timezone, setTo)
+
+    if (result === undefined) {
+      //TODO make some error response}
+      alert("Could not change favorite state!")
+      return
+    }
+
+    setFavoriteTimezones([
+      ...favoriteTimezones.map((tzp) =>
+        tzp.timezone === timezone ? { ...tzp, isFavorite: result } : tzp
+      ),
+    ])
+  }
 
   const onContactUpdate = (
     timezone: string,
@@ -64,11 +81,12 @@ export default function Favorites() {
           contacts={
             contacts[timezone.timezone] ? contacts[timezone.timezone] : []
           }
-          key={`favorites-${timezone}-${i}`}
+          favoriteUpdateCallback={onFavoriteUpdate}
           contactUpdateCallback={(data, action) => {
             console.log("Callback")
             onContactUpdate(timezone.timezone, data, action)
           }}
+          key={`favorites-${timezone}-${i}`}
         />
       ))}
     </main>

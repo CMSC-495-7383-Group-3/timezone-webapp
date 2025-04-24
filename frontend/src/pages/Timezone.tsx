@@ -77,6 +77,18 @@ export default function Timezone() {
     setContacts([...contacts, newContact])
   }
 
+  const onFavoriteUpdate = async (timezone: string, setTo: boolean) => {
+    const result = await setFavorite(timezone, setTo)
+
+    if (result === undefined) {
+      //TODO make some error response}
+      alert("Could not change favorite state!")
+      return
+    }
+
+    setTimezoneProfile({ ...timezoneProfile, isFavorite: result })
+  }
+
   const onContactUpdate = (
     data: Contact,
     action: ContactEditorUpdateAction
@@ -92,6 +104,7 @@ export default function Timezone() {
         <TimezoneDisplay
           timezone={timezoneProfile}
           contacts={contacts}
+          favoriteUpdateCallback={onFavoriteUpdate}
           contactUpdateCallback={onContactUpdate}
         />
 

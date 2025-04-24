@@ -47,11 +47,12 @@ api.interceptors.response.use(
         api.defaults.headers.Authorization = `Bearer ${newAccess}`
         originalRequest.headers.Authorization = `Bearer ${newAccess}`
 
+        console.log("Refreshed access token.")
         return api(originalRequest)
       } catch (err) {
         console.log(err)
-        // localStorage.removeItem("access")
-        localStorage.removeItem("refresh")
+        localStorage.removeItem("access")
+        // localStorage.removeItem("refresh")
         console.error("Failed to refresh access token!")
         return Promise.reject(err)
       }

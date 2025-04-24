@@ -31,10 +31,12 @@ interface ITimezoneDisplayProps {
   contacts: Contact[]
   // Explicitly hides the contacts list
   hideContactsList?: boolean
-  // Optionally shown along the time
-  children?: ReactNode
+  // Callback for when the timezone updates its favorite status
+  favoriteUpdateCallback: (timezone: string, newState: boolean) => void
   // Callback for if this contact is edited
   contactUpdateCallback?: ContactEditorUpdateCallbackFunction
+  // Optionally shown along the time
+  children?: ReactNode
 }
 
 //Component for displaying a single timezone with a list of associated contacts
@@ -48,6 +50,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
       setTimezoneTiming(await getTimezoneNamed(props.timezone.timezone))
     }
 
+    // TODO put this directly into the timezone profile
     getTimezoneTiming()
   }, [props.timezone])
 
@@ -59,17 +62,6 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
       clearInterval(timer)
     }
   }, [])
-
-  const onFavoriteButtonClick = async () => {
-    const result = await setFavorite(
-      props.timezone.timezone,
-      !props.timezone.isFavorite
-    )
-
-    if (result === undefined) alert("Could not change favorite state!") //TODO make some error response
-
-    props.timezone.isFavorite = result!
-  }
 
   if (!props.timezone.valid || !validateTimezone(props.timezone.timezone)) {
     return (
@@ -95,7 +87,12 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
           className={`${
             props.timezone.isFavorite ? "accent" : "secondary"
           } icon`}
-          onClick={onFavoriteButtonClick}
+          onClick={() => {
+            props.favoriteUpdateCallback(
+              props.timezone.timezone,
+              !props.timezone.isFavorite
+            )
+          }}
         >
           <img src={starIcon} alt="star icon" />
         </button>
