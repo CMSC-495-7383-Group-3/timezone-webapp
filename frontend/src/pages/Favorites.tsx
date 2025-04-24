@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react"
 import allFavoriteTimezones from "../lib/api/allFavoriteTimezones"
-import { ContactsMapping, TimezoneProfile } from "../types"
+import {
+  Contact,
+  ContactEditorUpdateAction,
+  ContactsMapping,
+  TimezoneProfile,
+} from "../types"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
+import patchContacts from "../lib/pathcContacts"
 
 export default function Favorites() {
   const [contacts, setContacts] = useState<ContactsMapping>({})
@@ -27,6 +33,27 @@ export default function Favorites() {
     loadData()
   }, [])
 
+  const onContactUpdate = (
+    timezone: string,
+    data: Contact,
+    action: ContactEditorUpdateAction
+  ) => {
+    setContacts(
+      // Re-create the object from key-value pairs
+      Object.fromEntries(
+        // Split the object into key-value pairs and map over them
+        Object.entries(contacts).map(([k, v]) => {
+          // If the object is in the target timezone
+          if (k == timezone) {
+            return [k, patchContacts(v, data, action)]
+          }
+          // Else, do nothing
+          else return [k, v]
+        })
+      )
+    )
+  }
+
   return (
     <main id="favorites">
       <h1>Favorite Timezones</h1>
@@ -38,6 +65,10 @@ export default function Favorites() {
             contacts[timezone.timezone] ? contacts[timezone.timezone] : []
           }
           key={`favorites-${timezone}-${i}`}
+          contactUpdateCallback={(data, action) => {
+            console.log("Callback")
+            onContactUpdate(timezone.timezone, data, action)
+          }}
         />
       ))}
     </main>

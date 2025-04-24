@@ -64,3 +64,14 @@ export type LoginFormData = {
 export type ContactsMapping = {
   [key: string]: Contact[]
 }
+
+export enum ContactEditorUpdateAction {
+  ADD,
+  UPDATE,
+  DELETE,
+}
+
+export type ContactEditorUpdateCallbackFunction = (
+  data: Contact,
+  action: ContactEditorUpdateAction
+) => void

@@ -111,6 +111,7 @@ export default function TestComponent() {
             phoneNumber: "Some Note",
           }}
           newContact={true}
+          updateCallback={() => {}}
         />
       </div>
     </div>

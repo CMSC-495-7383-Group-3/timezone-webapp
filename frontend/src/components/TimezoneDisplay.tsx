@@ -5,7 +5,12 @@ import starIcon from "/star_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import ContactList from "./ContactList"
-import { Contact, TimezoneProfile, TimezoneTimingData } from "../types"
+import {
+  Contact,
+  ContactEditorUpdateCallbackFunction,
+  TimezoneProfile,
+  TimezoneTimingData,
+} from "../types"
 import setFavorite from "../lib/api/setFavorite"
 import { Link } from "react-router-dom"
 import escapeTimezone from "../lib/escapeTimezone"
@@ -28,6 +33,8 @@ interface ITimezoneDisplayProps {
   hideContactsList?: boolean
   // Optionally shown along the time
   children?: ReactNode
+  // Callback for if this contact is edited
+  contactUpdateCallback?: ContactEditorUpdateCallbackFunction
 }
 
 //Component for displaying a single timezone with a list of associated contacts
@@ -120,6 +127,11 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
                   timeZone: props.timezone.timezone,
                 })
               )
+            }
+            updateCallback={
+              props.contactUpdateCallback
+                ? props.contactUpdateCallback
+                : () => {}
             }
           />
         ) : (
