@@ -122,6 +122,14 @@ export default function ContactEditor(props: IContactEditorProps) {
     if (props.closeEditorCallback) props.closeEditorCallback()
   }
 
+  const onCancel = () => {
+    // Delete new contacts are are not yet saved
+    if (props.newContact && !previouslySaved && props.updateCallback.current)
+      props.updateCallback.current(contact, ContactEditorUpdateAction.DELETE)
+
+    if (props.closeEditorCallback) props.closeEditorCallback()
+  }
+
   return (
     <div className="container modal contact-editor">
       {message.show ? (
@@ -169,12 +177,16 @@ export default function ContactEditor(props: IContactEditorProps) {
         <br />
         <code>{contact.id}</code>
       </form>
-      <button className="secondary" onClick={props.closeEditorCallback}>
+      <button className="secondary" onClick={onCancel}>
         Cancel
       </button>
-      <button className="secondary" onClick={onDelete}>
-        Delete
-      </button>
+      {previouslySaved || !props.newContact ? (
+        <button className="secondary" onClick={onDelete}>
+          Delete
+        </button>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }
