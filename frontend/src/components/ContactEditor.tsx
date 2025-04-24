@@ -7,6 +7,7 @@ import {
 } from "../types"
 import updateContact from "../lib/api/updateContact"
 import validateTimezone from "../lib/validateTimezone"
+import deleteContact from "../lib/api/deleteContact"
 
 interface IContactEditorProps {
   // The contact to edit. Writes back to this on save
@@ -19,6 +20,8 @@ interface IContactEditorProps {
   closeEditorCallback?: () => void
   // Determine if the form should be kept open on save
   keepOpenOnSave?: boolean
+  // Skips the backend call (for testing)
+  skipBackend?: boolean
 }
 
 // An editor for contacts. Provides a form for editing and saving.
@@ -65,7 +68,9 @@ export default function ContactEditor(props: IContactEditorProps) {
       return
     }
 
-    const result = await updateContact(contact.id, contact, props.newContact)
+    const result = !props.skipBackend
+      ? await updateContact(contact.id, contact, props.newContact)
+      : contact
 
     if (!result) {
       setMessage({
@@ -97,6 +102,24 @@ export default function ContactEditor(props: IContactEditorProps) {
     // Attempt to close the form when is should not be kept open and a callback is specified
     if (!props.keepOpenOnSave && props.closeEditorCallback)
       props.closeEditorCallback()
+  }
+
+  const onDelete = async () => {
+    const result = !props.skipBackend ? await deleteContact(contact.id) : true
+
+    if (!result) {
+      setMessage({
+        show: true,
+        success: false,
+        message: `Failed to delete contact.`,
+      })
+      return
+    }
+
+    if (props.updateCallback.current)
+      props.updateCallback.current(contact, ContactEditorUpdateAction.DELETE)
+
+    if (props.closeEditorCallback) props.closeEditorCallback()
   }
 
   return (
@@ -148,6 +171,9 @@ export default function ContactEditor(props: IContactEditorProps) {
       </form>
       <button className="secondary" onClick={props.closeEditorCallback}>
         Cancel
+      </button>
+      <button className="secondary" onClick={onDelete}>
+        Delete
       </button>
     </div>
   )
