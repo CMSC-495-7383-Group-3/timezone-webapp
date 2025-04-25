@@ -85,7 +85,6 @@ export default function Favorites() {
           }
           favoriteUpdateCallback={onFavoriteUpdate}
           contactUpdateCallback={(data, action) => {
-            console.log("Callback")
             onContactUpdate(timezone.timezone, data, action)
           }}
           key={`favorites-${timezone}-${i}`}

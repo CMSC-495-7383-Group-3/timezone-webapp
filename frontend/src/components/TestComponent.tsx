@@ -23,10 +23,9 @@ function generateDebugContacts(count: number): Contact[] {
   return result
 }
 
-const contactUpdateCallback = useRef(() => {})
-
 export default function TestComponent() {
   const testContacts: Contact[] = generateDebugContacts(300)
+  const contactUpdateCallback = useRef(() => {})
 
   return (
     <div className="test-component">
