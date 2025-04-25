@@ -17,8 +17,6 @@ export default function Login() {
     if (authContext.isAuthenticated) navigate("/")
   })
 
-  // TODO redirect user to home if they are already logged in
-
   const [data, setData] = useState<LoginFormData>({
     email: "",
     password: "",
