@@ -25,11 +25,10 @@ export default function Logout() {
     onLogout()
   }, [])
 
-  // TODO remove debug logout
   return (
     <main id="logout">
       <p>Logging out...</p>
-      <button onClick={onLogout}>Debug Logout</button>
+      <button onClick={onLogout}>Try again</button>
     </main>
   )
 }

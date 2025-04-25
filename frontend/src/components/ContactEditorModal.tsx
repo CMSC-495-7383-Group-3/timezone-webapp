@@ -23,7 +23,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
   const currentUpdateCallback =
     useRef<ContactEditorUpdateCallbackFunction>(null)
 
-  // Opens the contact editor for an existing contact. If the callback returns undefined, the contact should be deleted
+  // Opens the contact editor for an existing contact.
   const openContactEditor = (
     contact: Contact,
     callback: ContactEditorUpdateCallbackFunction
@@ -33,7 +33,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
     currentUpdateCallback.current = callback
   }
 
-  // Opens a new contact. If the callback returns undefined, the operation should be canceled
+  // Opens a new contact.
   const openNewContactEditor = (
     callback: ContactEditorUpdateCallbackFunction,
     base?: Contact
@@ -65,7 +65,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
 
   // Hide the modal once the edited contact becomes undefined
   useEffect(() => {
-    if (editedContact != undefined) {
+    if (editedContact !== undefined) {
       dialog.current?.showModal()
     }
   }, [editedContact])

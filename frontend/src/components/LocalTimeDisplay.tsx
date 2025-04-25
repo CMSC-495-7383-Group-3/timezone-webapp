@@ -11,6 +11,8 @@ interface ILocalTimeDisplayProps {
 // Displays the local time
 export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
   const [date, setDate] = useState(new Date())
+
+  // Creates an interval that updates the date object to the current time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date())

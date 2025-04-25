@@ -14,7 +14,9 @@ import { User } from "./types"
 import Logout from "./pages/Logout"
 import getUserSelf from "./lib/api/getUserSelf"
 
+// Root App component
 function App() {
+  // Updates the authenticated state. Null means that the user is logged out
   const setAuthenticated = (user: User | null) => {
     console.log("Updating authentication context")
     if (user)
@@ -37,6 +39,7 @@ function App() {
     setAuthenticated: setAuthenticated,
   })
 
+  // ONCE on the initial mount, attempt to get the current user's information
   const initialMount = useRef(false)
   const onInitialMount = async () => {
     const user = await getUserSelf()
@@ -63,8 +66,12 @@ function App() {
           <Route path="logout" element={<Logout />} />
           <Route path="timezone/:zone" element={<Timezone />} />
           <Route path="userSettings" element={<UserSettings />} />
-          {/* TODO: Remove the test page once the project is further developed */}
-          <Route path="test" element={<Test />} />
+          {/* Only show the test route in development */}
+          {!process.env.NODE_ENV || process.env.NODE_ENV === "development" ? (
+            <Route path="test" element={<Test />} />
+          ) : (
+            <></>
+          )}
         </Routes>
       </ContactEditorModal>
     </AuthContext>

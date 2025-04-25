@@ -11,7 +11,7 @@ function unConvertContact(contact: Contact): object {
   }
 }
 
-// Updates a contact by ID. Optionally also creates a new contact if it does not yet exist
+// Updates a contact by ID. Optionally also creates a new contact
 export default async function updateContact(
   id: string,
   newData: Contact,

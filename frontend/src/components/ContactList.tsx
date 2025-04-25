@@ -11,6 +11,7 @@ interface IContactListProps {
   updateCallback: ContactEditorUpdateCallbackFunction
 }
 
+// A list of contacts as given by the props. Meant to be used only as a child of TimezoneDisplay
 export default function ContactList(props: IContactListProps) {
   return (
     <ul className="contacts-list">

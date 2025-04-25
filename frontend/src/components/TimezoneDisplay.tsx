@@ -24,6 +24,8 @@ interface ITimezoneDisplayProps {
   favoriteUpdateCallback: (timezone: string, newState: boolean) => void
   // Callback for if this contact is edited
   contactUpdateCallback?: ContactEditorUpdateCallbackFunction
+  // Determines if the title is clickable as a link. This is turned off in the timezone page, since it redirects to its self
+  disableClickableTitle?: boolean
   // Optionally shown along the time
   children?: ReactNode
 }
@@ -32,6 +34,7 @@ interface ITimezoneDisplayProps {
 export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   const [date, setDate] = useState(new Date())
 
+  // Creates an interval that updates the date object to the current time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date())
@@ -41,6 +44,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     }
   }, [])
 
+  // If the timezone is not valid, show an error
   if (!props.timezone.valid || !validateTimezone(props.timezone.timezone)) {
     return (
       <div className="container secondary timezone-display">
@@ -53,13 +57,16 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     <div className="container secondary timezone-display">
       <div className="title">
         <h3>
-          {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
-          <Link
-            to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
-            className="invisible-link"
-          >
-            {props.timezone.label}
-          </Link>
+          {props.disableClickableTitle ? (
+            <p>{props.timezone.label}</p>
+          ) : (
+            <Link
+              to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
+              className="invisible-link"
+            >
+              {props.timezone.label}
+            </Link>
+          )}
         </h3>
         <button
           className={`${

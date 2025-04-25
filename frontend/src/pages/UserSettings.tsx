@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/authContext"
 import allContacts from "../lib/api/allContacts"
-import contactById from "../lib/api/contactById"
+import getContactById from "../lib/api/getContactById"
 import getTimezonePositioned from "../lib/api/getTimezonePositioned"
 
 export default function UserSettings() {
@@ -15,7 +15,7 @@ export default function UserSettings() {
       setContactsData(JSON.stringify(contactData))
       console.log("Set contacts data")
 
-      console.log(await contactById("5"))
+      console.log(await getContactById("5"))
       console.log(await getTimezonePositioned(52.52, 13.405))
     }
     load()

@@ -68,6 +68,7 @@ export default function ContactEditor(props: IContactEditorProps) {
       return
     }
 
+    // Update the contact on the backend (if skipBackend is not enables)
     const result = !props.skipBackend
       ? await updateContact(contact.id, contact, props.newContact)
       : contact
@@ -105,6 +106,7 @@ export default function ContactEditor(props: IContactEditorProps) {
   }
 
   const onDelete = async () => {
+    // Update the contact on the backend (if skipBackend is not enables)
     const result = !props.skipBackend ? await deleteContact(contact.id) : true
 
     if (!result) {

@@ -19,18 +19,19 @@ export default function Favorites() {
     []
   )
 
-  // Retrieves a list of all favorite timezones and contacts on load
+  // Retrieves a list of all favorite timezones and contacts
+  const loadData = async () => {
+    const favoriteTimezoneNames = await allFavoriteTimezones()
+    const favoriteTimezoneProfiles = await Promise.all(
+      favoriteTimezoneNames.map((tz) => getTimezoneProfile(tz))
+    )
+    setFavoriteTimezones(favoriteTimezoneProfiles)
+
+    setContacts(await getContactMapping(favoriteTimezoneProfiles))
+  }
+
+  // Loads the required data when the component is mounted
   useEffect(() => {
-    const loadData = async () => {
-      const favoriteTimezoneNames = await allFavoriteTimezones()
-      const favoriteTimezoneProfiles = await Promise.all(
-        favoriteTimezoneNames.map((tz) => getTimezoneProfile(tz))
-      )
-      setFavoriteTimezones(favoriteTimezoneProfiles)
-
-      setContacts(await getContactMapping(favoriteTimezoneProfiles))
-    }
-
     loadData()
   }, [])
 
@@ -39,10 +40,11 @@ export default function Favorites() {
 
     if (result === undefined) {
       //TODO make some error response}
-      alert("Could not change favorite state!")
+      console.error("Could not change favorite state!")
       return
     }
 
+    // Update the favorite status for the selected timezone
     setFavoriteTimezones([
       ...favoriteTimezones.map((tzp) =>
         tzp.timezone === timezone ? { ...tzp, isFavorite: result } : tzp
@@ -56,11 +58,11 @@ export default function Favorites() {
     action: ContactEditorUpdateAction
   ) => {
     setContacts(
-      // Re-create the object from key-value pairs
+      // 3. Re-create the object from key-value pairs
       Object.fromEntries(
-        // Split the object into key-value pairs and map over them
+        // 1. Split the object into key-value pairs and map over them
         Object.entries(contacts).map(([k, v]) => {
-          // If the object is in the target timezone
+          // 2. If the object is in the target timezone
           if (k == timezone) {
             return [k, patchContacts(v, data, action)]
           }

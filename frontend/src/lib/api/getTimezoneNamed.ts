@@ -9,6 +9,7 @@ const FALLBACK_TIME: TimezoneTimingData = {
   sunset: "00:00",
 }
 
+// Retrieves timezone timing data by timezone name
 export default async function getTimezoneNamed(
   timezone: string
 ): Promise<TimezoneTimingData> {
