@@ -46,7 +46,6 @@ export default function Favorites() {
     const result = await setFavorite(timezone, setTo)
 
     if (result === undefined) {
-      //TODO make some error response}
       console.error("Could not change favorite state!")
       return
     }

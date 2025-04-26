@@ -56,17 +56,6 @@ export default function Timezone() {
     loadData(zone ? zone : "")
   }, [])
 
-  const onFavoriteButtonClick = async () => {
-    const result = await setFavorite(
-      timezoneProfile.timezone,
-      !timezoneProfile.isFavorite
-    )
-
-    if (result === undefined) console.error("Could not change favorite state!") //TODO make some error response
-
-    setTimezoneProfile({ ...timezoneProfile, isFavorite: result! })
-  }
-
   const onAddContact = () => {
     const newContact = {
       id: "",
@@ -82,12 +71,10 @@ export default function Timezone() {
     setContacts([...contacts, newContact])
   }
 
-  // TODO duplicate favorite button?
   const onFavoriteUpdate = async (timezone: string, setTo: boolean) => {
     const result = await setFavorite(timezone, setTo)
 
     if (result === undefined) {
-      //TODO make some error response
       alert("Could not change favorite state!")
       return
     }
@@ -122,9 +109,16 @@ export default function Timezone() {
         </div>
       </div>
 
-      <div className="container accent">
+      <div className="container accent flex">
         <button onClick={onAddContact}>Add Contact</button>
-        <button onClick={onFavoriteButtonClick}>
+        <button
+          onClick={() => {
+            onFavoriteUpdate(
+              timezoneProfile.timezone,
+              !timezoneProfile.isFavorite
+            )
+          }}
+        >
           {timezoneProfile.isFavorite ? "Unfavorite" : "Favorite"}
         </button>
       </div>
