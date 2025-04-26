@@ -10,7 +10,7 @@ import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
-import patchContacts from "../lib/pathcContacts"
+import patchContacts from "../lib/patchContacts"
 import setFavorite from "../lib/api/setFavorite"
 import useProtectedPage from "../hooks/useProtectedPage"
 
