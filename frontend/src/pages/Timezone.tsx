@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import TimezoneSearch from "../components/TimezoneSearch"
 import { ContactEditorContext } from "../context/contactEditorContext"
@@ -8,7 +8,7 @@ import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
 import { Contact, ContactEditorUpdateAction, TimezoneProfile } from "../types"
 import patchContacts from "../lib/pathcContacts"
-import { AuthContext } from "../context/authContext"
+import useProtectedPage from "../hooks/useProtectedPage"
 
 const FALLBACK_TIMEZONE_PROFILE = {
   id: "",
@@ -23,9 +23,7 @@ const FALLBACK_TIMEZONE_PROFILE = {
 
 export default function Timezone() {
   // Reroute to login if not authenticated
-  const authData = useContext(AuthContext)
-  const navigate = useNavigate()
-  if (!authData.isAuthenticated) navigate("/login?please_login", {})
+  useProtectedPage()
 
   const contactEditor = useContext(ContactEditorContext)
 

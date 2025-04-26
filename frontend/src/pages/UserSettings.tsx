@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../context/authContext"
 import allContacts from "../lib/api/allContacts"
 import getContactById from "../lib/api/getContactById"
 import getTimezonePositioned from "../lib/api/getTimezonePositioned"
-import { useNavigate } from "react-router-dom"
+import useProtectedPage from "../hooks/useProtectedPage"
+import { AuthContext } from "../context/authContext"
 
 export default function UserSettings() {
   // Reroute to login if not authenticated
+  useProtectedPage()
+
   const authData = useContext(AuthContext)
-  const navigate = useNavigate()
-  if (!authData.isAuthenticated) navigate("/login?please_login", {})
 
   const [contactsData, setContactsData] = useState("{}")
 

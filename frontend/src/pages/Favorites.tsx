@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import allFavoriteTimezones from "../lib/api/allFavoriteTimezones"
 import {
   Contact,
@@ -12,14 +12,11 @@ import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
 import patchContacts from "../lib/pathcContacts"
 import setFavorite from "../lib/api/setFavorite"
-import { AuthContext } from "../context/authContext"
-import { useNavigate } from "react-router-dom"
+import useProtectedPage from "../hooks/useProtectedPage"
 
 export default function Favorites() {
   // Reroute to login if not authenticated
-  const authData = useContext(AuthContext)
-  const navigate = useNavigate()
-  if (!authData.isAuthenticated) navigate("/login?please_login", {})
+  useProtectedPage()
 
   const [contacts, setContacts] = useState<ContactsMapping>({})
   const [favoriteTimezones, setFavoriteTimezones] = useState<TimezoneProfile[]>(

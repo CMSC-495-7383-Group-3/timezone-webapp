@@ -61,7 +61,7 @@ api.interceptors.response.use(
         return api(originalRequest)
       } catch (err) {
         console.log(err)
-        // localStorage.removeItem("access")
+        localStorage.removeItem("access")
         // localStorage.removeItem("refresh")
         console.error("Failed to refresh access token!")
         return Promise.reject(err)
