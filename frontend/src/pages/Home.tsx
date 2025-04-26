@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import LocalTimeDisplay from "../components/LocalTimeDisplay"
 import TimezoneSearch from "../components/TimezoneSearch"
 import "./home.scss"
@@ -18,18 +19,28 @@ export default function Home() {
       </div>
       <div className="flex">
         <div className="container">
-          <h2>About 1</h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-          molestiae, qui dolorem veritatis voluptates animi error tempore nisi
-          dolorum incidunt consequatur ipsum sit repellendus tenetur natus
-          soluta! Placeat, aspernatur esse!
+          <h2>About</h2>
+          <p>
+            The Time Zone Management Web Application is designed to provide
+            users with a simple and effective tool for managing multiple time
+            zones, tracking sunrise and sunset times, and associating contacts
+            with specific time zones. The application aims to improve the way
+            users keep track of different time zones efficiently by offering an
+            intuitive interface and seamless functionality.
+          </p>
         </div>
         <div className="container">
-          <h2>About 2</h2>
-          Reiciendis eveniet suscipit ab ipsa dolore voluptatem delectus
-          aspernatur veniam iste mollitia deserunt aut nulla molestias dolores
-          explicabo necessitatibus quaerat perferendis quo quidem vero
-          recusandae eum, tempore nesciunt nobis. Quo!
+          <h2>Usage</h2>
+          <p>
+            To use the application, simply{" "}
+            <Link to="/register">create an account</Link> and search for a
+            timezone that should be tracked.
+          </p>
+          <p>
+            On a timezone page, options are available to add contacts. After
+            adding a contact, it is possible to edit it by clicking on it in the
+            contact list.
+          </p>
         </div>
       </div>
     </main>
