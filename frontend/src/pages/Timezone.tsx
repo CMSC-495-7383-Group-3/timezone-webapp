@@ -67,7 +67,6 @@ export default function Timezone() {
     contactEditor.newContact(onContactUpdate, newContact)
 
     // Adds the contact to the list of currently loaded contacts.
-    // TODO see if there is a good way to hide this contact while it is blank. Potentially make all blank-name contacts hidden?
     setContacts([...contacts, newContact])
   }
 
@@ -103,8 +102,8 @@ export default function Timezone() {
 
         <div className="container secondary">
           <p>
-            City: {timezoneProfile.city} / Label: {timezoneProfile.label} / Id:{" "}
-            {timezoneProfile.id} and any other descriptive text.
+            Name: {timezoneProfile.timezone} | Label: {timezoneProfile.label} |
+            ID: {timezoneProfile.id}
           </p>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { ContactAvailability } from "../types"
 
-// TODO document the horus in the user guide
 const AVAILABILITY_START_TIME = 9
 const AVAILABILITY_END_TIME = 17
 

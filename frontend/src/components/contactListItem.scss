@@ -20,4 +20,8 @@
   &.available {
     border-left-color: var(--accent-green);
   }
+
+  &.hidden {
+    display: none;
+  }
 }

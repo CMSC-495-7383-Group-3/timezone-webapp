@@ -4,8 +4,6 @@ import TimezoneSearch from "../components/TimezoneSearch"
 import "./home.scss"
 
 export default function Home() {
-  // TODO update about texts
-
   return (
     <main id="home">
       <div className="header">
