@@ -1,0 +1,29 @@
+@use "../globals.scss";
+
+#login,
+#register {
+  & > .container.primary {
+    margin: globals.$space-md auto;
+    width: 30vw;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: globals.$space-xs;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 740px) {
+  #login,
+  #register {
+    & > .container.primary {
+      margin: globals.$space-md globals.$space-xxs;
+      width: auto;
+    }
+  }
+}

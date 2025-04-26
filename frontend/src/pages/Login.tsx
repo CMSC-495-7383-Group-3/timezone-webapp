@@ -3,6 +3,7 @@ import { FormMessage, LoginFormData } from "../types"
 import login from "../lib/api/login"
 import { AuthContext } from "../context/authContext"
 import { useNavigate } from "react-router-dom"
+import "./LoginRegister.scss"
 
 function validateLoginForm(data: LoginFormData): boolean {
   return data.email.length > 0 && data.password.length > 0

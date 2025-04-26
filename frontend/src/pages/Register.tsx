@@ -4,6 +4,7 @@ import register from "../lib/api/register"
 import login from "../lib/api/login"
 import { AuthContext } from "../context/authContext"
 import { useNavigate } from "react-router-dom"
+import "./LoginRegister.scss"
 
 function validateRegisterForm(data: RegisterFormData): boolean {
   return (
