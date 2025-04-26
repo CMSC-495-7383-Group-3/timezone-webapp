@@ -68,6 +68,12 @@ export default function ContactEditor(props: IContactEditorProps) {
       return
     }
 
+    setMessage({
+      show: true,
+      success: true,
+      message: `Saving...`,
+    })
+
     // Update the contact on the backend (if skipBackend is not enables)
     const result = !props.skipBackend
       ? await updateContact(contact.id, contact, props.newContact)
