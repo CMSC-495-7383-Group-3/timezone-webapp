@@ -17,7 +17,7 @@
 
 ## To Test
 
-1. Run `npm run dev` to start the development server (If the server is already running, it is advised to restart before testing.)
+1. Run `npm run dev` to start the development server (If the server is already running, it is recommended to restart before testing.)
 2. Run `npm run test` to start all tests
 
 # Frontend Organization
@@ -79,6 +79,10 @@ A `TimezoneProfile` is an object that stores some information about a given time
 
 The naming of what is used where is currently a bit ambiguous, but the type checking system should catch all errors. As the details on this are better decided, please change any naming of variables and parameters as needed.
 
+## Mutating State
+
+Remember that directly mutating the state (e.g. `props.contact = {/* New Contact */}`) should be avoided because of how React works. Instead use callback function to communicate with the parent component so that the state can be properly updated.
+
 ## Testing
 
 To test the application, the development server must be running (`npm run dev`). Then use `npm run test` to run automated tests or `npm run cp:open` to open the visual testing environment.
@@ -91,7 +95,9 @@ An editor for contacts. Provides a form for editing and saving. The component ha
 
 The form will automatically attempt to close on save unless it is specified no to.
 
-Importantly, on save, this component will make an API call as well as writing back to the contact passed in its props.
+The `updateCallback` props is given as a ref to a function, since the actually function it points to is meant to be capable due to it's nature as a general use modal.
+
+Importantly, on save, this component will make an API call unless skipBackend is set.
 
 ### Usage
 
@@ -99,8 +105,10 @@ Importantly, on save, this component will make an API call as well as writing ba
 <ContactEditor
   contact={editedContact}
   newContact={false}
+  updateCallback={updateCallbackRef}
   closeEditorCallback={onCloseContactEditor}
   keepOpenOnSave
+  skipBackend
 />
 ```
 
@@ -127,7 +135,11 @@ This component displays a list of timezones, usually as a child of [TimezoneDisp
 ### Usage
 
 ```tsx
-<ContactList contacts={props.contacts} time={new Date()} />
+<ContactList
+  contacts={props.contacts}
+  time={new Date()}
+  updateCallback={updateCallback}
+/>
 ```
 
 ## ContactListItem
@@ -140,7 +152,11 @@ Displays a single contact item. This is meant to be used as a child component fo
 ### Usage
 
 ```tsx
-<ContactListItem contact={contact} availability={"available"} />
+<ContactListItem
+  contact={contact}
+  availability={"available"}
+  updateCallback={updateCallback}
+/>
 ```
 
 ## LocalTimeDisplay
@@ -155,7 +171,13 @@ Displays the local time. By passing the seconds prop, the time will also show th
 
 ## Nav
 
-WIP Component. Will show the navigation bar for the top of the page.
+Will show the navigation bar for the top of the page. It mut be a child component of a router.
+
+### Usage
+
+```tsx
+<Nav />
+```
 
 ## TestComponent
 
@@ -163,14 +185,22 @@ Testing Component. Shows examples of most components and CSS styles.
 
 ## TimezoneDisplay
 
-Component for displaying a single timezone with a list of associated contacts. It requires a TimezoneProfile and a list of contacts. Adding the hideContactsList prop will hide the list of contacts.
+Component for displaying a single timezone with a list of associated contacts. It requires a TimezoneProfile and a list of contacts. Adding the `hideContactsList` prop will hide the list of contacts.
+
+It calls back on `favoriteUpdateCallback` when its favorite button has been clicked.
+
+It also requires ad `contactUpdateCallback` if it has contacts that it must display.
 
 Optionally, children can be added to this component, which will be shown along with the time.
 
 ### Usage
 
 ```tsx
-<TimezoneDisplay timezone={timezoneProfile} contacts={contacts} />
+<TimezoneDisplay
+  timezone={timezoneProfile}
+  contacts={contacts}
+  favoriteUpdateCallback={() => {}}
+/>
 ```
 
 ## TimezoneSearch
@@ -197,14 +227,3 @@ A single result for the timezone search. Provides a link to that timezone's page
 ```tsx
 <TimezoneSearchResult timezone={tz} />
 ```
-
-### Timezone Dashboard
-
-- Description: Component for displaying multiple timezones with their clocks and associated contacts on the Dashboard page (`/dashboard`). Uses `TimezoneDisplay` for each timezone entry.
-  - Usage: `<TimezoneDashboard />`
-  - Details:
-    - Currently shows a static list of timezones (e.g., "America/New_York", "Europe/London") with mock contact data.
-    - Styled with `timezoneDashboard.scss` for layout and `timeZoneDisplay.scss` for individual timezone cards.
-    - Integrated into the navigation bar via a "Dashboard" link in `Nav.tsx`.
-  - Future Potential: Could support timezone categorization (e.g., grouping by region or tags like "Work") with filters, leveraging the `setFavorite` API for prioritization.
-    How to Add It

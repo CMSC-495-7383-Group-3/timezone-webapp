@@ -1,5 +1,9 @@
 import "./contactListItem.scss"
-import { Contact, ContactAvailability } from "../types"
+import {
+  Contact,
+  ContactAvailability,
+  ContactEditorUpdateCallbackFunction,
+} from "../types"
 import { ContactEditorContext } from "../context/contactEditorContext"
 import { useContext } from "react"
 
@@ -8,6 +12,8 @@ interface IContactListProps {
   availability: ContactAvailability
   // The contact this component will render
   contact: Contact
+  // Callback for if this contact is edited
+  updateCallback: ContactEditorUpdateCallbackFunction
 }
 
 // Displays a single contact item.
@@ -16,7 +22,11 @@ export default function ContactListItem(props: IContactListProps) {
 
   return (
     <li className={`contact-list-item ${props.availability}`}>
-      <button onClick={() => editorContext.openEditor(props.contact)}>
+      <button
+        onClick={() =>
+          editorContext.openEditor(props.contact, props.updateCallback)
+        }
+      >
         {props.contact.name}
       </button>
     </li>

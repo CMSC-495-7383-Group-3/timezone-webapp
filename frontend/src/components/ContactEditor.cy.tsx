@@ -1,14 +1,43 @@
-import React from "react"
+import React, { useRef } from "react"
 import ContactEditor from "./ContactEditor"
 import "../index.scss"
 import exampleContact from "../../cypress/fixtures/exampleContact.json"
+import { Contact } from "../types"
+
+interface IContactEditorWrapperProps {
+  contact: Contact
+  newContact?: boolean
+  closeEditorCallback?: () => void
+  keepOpenOnSave?: boolean
+  updateContactCallback: any
+}
+
+const ContactEditorWrapper = (props: IContactEditorWrapperProps) => {
+  const callbackRef = useRef(props.updateContactCallback)
+
+  return (
+    <ContactEditor
+      contact={props.contact}
+      newContact={props.newContact}
+      updateCallback={callbackRef}
+      closeEditorCallback={props.closeEditorCallback}
+      keepOpenOnSave={props.keepOpenOnSave}
+      skipBackend
+    />
+  )
+}
 
 describe("<ContactEditor />", () => {
   it("Renders", () => {
     const contact = { ...exampleContact }
+    const updateContactCallback = cy.stub().as("updateCallback")
 
-    // see: https://on.cypress.io/mounting-react
-    cy.mount(<ContactEditor contact={contact} />)
+    cy.mount(
+      <ContactEditorWrapper
+        contact={contact}
+        updateContactCallback={updateContactCallback}
+      />
+    )
 
     cy.contains("Editing: Example Contact")
     cy.contains("Save")
@@ -16,8 +45,15 @@ describe("<ContactEditor />", () => {
 
   it("Renders For New Contacts", () => {
     const contact = { ...exampleContact }
+    const updateContactCallback = cy.stub().as("updateCallback")
 
-    cy.mount(<ContactEditor contact={contact} newContact />)
+    cy.mount(
+      <ContactEditorWrapper
+        contact={contact}
+        updateContactCallback={updateContactCallback}
+        newContact
+      />
+    )
 
     cy.contains("Editing: Example Contact")
     cy.contains("Add")
@@ -26,10 +62,12 @@ describe("<ContactEditor />", () => {
   it("Calls coseEditorCallback", () => {
     const contact = { ...exampleContact }
     const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
+    const updateContactCallback = cy.stub().as("updateCallback")
 
     cy.mount(
-      <ContactEditor
+      <ContactEditorWrapper
         contact={contact}
+        updateContactCallback={updateContactCallback}
         closeEditorCallback={closeEditorCallback}
       />
     )
@@ -40,44 +78,73 @@ describe("<ContactEditor />", () => {
     cy.get("@closeEditorCallbackStub").should("have.been.calledOnce")
   })
 
-  //TODO Removed until the contact editor's save behavior is re-worked
-  // it("Saves the contact", () => {
-  //   const contact = { ...exampleContact }
-  //   // const save = cy.stub().as("saveStub")
+  it("Saves the contact", () => {
+    const contact = { ...exampleContact }
+    const updateContactCallback = cy.stub().as("updateCallback")
 
-  //   cy.mount(<ContactEditor contact={contact} />)
+    cy.mount(
+      <ContactEditorWrapper
+        contact={contact}
+        updateContactCallback={updateContactCallback}
+      />
+    )
 
-  //   cy.get('[aria-label="Name"]').clear().type("Example Updated")
-  //   cy.contains("Save").click()
+    cy.get('[aria-label="Name"]').clear().type("Example Updated")
+    cy.contains("Save").click()
 
-  //   cy.contains('"Example Updated" saved.')
-  // })
+    cy.get("@updateCallback").should("have.been.calledOnce")
+    cy.contains('"Example Updated" saved.')
+  })
 
-  // it("Calls coseEditorCallback On Save", () => {
-  //   const contact = { ...exampleContact }
-  //   const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
+  it("Deletes a the contact", () => {
+    const contact = { ...exampleContact }
+    const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
+    const updateContactCallback = cy.stub().as("updateCallback")
 
-  //   cy.mount(
-  //     <ContactEditor
-  //       contact={contact}
-  //       closeEditorCallback={closeEditorCallback}
-  //     />
-  //   )
+    cy.mount(
+      <ContactEditorWrapper
+        contact={contact}
+        closeEditorCallback={closeEditorCallback}
+        updateContactCallback={updateContactCallback}
+      />
+    )
 
-  //   cy.contains("Editing: Example Contact")
-  //   cy.contains("Save").click()
+    cy.get('[aria-label="Name"]').clear().type("Example Updated")
+    cy.contains("Delete").click()
 
-  //   cy.get("@closeEditorCallbackStub").should("have.been.calledOnce")
-  // })
+    cy.get("@updateCallback").should("have.been.calledOnce")
+    cy.get("@closeEditorCallbackStub").should("have.been.calledOnce")
+  })
+
+  it("Calls coseEditorCallback On Save", () => {
+    const contact = { ...exampleContact }
+    const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
+    const updateContactCallback = cy.stub().as("updateCallback")
+
+    cy.mount(
+      <ContactEditorWrapper
+        contact={contact}
+        closeEditorCallback={closeEditorCallback}
+        updateContactCallback={updateContactCallback}
+      />
+    )
+
+    cy.contains("Editing: Example Contact")
+    cy.contains("Save").click()
+
+    cy.get("@closeEditorCallbackStub").should("have.been.calledOnce")
+  })
 
   it("Does NOT call coseEditorCallback On Keep Open", () => {
     const contact = { ...exampleContact }
     const closeEditorCallback = cy.stub().as("closeEditorCallbackStub")
+    const updateContactCallback = cy.stub().as("updateCallback")
 
     cy.mount(
-      <ContactEditor
+      <ContactEditorWrapper
         contact={contact}
         closeEditorCallback={closeEditorCallback}
+        updateContactCallback={updateContactCallback}
         keepOpenOnSave
       />
     )

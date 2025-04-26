@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { getTimezoneProfileSync } from "../lib/api/getTimezoneProfile"
 import { Contact } from "../types"
 import ContactEditor from "./ContactEditor"
@@ -24,6 +25,7 @@ function generateDebugContacts(count: number): Contact[] {
 
 export default function TestComponent() {
   const testContacts: Contact[] = generateDebugContacts(300)
+  const contactUpdateCallback = useRef(() => {})
 
   return (
     <div className="test-component">
@@ -94,14 +96,17 @@ export default function TestComponent() {
         <TimezoneDisplay
           timezone={getTimezoneProfileSync("Europe/Berlin")}
           contacts={testContacts}
+          favoriteUpdateCallback={() => {}}
         />
         <TimezoneDisplay
           timezone={getTimezoneProfileSync("America/Los_Angeles")}
           contacts={testContacts}
+          favoriteUpdateCallback={() => {}}
         />
         <TimezoneDisplay
           timezone={getTimezoneProfileSync("test")}
           contacts={testContacts}
+          favoriteUpdateCallback={() => {}}
         />
         <ContactEditor
           contact={{
@@ -111,6 +116,7 @@ export default function TestComponent() {
             phoneNumber: "Some Note",
           }}
           newContact={true}
+          updateCallback={contactUpdateCallback}
         />
       </div>
     </div>

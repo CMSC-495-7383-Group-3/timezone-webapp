@@ -14,6 +14,7 @@ export default function TimezoneSearch() {
 
   const [query, setQuery] = useState("")
 
+  // Currently does nothing since the form live searches on every update
   const onSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log("Submitted form ", e)

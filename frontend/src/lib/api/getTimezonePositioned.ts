@@ -1,5 +1,6 @@
 import api from "../../api"
 
+// Retrieves timezone timing data by position
 export default async function getTimezonePositioned(
   lat: number,
   lon: number

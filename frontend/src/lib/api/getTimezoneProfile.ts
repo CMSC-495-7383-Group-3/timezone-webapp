@@ -1,6 +1,7 @@
 import { TimezoneProfile } from "../../types"
 import timezones from "timezones.json"
 import isTimezoneFavorite from "./isTimezoneFavorite"
+import getTimezoneNamed from "./getTimezoneNamed"
 
 // Retrieves a timezone profile.
 export default async function getTimezoneProfile(
@@ -20,14 +21,19 @@ export default async function getTimezoneProfile(
       valid: false,
     }
 
-  const favorite = await isTimezoneFavorite(timezone)
+  // Await both the query for if the timezone is favorite and for getting the timezone timing
+  const [favorite, timingData] = await Promise.all([
+    isTimezoneFavorite(timezone),
+    getTimezoneNamed(timezone),
+  ])
+
   return {
     id: found.abbr,
     label: found.value,
     city: "",
     timezone: timezone,
-    sunriseTime: "",
-    sunsetTime: "",
+    sunriseTime: timingData.sunrise,
+    sunsetTime: timingData.sunset,
     isFavorite: favorite ? favorite : false,
     valid: true,
   }

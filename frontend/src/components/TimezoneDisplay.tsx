@@ -5,19 +5,13 @@ import starIcon from "/star_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 import ContactList from "./ContactList"
-import { Contact, TimezoneProfile, TimezoneTimingData } from "../types"
-import setFavorite from "../lib/api/setFavorite"
+import {
+  Contact,
+  ContactEditorUpdateCallbackFunction,
+  TimezoneProfile,
+} from "../types"
 import { Link } from "react-router-dom"
 import escapeTimezone from "../lib/escapeTimezone"
-import getTimezoneNamed from "../lib/api/getTimezoneNamed"
-
-const FALLBACK_TIME: TimezoneTimingData = {
-  timezone_id: "",
-  dst_offset: "",
-  raw_offset: "",
-  sunrise: "00:00",
-  sunset: "00:00",
-}
 
 interface ITimezoneDisplayProps {
   // Timezones to be displayed for this component
@@ -26,6 +20,12 @@ interface ITimezoneDisplayProps {
   contacts: Contact[]
   // Explicitly hides the contacts list
   hideContactsList?: boolean
+  // Callback for when the timezone updates its favorite status
+  favoriteUpdateCallback: (timezone: string, newState: boolean) => void
+  // Callback for if this contact is edited
+  contactUpdateCallback?: ContactEditorUpdateCallbackFunction
+  // Determines if the title is clickable as a link. This is turned off in the timezone page, since it redirects to its self
+  disableClickableTitle?: boolean
   // Optionally shown along the time
   children?: ReactNode
 }
@@ -33,17 +33,8 @@ interface ITimezoneDisplayProps {
 //Component for displaying a single timezone with a list of associated contacts
 export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
   const [date, setDate] = useState(new Date())
-  const [timezoneTiming, setTimezoneTiming] =
-    useState<TimezoneTimingData>(FALLBACK_TIME)
 
-  useEffect(() => {
-    const getTimezoneTiming = async () => {
-      setTimezoneTiming(await getTimezoneNamed(props.timezone.timezone))
-    }
-
-    getTimezoneTiming()
-  }, [props.timezone])
-
+  // Creates an interval that updates the date object to the current time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date())
@@ -53,17 +44,7 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     }
   }, [])
 
-  const onFavoriteButtonClick = async () => {
-    const result = await setFavorite(
-      props.timezone.timezone,
-      !props.timezone.isFavorite
-    )
-
-    if (result === undefined) alert("Could not change favorite state!") //TODO make some error response
-
-    props.timezone.isFavorite = result!
-  }
-
+  // If the timezone is not valid, show an error
   if (!props.timezone.valid || !validateTimezone(props.timezone.timezone)) {
     return (
       <div className="container secondary timezone-display">
@@ -76,19 +57,27 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
     <div className="container secondary timezone-display">
       <div className="title">
         <h3>
-          {/* TODO This link is still clickable when on the route that it points to. Potentially fix this. */}
-          <Link
-            to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
-            className="invisible-link"
-          >
-            {props.timezone.label}
-          </Link>
+          {props.disableClickableTitle ? (
+            <p>{props.timezone.label}</p>
+          ) : (
+            <Link
+              to={`/timezone/${escapeTimezone(props.timezone.timezone)}`}
+              className="invisible-link"
+            >
+              {props.timezone.label}
+            </Link>
+          )}
         </h3>
         <button
           className={`${
             props.timezone.isFavorite ? "accent" : "secondary"
           } icon`}
-          onClick={onFavoriteButtonClick}
+          onClick={() => {
+            props.favoriteUpdateCallback(
+              props.timezone.timezone,
+              !props.timezone.isFavorite
+            )
+          }}
         >
           <img src={starIcon} alt="star icon" />
         </button>
@@ -106,9 +95,9 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
           </p>
           <p className="sun-set-rise">
             <img src={sunriseIcon} alt="sun rise icon" />
-            {timezoneTiming.sunrise} /{" "}
+            {props.timezone.sunriseTime} /{" "}
             <img src={sunsetIcon} alt="sun set icon" />
-            {timezoneTiming.sunset}
+            {props.timezone.sunsetTime}
           </p>
         </div>
         {!props.hideContactsList ? (
@@ -120,6 +109,11 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
                   timeZone: props.timezone.timezone,
                 })
               )
+            }
+            updateCallback={
+              props.contactUpdateCallback
+                ? props.contactUpdateCallback
+                : () => {}
             }
           />
         ) : (

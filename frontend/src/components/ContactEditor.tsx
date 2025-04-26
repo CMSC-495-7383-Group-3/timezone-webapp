@@ -1,28 +1,40 @@
-import { useState } from "react"
-import { Contact, FormMessage } from "../types"
+import { RefObject, useState } from "react"
+import {
+  Contact,
+  ContactEditorUpdateAction,
+  ContactEditorUpdateCallbackFunction,
+  FormMessage,
+} from "../types"
 import updateContact from "../lib/api/updateContact"
+import validateTimezone from "../lib/validateTimezone"
+import deleteContact from "../lib/api/deleteContact"
 
 interface IContactEditorProps {
   // The contact to edit. Writes back to this on save
   contact: Contact
   // Determine if new contact text should be shown
   newContact?: boolean
+  // Callback for when the contact gets updated. On DELETE, the argument is undefined
+  updateCallback: RefObject<ContactEditorUpdateCallbackFunction | null>
   // Optional callback called when the editor wants to close
   closeEditorCallback?: () => void
   // Determine if the form should be kept open on save
   keepOpenOnSave?: boolean
+  // Skips the backend call (for testing)
+  skipBackend?: boolean
 }
-
-//TODO when a new contact is added and it is canceled, it will do a visual bug. Fix this by adding a callback
 
 // An editor for contacts. Provides a form for editing and saving.
 export default function ContactEditor(props: IContactEditorProps) {
+  // The contact that is currently being edited
+  // On creation of the component, is created from a shallow copy of the props
   const [contact, setContact] = useState({ ...props.contact })
 
   // Flag set once the first successful save of this contact happens.
   // Used to overwrite the newContact prop to show the proper text
   const [previouslySaved, setPreviouslySaved] = useState(false)
 
+  // The current form message
   const [message, setMessage] = useState<FormMessage>({
     show: false,
     success: false,
@@ -43,52 +55,81 @@ export default function ContactEditor(props: IContactEditorProps) {
     }
   }
 
-  const validateForm = (): boolean => {
-    //TODO Validate timezone
-    // Validates that the name is present
-    return contact.name.length > 0
-  }
-
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (validateForm()) {
-      const result = await updateContact(contact.id, contact, props.newContact)
-
-      if (!result) {
-        setMessage({
-          show: true,
-          success: false,
-          message: `Failed to ${props.newContact ? "save" : "update"} "${
-            contact.name
-          }"`,
-        })
-        return
-      }
-
-      setPreviouslySaved(true)
-      setMessage({
-        show: true,
-        success: true,
-        message: `"${contact.name}" saved.`,
-      })
-
-      // Since the props is read-only, the fields are manually updated here
-      props.contact.name = contact.name
-      props.contact.timezone = contact.timezone
-      props.contact.phoneNumber = contact.phoneNumber
-
-      // Attempt to close the form when is should not be kept open and a callback is specified
-      if (!props.keepOpenOnSave && props.closeEditorCallback)
-        props.closeEditorCallback()
-    } else {
-      // TODO be more specific with validation failures}
+    // Validate the form data
+    if (contact.name.length <= 0 || !validateTimezone(contact.timezone)) {
       setMessage({
         show: true,
         success: false,
-        message: "Form Validation Failure.",
+        message: `Invalid data."${contact.name}"`,
       })
+      return
     }
+
+    // Update the contact on the backend (if skipBackend is not enables)
+    const result = !props.skipBackend
+      ? await updateContact(contact.id, contact, props.newContact)
+      : contact
+
+    if (!result) {
+      setMessage({
+        show: true,
+        success: false,
+        message: `Failed to ${props.newContact ? "save" : "update"} "${
+          contact.name
+        }"`,
+      })
+      return
+    }
+
+    setPreviouslySaved(true)
+    setMessage({
+      show: true,
+      success: true,
+      message: `"${contact.name}" saved.`,
+    })
+
+    // Callback with the new contact data so that it can be updated in the parent's state
+    if (props.updateCallback.current)
+      props.updateCallback.current(
+        contact,
+        props.newContact && !previouslySaved
+          ? ContactEditorUpdateAction.ADD
+          : ContactEditorUpdateAction.UPDATE
+      )
+
+    // Attempt to close the form when is should not be kept open and a callback is specified
+    if (!props.keepOpenOnSave && props.closeEditorCallback)
+      props.closeEditorCallback()
+  }
+
+  const onDelete = async () => {
+    // Update the contact on the backend (if skipBackend is not enables)
+    const result = !props.skipBackend ? await deleteContact(contact.id) : true
+
+    if (!result) {
+      setMessage({
+        show: true,
+        success: false,
+        message: `Failed to delete contact.`,
+      })
+      return
+    }
+
+    if (props.updateCallback.current)
+      props.updateCallback.current(contact, ContactEditorUpdateAction.DELETE)
+
+    if (props.closeEditorCallback) props.closeEditorCallback()
+  }
+
+  const onCancel = () => {
+    // Delete new contacts are are not yet saved
+    if (props.newContact && !previouslySaved && props.updateCallback.current)
+      props.updateCallback.current(contact, ContactEditorUpdateAction.DELETE)
+
+    if (props.closeEditorCallback) props.closeEditorCallback()
   }
 
   return (
@@ -138,9 +179,16 @@ export default function ContactEditor(props: IContactEditorProps) {
         <br />
         <code>{contact.id}</code>
       </form>
-      <button className="secondary" onClick={props.closeEditorCallback}>
+      <button className="secondary" onClick={onCancel}>
         Cancel
       </button>
+      {previouslySaved || !props.newContact ? (
+        <button className="secondary" onClick={onDelete}>
+          Delete
+        </button>
+      ) : (
+        <></>
+      )}
     </div>
   )
 }

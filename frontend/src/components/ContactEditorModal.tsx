@@ -1,6 +1,6 @@
 import "./contactEditorModal.scss"
 import { ReactNode, useEffect, useRef, useState } from "react"
-import { Contact } from "../types"
+import { Contact, ContactEditorUpdateCallbackFunction } from "../types"
 import { ContactEditorContext } from "../context/contactEditorContext"
 import ContactEditor from "./ContactEditor"
 import { v4 as uuidv4 } from "uuid"
@@ -15,14 +15,29 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
   const [editedContact, setEditedContact] = useState<Contact | undefined>(
     undefined
   )
+
+  // Wether the contact is a new contact. Mainly used to adjust text.
   const [newContact, setNewContact] = useState(false)
 
-  const openContactEditor = (contact: Contact) => {
+  // The current callback function
+  const currentUpdateCallback =
+    useRef<ContactEditorUpdateCallbackFunction>(null)
+
+  // Opens the contact editor for an existing contact.
+  const openContactEditor = (
+    contact: Contact,
+    callback: ContactEditorUpdateCallbackFunction
+  ) => {
     setNewContact(false)
     setEditedContact(contact)
+    currentUpdateCallback.current = callback
   }
 
-  const openNewContactEditor = (base?: Contact) => {
+  // Opens a new contact.
+  const openNewContactEditor = (
+    callback: ContactEditorUpdateCallbackFunction,
+    base?: Contact
+  ) => {
     const contact = base
       ? base
       : {
@@ -33,14 +48,16 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
         }
 
     //! This generates a temporary uuidv4 that should be overwritten by the API
-    contact.id = "PLACEHOLDER-" + uuidv4()
+    contact.id = "NEW-" + uuidv4()
 
     setNewContact(true)
     setEditedContact(contact)
+    currentUpdateCallback.current = callback
   }
 
   const onCloseContactEditor = () => {
     setEditedContact(undefined)
+    currentUpdateCallback.current = null
   }
 
   // Reference to the dialog element that handles the overlay
@@ -48,7 +65,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
 
   // Hide the modal once the edited contact becomes undefined
   useEffect(() => {
-    if (editedContact != undefined) {
+    if (editedContact !== undefined) {
       dialog.current?.showModal()
     }
   }, [editedContact])
@@ -65,6 +82,7 @@ export default function ContactEditorModal(props: IContactEditorModalProps) {
           <ContactEditor
             contact={editedContact}
             newContact={newContact}
+            updateCallback={currentUpdateCallback}
             closeEditorCallback={onCloseContactEditor}
           />
         </dialog>

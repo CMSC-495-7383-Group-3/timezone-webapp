@@ -3,7 +3,7 @@ import { Contact } from "../../types"
 import convertContact from "../convertContact"
 
 // Retrieves a single contact by ID
-export default async function contactById(
+export default async function getContactById(
   id: string
 ): Promise<Contact | undefined> {
   return api

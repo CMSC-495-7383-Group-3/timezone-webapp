@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom"
 import TimezoneDisplay from "../components/TimezoneDisplay"
 import TimezoneSearch from "../components/TimezoneSearch"
 import { ContactEditorContext } from "../context/contactEditorContext"
-import contactsByTimezone from "../lib/api/contactsByTimezone"
+import getContactsByTimezone from "../lib/api/getContactsByTimezone"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
-import { Contact, TimezoneProfile } from "../types"
+import { Contact, ContactEditorUpdateAction, TimezoneProfile } from "../types"
+import patchContacts from "../lib/pathcContacts"
 
 const FALLBACK_TIMEZONE_PROFILE = {
   id: "",
@@ -42,7 +43,7 @@ export default function Timezone() {
   const loadData = async (timezone: string) => {
     const profile = await getTimezoneProfile(timezone.replace("-", "/"))
     setTimezoneProfile(profile)
-    setContacts(await contactsByTimezone(profile.timezone))
+    setContacts(await getContactsByTimezone(profile.timezone))
   }
 
   useEffect(() => {
@@ -50,13 +51,12 @@ export default function Timezone() {
   }, [])
 
   const onFavoriteButtonClick = async () => {
-    // TODO this function is slow to respond for some reason. Fix this is possible if this is still a problem when the proper API is implemented
     const result = await setFavorite(
       timezoneProfile.timezone,
       !timezoneProfile.isFavorite
     )
 
-    if (result === undefined) alert("Could not change favorite state!") //TODO make some error response
+    if (result === undefined) console.error("Could not change favorite state!") //TODO make some error response
 
     setTimezoneProfile({ ...timezoneProfile, isFavorite: result! })
   }
@@ -69,11 +69,31 @@ export default function Timezone() {
       phoneNumber: "",
     }
 
-    contactEditor.newContact(newContact)
+    contactEditor.newContact(onContactUpdate, newContact)
 
     // Adds the contact to the list of currently loaded contacts.
     // TODO see if there is a good way to hide this contact while it is blank. Potentially make all blank-name contacts hidden?
     setContacts([...contacts, newContact])
+  }
+
+  // TODO duplicate favorite button?
+  const onFavoriteUpdate = async (timezone: string, setTo: boolean) => {
+    const result = await setFavorite(timezone, setTo)
+
+    if (result === undefined) {
+      //TODO make some error response
+      alert("Could not change favorite state!")
+      return
+    }
+
+    setTimezoneProfile({ ...timezoneProfile, isFavorite: result })
+  }
+
+  const onContactUpdate = (
+    data: Contact,
+    action: ContactEditorUpdateAction
+  ) => {
+    setContacts(patchContacts(contacts, data, action))
   }
 
   return (
@@ -81,7 +101,12 @@ export default function Timezone() {
       <h1>Timezone</h1>
 
       <div className="container primary">
-        <TimezoneDisplay timezone={timezoneProfile} contacts={contacts} />
+        <TimezoneDisplay
+          timezone={timezoneProfile}
+          contacts={contacts}
+          favoriteUpdateCallback={onFavoriteUpdate}
+          contactUpdateCallback={onContactUpdate}
+        />
 
         <div className="container secondary">
           <p>
