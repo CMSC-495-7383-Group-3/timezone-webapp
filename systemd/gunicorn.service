@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=ubuntu
-Group=nginx
+Group=ubuntu
 WorkingDirectory=/opt/timezone-webapp/backend
 Environment="PATH=/opt/timezone-webapp/backend/.venv/bin"
 ExecStart=/opt/timezone-webapp/backend/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 timezone-webapp.wsgi:application
