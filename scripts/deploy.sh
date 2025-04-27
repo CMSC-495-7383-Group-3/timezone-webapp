@@ -120,6 +120,7 @@ check_postgres() {
 # Set up PostgreSQL if needed
 setup_postgres() {
   log_message "info" "Setting up PostgreSQL..."
+  sudo systemctl daemon-reload >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to reload systemd service files"
   sudo systemctl enable postgresql >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to enable postgresql service"
   sudo systemctl restart postgresql >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to restart postgresql service"
   if ! sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname='tz_db';" | grep -q "1 row"; then
@@ -181,6 +182,7 @@ setup_gunicorn() {
     log_message "error" "Gunicorn config file $REPO_DIR/systemd/gunicorn.service not found"
   fi
   sudo cp "$REPO_DIR/systemd/gunicorn.service" /etc/systemd/system/gunicorn.service || log_message "error" "Failed to copy Gunicorn service file"
+  sudo systemctl daemon-reload >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to reload systemd service files"
   sudo systemctl enable gunicorn >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to enable Gunicorn service"
   sudo systemctl start gunicorn >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to start Gunicorn service"
   log_message "info" "Gunicorn setup complete"
