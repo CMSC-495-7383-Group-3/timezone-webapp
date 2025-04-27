@@ -1,4 +1,3 @@
-import React from "react"
 import TimezoneDisplay from "./TimezoneDisplay"
 import "../index.scss"
 import "./timeZoneDisplay.scss"
@@ -9,14 +8,24 @@ import validTimezone from "../../cypress/fixtures/validTimezone.json"
 
 describe("<TimezoneDisplay />", () => {
   it("Renders With an Invalid Timezone", () => {
-    cy.mount(<TimezoneDisplay timezone={invalidTimezone} contacts={[]} />)
+    cy.mount(
+      <TimezoneDisplay
+        timezone={invalidTimezone}
+        contacts={[]}
+        favoriteUpdateCallback={() => {}}
+      />
+    )
     cy.contains("Invalid Timezone")
   })
 
   it("Renders With a Valid Timezone", () => {
     cy.mount(
       <MemoryRouter>
-        <TimezoneDisplay timezone={validTimezone} contacts={[]} />
+        <TimezoneDisplay
+          timezone={validTimezone}
+          contacts={[]}
+          favoriteUpdateCallback={() => {}}
+        />
       </MemoryRouter>
     )
     cy.contains("W. Europe Standard Time")
@@ -38,7 +47,11 @@ describe("<TimezoneDisplay />", () => {
   it("Renders With Contacts", () => {
     cy.mount(
       <MemoryRouter>
-        <TimezoneDisplay timezone={validTimezone} contacts={[exampleContact]} />
+        <TimezoneDisplay
+          timezone={validTimezone}
+          contacts={[exampleContact]}
+          favoriteUpdateCallback={() => {}}
+        />
       </MemoryRouter>
     )
 
@@ -52,6 +65,7 @@ describe("<TimezoneDisplay />", () => {
           timezone={validTimezone}
           contacts={[]}
           hideContactsList
+          favoriteUpdateCallback={() => {}}
         >
           <p>Child Component</p>
         </TimezoneDisplay>

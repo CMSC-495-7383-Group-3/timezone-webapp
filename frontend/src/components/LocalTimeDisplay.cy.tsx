@@ -1,4 +1,3 @@
-import React from "react"
 import LocalTimeDisplay from "./LocalTimeDisplay"
 import "../index.scss"
 import "./localTimeDisplay.scss"

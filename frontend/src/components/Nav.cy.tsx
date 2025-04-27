@@ -1,4 +1,3 @@
-import React from "react"
 import Nav from "./Nav"
 import { MemoryRouter, useLocation } from "react-router-dom"
 import "../index.scss"

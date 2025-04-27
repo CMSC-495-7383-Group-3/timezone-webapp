@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import { useRef } from "react"
 import ContactEditor from "./ContactEditor"
 import "../index.scss"
 import exampleContact from "../../cypress/fixtures/exampleContact.json"
