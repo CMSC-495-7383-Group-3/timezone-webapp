@@ -26,26 +26,3 @@ DATABASES = {
         "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": "/opt/timezone-webapp/backend/logs/django.log",
-        },
-        "console": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file", "console"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-    },
-}
