@@ -8,7 +8,6 @@ import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
 import { Contact, ContactEditorUpdateAction, TimezoneProfile } from "../types"
 import patchContacts from "../lib/patchContacts"
-import useProtectedPage from "../hooks/useProtectedPage"
 
 const FALLBACK_TIMEZONE_PROFILE = {
   id: "",
@@ -23,7 +22,7 @@ const FALLBACK_TIMEZONE_PROFILE = {
 
 export default function Timezone() {
   // Reroute to login if not authenticated
-  useProtectedPage()
+  // useProtectedPage()
 
   const contactEditor = useContext(ContactEditorContext)
 
