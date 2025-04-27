@@ -1,9 +1,38 @@
 """This module contains shared settings for all environments."""
 
+import os
 from datetime import timedelta
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from dotenv import load_dotenv
+
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Secret key from environment variable
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "default-secret-key")
+
+if os.getenv("DJANGO_ENV") == "development":
+    DEBUG = True
+else:
+    DEBUG = False
+
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
+CORS_ALLOWED_ORIGINS = os.getenv(
+    "DJANGO_CORS_ALLOWED_ORIGINS", "http://localhost:5173"
+).split(",")
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", "tz_db"),
+        "USER": os.getenv("DB_USER", "tz_user"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "tz_password"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
+    }
+}
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -51,17 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "tz_webapp_proj.wsgi.application"
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "tz_db",
-        "USER": "tz_user",
-        "PASSWORD": "tz_password",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
