@@ -3,11 +3,11 @@ Description=Gunicorn instance to serve the Timezone Webapp API
 After=network.target
 
 [Service]
-User={{USER}}
+User=www-data
 Group=www-data
-WorkingDirectory={{DJANGO_DIR}}
-Environment="PATH={{VENV_DIR}}/bin"
-ExecStart={{VENV_DIR}}/bin/gunicorn --workers 3 --bind unix:tmp/timezone-webapp.sock timezone-webapp.wsgi:application
+WorkingDirectory=/opt/timezone-webapp/backend
+Environment="PATH=/opt/timezone-webapp/backend/.venv/bin"
+ExecStart=/opt/timezone-webapp/backend/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 timezone-webapp.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
