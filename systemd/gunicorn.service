@@ -7,7 +7,7 @@ User=ubuntu
 Group=ubuntu
 WorkingDirectory=/opt/timezone-webapp/backend
 Environment="PATH=/opt/timezone-webapp/backend/.venv/bin"
-ExecStart=/opt/timezone-webapp/backend/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 timezone-webapp.wsgi:application
+ExecStart=/opt/timezone-webapp/backend/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 tz_webapp_proj.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
