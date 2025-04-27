@@ -1,0 +1,37 @@
+@use "../globals.scss";
+
+#home {
+  .header {
+    background-color: var(--accent-500);
+    background-image: url(https://picsum.photos/id/10/2500/1667.jpg);
+    background-size: cover;
+    background-position: center;
+    color: var(--text-50);
+
+    padding: globals.$space-xl 0;
+
+    text-align: center;
+
+    margin-bottom: globals.$space-md;
+  }
+
+  .flex {
+    margin: 0 globals.$space-md;
+  }
+
+  .search {
+    max-width: 20rem;
+    width: 20rem;
+  }
+
+  .current-time-display {
+    flex-grow: 10;
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 740px) {
+  #home .flex {
+    gap: 0;
+  }
+}

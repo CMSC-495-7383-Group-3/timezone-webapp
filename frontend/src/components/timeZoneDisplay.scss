@@ -1,0 +1,113 @@
+@use "../globals.scss";
+
+.timezone-display {
+  background: rgba(255, 255, 255, 0.95); /* Card background */
+  border: none;
+  border-radius: globals.$corner-rounding-large; /* Rounded corners */
+  padding: globals.$space-md;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); /* Base shadow */
+  transition: box-shadow 0.3s ease; /* Shadow animation only */
+
+  &:hover {
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Deeper shadow, no lift */
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.75rem;
+    color: var(--accent-400); /* Title color */
+    font-weight: 600;
+
+    button {
+      height: 2rem;
+
+      transition: transform 0.3s globals.$easing;
+
+      &.secondary img {
+        filter: brightness(0) saturate(100%) invert(20%) sepia(50%)
+          saturate(3000%) hue-rotate(220deg); /* Blue star */
+      }
+
+      &.accent img {
+        filter: brightness(100%) invert(100%) saturate(100%) saturate(3000%)
+          hue-rotate(220deg);
+      }
+
+      &:hover {
+        transform: scale(1.1); /* Button grows */
+        opacity: 0.9; /* Slight fade */
+      }
+    }
+  }
+
+  .primary {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: globals.$space-md; /* Space between time and contacts */
+
+    .time {
+      background-color: var(--secondary-100); /* Time background */
+      border-radius: globals.$corner-rounding-large;
+      padding: globals.$space-xs globals.$space-md;
+      box-shadow: globals.$shadow;
+      flex: 1;
+
+      .clock {
+        font-size: 2.5rem;
+        color: var(--accent-400); /* Clock color */
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .sun-set-rise {
+        color: var(--accent-500); /* Sun info color */
+        font-size: 0.9rem;
+        text-align: center;
+
+        img {
+          height: 1rem;
+          margin: 0 0.2rem;
+          vertical-align: middle;
+          transform: translateY(-2px); /* Align icons */
+        }
+      }
+    }
+
+    .contacts-list {
+      list-style: none;
+      padding: 0;
+      flex: 1;
+      max-height: 8rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      gap: globals.$space-xs; /* Space between contacts */
+
+      li {
+        padding: 6px;
+        color: #333; /* Contact text */
+        background: rgba(245, 245, 245, 0.9); /* Contact background */
+        border-radius: 4px;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: rgba(235, 235, 235, 0.9); /* Hover highlight */
+        }
+      }
+    }
+  }
+}
+
+// Mobile
+@media only screen and (max-width: 740px) {
+  .timezone-display .primary {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}

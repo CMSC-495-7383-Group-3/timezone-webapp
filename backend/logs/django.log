@@ -1,0 +1,592 @@
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/v1/users/login/
+Unauthorized: /api/v1/users/login/
+Bad Request: /api/v1/users/logout/
+Bad Request: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/logout/
+Unauthorized: /api/v1/users/profile/
+Unauthorized: /api/v1/users/profile/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Bad Request: /api/v1/users/register/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/tz_webapp_proj/settings/base.py changed, reloading.
+/timezone-webapp/backend/tz_webapp_proj/settings/base.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+/timezone-webapp/backend/tz_webapp_proj/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin HTTP/1.1" 301 0
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4165
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4165
+"GET /static/admin/css/base.css HTTP/1.1" 200 22092
+"GET /static/admin/css/base.css HTTP/1.1" 200 22092
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2712
+"GET /favicon.ico HTTP/1.1" 404 2712
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4343
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4343
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 82582
+"GET /api/docs/ HTTP/1.1" 500 82582
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+Internal Server Error: /api/docs/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 160, in render
+    template = self.resolve_template(template_names)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/renderers.py", line 170, in resolve_template
+    return loader.select_template(template_names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: drf_spectacular/swagger_ui.html
+"GET /api/docs/ HTTP/1.1" 500 83117
+"GET /api/docs/ HTTP/1.1" 500 83117
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 19739
+"GET /api/schema/ HTTP/1.1" 200 19739
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 20058
+"GET /api/schema/ HTTP/1.1" 200 20058
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+/timezone-webapp/backend/user_app/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/timezone-webapp/backend/tz_webapp_proj/settings/base.py changed, reloading.
+/timezone-webapp/backend/tz_webapp_proj/settings/base.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/schema/ HTTP/1.1" 200 21904
+"GET /api/schema/ HTTP/1.1" 200 21904
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /
+"GET / HTTP/1.1" 404 2820
+"GET / HTTP/1.1" 404 2820
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2871
+"GET /favicon.ico HTTP/1.1" 404 2871
+Unauthorized: /api/v1/contacts/
+Unauthorized: /api/v1/contacts/
+"GET /api/v1/contacts/ HTTP/1.1" 401 5069
+"GET /api/v1/contacts/ HTTP/1.1" 401 5069
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2871
+"GET /favicon.ico HTTP/1.1" 404 2871
+"GET /api/docs/ HTTP/1.1" 200 669
+"GET /api/docs/ HTTP/1.1" 200 669
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2871
+"GET /favicon.ico HTTP/1.1" 404 2871
+"GET /api/schema/ HTTP/1.1" 200 33146
+"GET /api/schema/ HTTP/1.1" 200 33146
+Bad Request: /api/v1/users/login/
+Bad Request: /api/v1/users/login/
+"POST /api/v1/users/login/ HTTP/1.1" 400 76
+"POST /api/v1/users/login/ HTTP/1.1" 400 76
+"POST /api/v1/users/register/ HTTP/1.1" 201 172
+"POST /api/v1/users/register/ HTTP/1.1" 201 172
+Bad Request: /api/v1/users/login/
+Bad Request: /api/v1/users/login/
+"POST /api/v1/users/login/ HTTP/1.1" 400 76
+"POST /api/v1/users/login/ HTTP/1.1" 400 76
+Not Found: /api/v1/contacts/contacts/54be83ad-e7bb-4050-a4e1-8fc7cbb3bbcf/
+Not Found: /api/v1/contacts/contacts/54be83ad-e7bb-4050-a4e1-8fc7cbb3bbcf/
+Not Found: /api/v1/contacts/contacts/ee8909ae-ce32-4a81-a43b-9a80bd47a50e/
+Not Found: /api/v1/contacts/contacts/ee8909ae-ce32-4a81-a43b-9a80bd47a50e/
+Not Found: /api/v1/contacts/1a6256c7-22fe-4025-abea-479193e62216/
+Not Found: /api/v1/contacts/1a6256c7-22fe-4025-abea-479193e62216/
+Not Found: /api/v1/contacts/8bd9743d-2f4e-46e4-9ba4-2b7437fb1283/
+Not Found: /api/v1/contacts/8bd9743d-2f4e-46e4-9ba4-2b7437fb1283/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

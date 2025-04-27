@@ -1,0 +1,22 @@
+@use "../globals.scss";
+
+.styles-test {
+  button,
+  a {
+    margin: 0.5rem;
+  }
+  form > input,
+  form > div {
+    margin: 0.5rem;
+    display: block;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: globals.$space-md;
+}
+
+.test-component .container {
+  margin: globals.$space-xs globals.$space-md;
+}

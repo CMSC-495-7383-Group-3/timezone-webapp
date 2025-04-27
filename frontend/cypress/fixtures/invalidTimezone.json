@@ -1,0 +1,10 @@
+{
+  "id": "",
+  "label": "",
+  "city": "",
+  "timezone": "",
+  "sunriseTime": "",
+  "sunsetTime": "",
+  "isFavorite": false,
+  "valid": false
+}

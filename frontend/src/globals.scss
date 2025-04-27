@@ -1,0 +1,21 @@
+// Defines globally used variables
+@use "sass:color";
+
+$red: #ff3d3d;
+$yellow: #ffdf3d;
+$green: #3dff4d;
+
+$corner-rounding-large: 10px;
+$corner-rounding-small: 5px;
+
+$easing: cubic-bezier(0.25, 1, 0.5, 1);
+
+$shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.05);
+
+$space-xxs: 0.25rem;
+$space-xs: 0.5rem;
+$space-sm: 0.75rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2rem;
+$space-xxl: 3rem;

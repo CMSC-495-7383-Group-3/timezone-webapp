@@ -1,0 +1,79 @@
+@use "../globals.scss";
+
+nav {
+  display: flex;
+  margin: 0 globals.$space-md;
+
+  a {
+    color: var(--accent-400);
+
+    padding: globals.$space-md globals.$space-xs;
+    margin: 0;
+
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent-500);
+      background-color: var(--accent-100);
+    }
+
+    transition: color 0.3s globals.$easing,
+      background-color 0.5s globals.$easing;
+
+    &.active {
+      background-color: var(--accent-400);
+      color: var(--background-50);
+    }
+  }
+
+  .spacer {
+    flex-grow: 10;
+  }
+}
+
+#toggle-nav {
+  display: none;
+}
+// Mobile
+
+@media only screen and (max-width: 740px) {
+  nav {
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    a {
+      padding: globals.$space-xs;
+      margin: globals.$space-xxs globals.$space-xxs;
+
+      border-radius: globals.$corner-rounding-small;
+    }
+  }
+
+  #toggle-nav {
+    display: block;
+    width: 100%;
+
+    border: none;
+    border-radius: 0;
+
+    background-color: var(--accent-400);
+    color: var(--background-50);
+
+    text-align: left;
+  }
+
+  #nav {
+    nav {
+      // display: none;
+      height: 0rem;
+
+      transition: height 0.3s globals.$easing;
+    }
+
+    &.expanded nav {
+      // display: flex;
+      height: 13rem;
+    }
+  }
+}

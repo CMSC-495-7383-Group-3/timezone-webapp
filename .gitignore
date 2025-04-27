@@ -5,6 +5,7 @@ build/
 
 # Backend Dependencies
 __pycache__/
+.venv
 
 # IDE
 .vscode/
