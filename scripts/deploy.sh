@@ -21,7 +21,7 @@ LOG_DIR="$PROJECT_DIR/logs"
 LOG_FILE="$LOG_DIR/prod_deploy.log"
 REPO_DIR="$(pwd)" # Assuming the script is being run from the repo root
 USER=$(whoami)
-GUNICORN_USER="www-data" # User to run Gunicorn and own files
+GUNICORN_USER="ubuntu" # User to run Gunicorn and own files
 
 # Logging setup
 mkdir -p "$LOG_DIR" || {
@@ -226,7 +226,7 @@ setup_letsencrypt() {
 
 # Main execution
 log_message "info" "Starting production deployment..."
-sudo cp -r /home/ubuntu/timezone-webapp /opt >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to copy project over to $PROJECT_DIR"
+sudo cp -r /home/ubuntu/timezone-webapp /opt >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to copy project over to /opt directory"
 install_system_deps
 setup_postgres
 check_postgres
