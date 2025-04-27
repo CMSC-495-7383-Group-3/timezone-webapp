@@ -226,6 +226,7 @@ setup_letsencrypt() {
 
 # Main execution
 log_message "info" "Starting production deployment..."
+sudo cp -r /home/ubuntu/timezone-webapp /opt >>"$LOG_FILE" 2>&1 || log_message "error" "Failed to copy project over to $PROJECT_DIR"
 install_system_deps
 setup_postgres
 check_postgres
