@@ -1,0 +1,16 @@
+@use "../globals.scss";
+
+#user-settings {
+  table {
+    border-collapse: collapse;
+
+    td {
+      padding: globals.$space-xxs globals.$space-xs;
+      border-left: 1px solid var(--text-950);
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+}

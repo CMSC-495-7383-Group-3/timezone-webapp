@@ -86,8 +86,14 @@
       flex-direction: row;
       flex-wrap: wrap;
       align-items: flex-start;
+      position: relative;
 
       gap: globals.$space-xs; /* Space between contacts */
+
+      &.scrollable {
+        // TODO figure out a better way to hind that a list is scrollable. Maybe there is a way to always show the scrollbar on firefox?
+        box-shadow: inset 0px -3px 7px 0px rgba(0, 0, 0, 0.2);
+      }
 
       li {
         padding: 6px;

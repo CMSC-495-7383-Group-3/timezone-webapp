@@ -7,7 +7,7 @@ import getContactsByTimezone from "../lib/api/getContactsByTimezone"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import setFavorite from "../lib/api/setFavorite"
 import { Contact, ContactEditorUpdateAction, TimezoneProfile } from "../types"
-import patchContacts from "../lib/pathcContacts"
+import patchContacts from "../lib/patchContacts"
 
 const FALLBACK_TIMEZONE_PROFILE = {
   id: "",
@@ -21,6 +21,9 @@ const FALLBACK_TIMEZONE_PROFILE = {
 }
 
 export default function Timezone() {
+  // Reroute to login if not authenticated
+  // useProtectedPage()
+
   const contactEditor = useContext(ContactEditorContext)
 
   // The the timezone from the parameters
@@ -50,17 +53,6 @@ export default function Timezone() {
     loadData(zone ? zone : "")
   }, [])
 
-  const onFavoriteButtonClick = async () => {
-    const result = await setFavorite(
-      timezoneProfile.timezone,
-      !timezoneProfile.isFavorite
-    )
-
-    if (result === undefined) console.error("Could not change favorite state!") //TODO make some error response
-
-    setTimezoneProfile({ ...timezoneProfile, isFavorite: result! })
-  }
-
   const onAddContact = () => {
     const newContact = {
       id: "",
@@ -72,16 +64,13 @@ export default function Timezone() {
     contactEditor.newContact(onContactUpdate, newContact)
 
     // Adds the contact to the list of currently loaded contacts.
-    // TODO see if there is a good way to hide this contact while it is blank. Potentially make all blank-name contacts hidden?
     setContacts([...contacts, newContact])
   }
 
-  // TODO duplicate favorite button?
   const onFavoriteUpdate = async (timezone: string, setTo: boolean) => {
     const result = await setFavorite(timezone, setTo)
 
     if (result === undefined) {
-      //TODO make some error response
       alert("Could not change favorite state!")
       return
     }
@@ -110,15 +99,22 @@ export default function Timezone() {
 
         <div className="container secondary">
           <p>
-            City: {timezoneProfile.city} / Label: {timezoneProfile.label} / Id:{" "}
-            {timezoneProfile.id} and any other descriptive text.
+            Name: {timezoneProfile.timezone} | Label: {timezoneProfile.label} |
+            ID: {timezoneProfile.id}
           </p>
         </div>
       </div>
 
-      <div className="container accent">
+      <div className="container accent flex">
         <button onClick={onAddContact}>Add Contact</button>
-        <button onClick={onFavoriteButtonClick}>
+        <button
+          onClick={() => {
+            onFavoriteUpdate(
+              timezoneProfile.timezone,
+              !timezoneProfile.isFavorite
+            )
+          }}
+        >
           {timezoneProfile.isFavorite ? "Unfavorite" : "Favorite"}
         </button>
       </div>

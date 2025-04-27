@@ -19,9 +19,16 @@ interface IContactListProps {
 // Displays a single contact item.
 export default function ContactListItem(props: IContactListProps) {
   const editorContext = useContext(ContactEditorContext)
-
   return (
-    <li className={`contact-list-item ${props.availability}`}>
+    <li
+      className={`contact-list-item ${props.availability} ${
+        typeof props.contact.id === "string" &&
+        props.contact.id.includes("NEW") &&
+        props.contact.name == ""
+          ? "hidden"
+          : ""
+      }`}
+    >
       <button
         onClick={() =>
           editorContext.openEditor(props.contact, props.updateCallback)

@@ -9,11 +9,10 @@ export default function Nav() {
   // For mobile, the nav should expand or shrink
   const [expanded, setExpanded] = useState(false)
 
-  // TODO find a better open and close icon for mobile. The unicode arrow seems to not show on some browsers
   return (
     <div id="nav" className={expanded ? "expanded" : ""}>
       <button id="toggle-nav" onClick={() => setExpanded(!expanded)}>
-        {expanded ? "⮝" : "⮟"}
+        {expanded ? "▲" : "▼"}
       </button>
       <nav>
         <NavLink to="/">Home</NavLink>

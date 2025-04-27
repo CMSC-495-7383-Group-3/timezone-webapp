@@ -30,6 +30,7 @@ Each page is made from some combination of basic HTML elements and reusable comp
 
 - `src/components` - Contains shared components and their associated css files.
 - `src/context` - Contains the definition for contexts that can be used to pass data around the application.
+- `src/hooks` - Contains custom hooks
 - `src/lib` - Contains any global shared functions. If a function is static, and especially if it is needed by more than one component, it should be represented as its own file here. It is encuraged to make one file per function.
   - `src/lib/api` - Contains functions that do an API call. Components should use functions in this folder for API calls instead of doing it themselves. Keeping these functions separated will make it easier respond to changes in the API implementation.
 - `src/pages` - Contains components that are directly shown as pages. These may be larger and keep more of their own state.

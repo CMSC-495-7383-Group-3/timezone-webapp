@@ -10,10 +10,14 @@ import TimezoneDisplay from "../components/TimezoneDisplay"
 import getTimezoneProfile from "../lib/api/getTimezoneProfile"
 import TimezoneSearch from "../components/TimezoneSearch"
 import getContactMapping from "../lib/api/getContactMapping"
-import patchContacts from "../lib/pathcContacts"
+import patchContacts from "../lib/patchContacts"
 import setFavorite from "../lib/api/setFavorite"
+import useProtectedPage from "../hooks/useProtectedPage"
 
 export default function Favorites() {
+  // Reroute to login if not authenticated
+  useProtectedPage()
+
   const [contacts, setContacts] = useState<ContactsMapping>({})
   const [favoriteTimezones, setFavoriteTimezones] = useState<TimezoneProfile[]>(
     []
@@ -39,7 +43,6 @@ export default function Favorites() {
     const result = await setFavorite(timezone, setTo)
 
     if (result === undefined) {
-      //TODO make some error response}
       console.error("Could not change favorite state!")
       return
     }

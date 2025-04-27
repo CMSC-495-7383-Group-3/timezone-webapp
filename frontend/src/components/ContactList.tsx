@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react"
 import determineContactAvailability from "../lib/determineContactAvailability"
 import { Contact, ContactEditorUpdateCallbackFunction } from "../types"
 import ContactListItem from "./ContactListItem"
@@ -13,8 +14,21 @@ interface IContactListProps {
 
 // A list of contacts as given by the props. Meant to be used only as a child of TimezoneDisplay
 export default function ContactList(props: IContactListProps) {
+  const listElement = useRef<HTMLUListElement>(null)
+  const [scrollable, setScrollable] = useState(false)
+
+  useEffect(() => {
+    if (listElement.current)
+      setScrollable(
+        listElement.current.scrollHeight > listElement.current.clientHeight
+      )
+  }, [props.contacts])
+
   return (
-    <ul className="contacts-list">
+    <ul
+      className={`contacts-list ${scrollable ? "scrollable" : ""}`}
+      ref={listElement}
+    >
       {props.contacts.map((contact) => (
         <ContactListItem
           contact={contact}

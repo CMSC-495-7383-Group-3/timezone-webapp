@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import { FormMessage, LoginFormData } from "../types"
 import login from "../lib/api/login"
 import { AuthContext } from "../context/authContext"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import "./LoginRegister.scss"
 
 function validateLoginForm(data: LoginFormData): boolean {
   return data.email.length > 0 && data.password.length > 0
@@ -11,6 +12,17 @@ function validateLoginForm(data: LoginFormData): boolean {
 export default function Login() {
   const authContext = useContext(AuthContext)
   const navigate = useNavigate()
+  const [searchParams, _setSearchParams] = useSearchParams()
+
+  // Set message if please login is in params
+  useEffect(() => {
+    if (searchParams.has("please_login"))
+      setFormMessage({
+        show: true,
+        success: false,
+        message: "You must log in to access this page.",
+      })
+  }, [])
 
   // Navigate to home is already logged in
   useEffect(() => {
