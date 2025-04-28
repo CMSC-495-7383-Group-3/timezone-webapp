@@ -4,6 +4,8 @@ import useProtectedPage from "../hooks/useProtectedPage"
 import { AuthContext } from "../context/authContext"
 import { Contact } from "../types"
 import "./userSettings.scss"
+import { Link } from "react-router-dom"
+import escapeTimezone from "../lib/escapeTimezone"
 
 export default function UserSettings() {
   // Reroute to login if not authenticated
@@ -67,7 +69,11 @@ export default function UserSettings() {
             {contactsData.map((contact) => (
               <tr key={`user-settings-contact-${contact.id}`}>
                 <td>{contact.name}</td>
-                <td>{contact.timezone}</td>
+                <td>
+                  <Link to={`/timezone/${escapeTimezone(contact.timezone)}`}>
+                    {contact.timezone}
+                  </Link>
+                </td>
                 <td>{contact.phoneNumber}</td>
               </tr>
             ))}
