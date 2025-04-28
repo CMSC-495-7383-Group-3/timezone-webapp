@@ -17,7 +17,11 @@ export default function Nav() {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/test">Test Page</NavLink>
+        {!process.env.NODE_ENV || process.env.NODE_ENV === "development" ? (
+          <NavLink to="/test">Test Page</NavLink>
+        ) : (
+          <></>
+        )}
         <div className="spacer" />
         {authContext.isAuthenticated ? (
           <>
