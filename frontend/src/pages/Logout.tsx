@@ -15,7 +15,8 @@ export default function Logout() {
   const onLogout = async () => {
     const success = await logout()
 
-    if (!success) alert("Logout Failure. Clear site data and try again.")
+    // if (!success) alert("Logout Failure. Clear site data and try again.")
+    if (!success) console.error("Unable to cleanly log out!")
 
     authContext.setAuthenticated(null)
     navigate("/")
