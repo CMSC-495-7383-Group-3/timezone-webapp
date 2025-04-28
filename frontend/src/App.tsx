@@ -13,6 +13,7 @@ import Register from "./pages/Register"
 import { User } from "./types"
 import Logout from "./pages/Logout"
 import getUserSelf from "./lib/api/getUserSelf"
+import refreshToken from "./lib/api/refreshToken"
 
 // Root App component
 function App() {
@@ -50,6 +51,25 @@ function App() {
       onInitialMount()
 
       initialMount.current = true
+    }
+  }, [])
+
+  // Re-fresh the token automatically every 10 minutes to avoid authentication errors
+  // This is a complementary system to the one in api.ts
+  const isRunningTokenRefresh = useRef(false)
+  useEffect(() => {
+    var intervalID: NodeJS.Timeout | null = null
+    if (!isRunningTokenRefresh.current) {
+      intervalID = setInterval(() => {
+        console.log("Attempting access token...")
+        if (authDataSource.isAuthenticated) refreshToken()
+      }, 600000)
+
+      isRunningTokenRefresh.current = true
+    }
+
+    return () => {
+      if (intervalID) clearInterval(intervalID)
     }
   }, [])
 
