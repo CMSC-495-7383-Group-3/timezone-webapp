@@ -26,6 +26,9 @@ export default function Timezone() {
 
   const contactEditor = useContext(ContactEditorContext)
 
+  // Keep track of initial load to prevent an error from briefly showing
+  const [loading, setLoading] = useState(true)
+
   // The the timezone from the parameters
   const { zone } = useParams<{ zone: string }>()
 
@@ -47,6 +50,7 @@ export default function Timezone() {
     const profile = await getTimezoneProfile(timezone.replace("-", "/"))
     setTimezoneProfile(profile)
     setContacts(await getContactsByTimezone(profile.timezone))
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -84,6 +88,14 @@ export default function Timezone() {
   ) => {
     setContacts(patchContacts(contacts, data, action))
   }
+
+  if (loading)
+    return (
+      <main id="timezone">
+        <h1>Timezone</h1>
+        <p>Loading...</p>
+      </main>
+    )
 
   return (
     <main id="timezone">
