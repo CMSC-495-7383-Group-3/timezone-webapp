@@ -25,12 +25,14 @@ function App() {
         isAuthenticated: true,
         user: user,
         setAuthenticated: setAuthenticated,
+        isLoading: false,
       })
     else
       setAuthDataSource({
         isAuthenticated: false,
         user: null,
         setAuthenticated: setAuthenticated,
+        isLoading: false,
       })
   }
 
@@ -38,6 +40,7 @@ function App() {
     isAuthenticated: false,
     user: null,
     setAuthenticated: setAuthenticated,
+    isLoading: true,
   })
 
   // ONCE on the initial mount, attempt to get the current user's information
@@ -45,6 +48,7 @@ function App() {
   const onInitialMount = async () => {
     const user = await getUserSelf()
     if (user) authDataSource.setAuthenticated(user)
+    else authDataSource.setAuthenticated(null)
   }
   useEffect(() => {
     if (!initialMount.current) {
