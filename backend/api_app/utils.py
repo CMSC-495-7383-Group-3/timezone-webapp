@@ -9,9 +9,11 @@ load_dotenv(dotenv_path="../tz_webapp_proj/settings/.env")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# Mini map of timezone names to coordinates (you can expand this)
+# Mini map of timezone names to coordinates
 TIMEZONE_COORDS = {
     "Europe/Berlin": {"lat": 52.52, "lon": 13.405},
+    "Europe/London": (51.5072, -0.1276),
+    "Australia/Sydney": (-33.8688, 151.2093),
     "Asia/Tokyo": {"lat": 35.6895, "lon": 139.6917},
     "America/New_York": {"lat": 40.7128, "lon": -74.0060},
     "America/Los_Angeles": {"lat": 34.0522, "lon": -118.2437},
@@ -54,8 +56,9 @@ def get_time_info_by_timezone_name(tz_name):
     coords = TIMEZONE_COORDS[tz_name]
     lat, lon = coords["lat"], coords["lon"]
 
-    timezone_id, dst_offset, raw_offset = get_timezone_info(lat, lon)
     sunrise, sunset = get_sunrise_sunset(lat, lon)
+    timezone_id, dst_offset, raw_offset = get_timezone_info(lat, lon)
+
 
     return {
         "timezone_id": timezone_id,
