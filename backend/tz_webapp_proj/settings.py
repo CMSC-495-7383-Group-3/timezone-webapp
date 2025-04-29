@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "user_app.apps.UserAppConfig",
+    "favorite_app.apps.FavoriteAppConfig",
     "contact_app.apps.ContactAppConfig",
     "api_app.apps.ApiAppConfig",
 ]
