@@ -41,8 +41,12 @@ export default function UserSettings() {
               <td>{authData.user.username}</td>
             </tr>
             <tr>
-              <td>Name</td>
+              <td>First Name</td>
               <td>{authData.user.firstName}</td>
+            </tr>
+            <tr>
+              <td>Last Name</td>
+              <td>{authData.user.lastName}</td>
             </tr>
             <tr>
               <td>Registration Date</td>
