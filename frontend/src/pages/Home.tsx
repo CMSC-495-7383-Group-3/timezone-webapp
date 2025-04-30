@@ -26,6 +26,14 @@ export default function Home() {
             users keep track of different time zones efficiently by offering an
             intuitive interface and seamless functionality.
           </p>
+          <p>
+            Geographical data provided by{" "}
+            <a href="https://www.geonames.org/">GeoNames</a>, used under
+            <a href="https://creativecommons.org/licenses/by/4.0/">
+              Creative Commons Attribution 4.0 License.
+            </a>{" "}
+            This data may have been modified for use in this application.
+          </p>
         </div>
         <div className="container">
           <h2>Usage</h2>
