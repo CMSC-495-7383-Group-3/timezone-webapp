@@ -94,10 +94,17 @@ export default function TimezoneDisplay(props: ITimezoneDisplayProps) {
             })}
           </p>
           <p className="sun-set-rise">
-            <img src={sunriseIcon} alt="sun rise icon" />
-            {props.timezone.sunriseTime} /{" "}
-            <img src={sunsetIcon} alt="sun set icon" />
-            {props.timezone.sunsetTime}
+            {props.timezone.hasTimingData ? (
+              <>
+                {" "}
+                <img src={sunriseIcon} alt="sun rise icon" />
+                {props.timezone.sunriseTime} /{" "}
+                <img src={sunsetIcon} alt="sun set icon" />
+                {props.timezone.sunsetTime}
+              </>
+            ) : (
+              <span className="color-red">No Sunset/Rise Data</span>
+            )}
           </p>
         </div>
         {!props.hideContactsList ? (

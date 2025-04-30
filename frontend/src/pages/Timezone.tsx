@@ -9,7 +9,7 @@ import setFavorite from "../lib/api/setFavorite"
 import { Contact, ContactEditorUpdateAction, TimezoneProfile } from "../types"
 import patchContacts from "../lib/patchContacts"
 
-const FALLBACK_TIMEZONE_PROFILE = {
+const FALLBACK_TIMEZONE_PROFILE: TimezoneProfile = {
   id: "",
   label: "",
   city: "",
@@ -18,6 +18,7 @@ const FALLBACK_TIMEZONE_PROFILE = {
   sunsetTime: "",
   isFavorite: false,
   valid: false,
+  hasTimingData: false,
 }
 
 export default function Timezone() {

@@ -13,9 +13,10 @@ export type TimezoneProfile = {
   id: string
   label: string
   city: string
-  timezone: string // Potentially limit to a list of knows timezones
-  sunriseTime: string // Potentially switch to a number for other dateTime
-  sunsetTime: string // Potentially switch to a number for other dateTime
+  timezone: string
+  sunriseTime: string
+  sunsetTime: string
+  hasTimingData: boolean
   isFavorite: boolean
   valid: boolean
 }
