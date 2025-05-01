@@ -35,6 +35,13 @@ export type TimezoneTimingData = {
   sunset: string
 }
 
+export type Favorite = {
+  id: string
+  user: string
+  timezone: string
+  addedDate: Date
+}
+
 // Frontend types
 export type ContactAvailability =
   | "available"

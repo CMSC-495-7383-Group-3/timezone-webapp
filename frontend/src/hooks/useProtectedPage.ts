@@ -8,6 +8,7 @@ export default function useProtectedPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!authData.isAuthenticated) navigate("/login?please_login", {})
-  }, [])
+    if (!authData.isAuthenticated && !authData.isLoading)
+      navigate("/login?please_login", {})
+  }, [authData])
 }
