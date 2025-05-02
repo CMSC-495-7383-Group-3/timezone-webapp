@@ -19,6 +19,7 @@ export default async function getTimezoneProfile(
       sunsetTime: "",
       isFavorite: false,
       valid: false,
+      hasTimingData: false,
     }
 
   // Await both the query for if the timezone is favorite and for getting the timezone timing
@@ -32,10 +33,11 @@ export default async function getTimezoneProfile(
     label: found.value,
     city: "",
     timezone: timezone,
-    sunriseTime: timingData.sunrise,
-    sunsetTime: timingData.sunset,
+    sunriseTime: timingData ? timingData.sunrise : "00:00",
+    sunsetTime: timingData ? timingData.sunset : "00:00",
     isFavorite: favorite ? favorite : false,
     valid: true,
+    hasTimingData: timingData !== undefined,
   }
 }
 
@@ -53,6 +55,7 @@ export function getTimezoneProfileSync(timezone: string): TimezoneProfile {
       sunsetTime: "",
       isFavorite: false,
       valid: false,
+      hasTimingData: false,
     }
 
   return {
@@ -64,5 +67,6 @@ export function getTimezoneProfileSync(timezone: string): TimezoneProfile {
     sunsetTime: "",
     isFavorite: false,
     valid: true,
+    hasTimingData: false,
   }
 }

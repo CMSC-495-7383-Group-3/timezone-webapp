@@ -1,7 +1,5 @@
 import "./localTimeDisplay.scss"
 import { useEffect, useState } from "react"
-import sunriseIcon from "/sunny_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
-import sunsetIcon from "/bedtime_24dp_0B0911_FILL0_wght400_GRAD0_opsz24.svg"
 
 interface ILocalTimeDisplayProps {
   // Shows a seconds counter with the time
@@ -37,11 +35,11 @@ export default function LocalTimeDisplay(props: ILocalTimeDisplayProps) {
             second: props.seconds ? "numeric" : undefined,
           })}
         </p>
-        <p className="sun-set-rise">
+        {/* <p className="sun-set-rise">
           <img src={sunriseIcon} alt="sun rise icon" />
           00:00 / <img src={sunsetIcon} alt="sun set icon" />
           00:00
-        </p>
+        </p> */}
       </div>
     </div>
   )
