@@ -6,5 +6,6 @@
   "sunriseTime": "",
   "sunsetTime": "",
   "isFavorite": false,
-  "valid": false
+  "valid": false,
+  "hasTimingData": false
 }
