@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
+from .coordinates import TIMEZONE_COORDS
 
 from .utils import (
     get_sunrise_sunset,
@@ -49,4 +50,6 @@ def get_time_info_by_timezone(request):
     except ValueError as ve:
         return Response({"error": str(ve)}, status=404)
     except Exception as e:
-        return Response({"error": str(e)}, status=500)
+        # return Response({"error": str(e)}, status=500)
+        coords = TIMEZONE_COORDS[tz_name]
+        return Response({"lat": coords[0], "lon": coords[1]}, status=422)
